@@ -98,6 +98,8 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cclip="xclip -selection clipboard < "
+alias emacs="emacs -nw"
+alias mc="mc -S dark"
 
 eval $(thefuck --alias)
 

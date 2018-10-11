@@ -11,7 +11,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (flycheck-haskell hindent smex haskell-mode auto-complete))))
+    (apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode auto-complete))))
 
 ;; haskell-mode stuff
 (package-initialize)
@@ -20,6 +20,7 @@
 (add-hook 'haskell-mode-hook #'hindent-mode)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
