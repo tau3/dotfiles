@@ -37,4 +37,4 @@
 (when (version< emacs-version "26.0.50" )
   (setq linum-format "%d ")
   (global-linum-mode))
-
+(setq backup-directory-alist `(("." . "~/.saves")))
