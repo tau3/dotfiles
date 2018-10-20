@@ -31,6 +31,7 @@
 (global-set-key (kbd "C-c <left>") 'backward-sentence)
 (ido-mode 1)
 (menu-bar-mode 0)
+(tool-bar-mode 0)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -47,6 +48,13 @@
        (lambda ()
 		   (local-set-key (kbd "<f2>") 'flycheck-next-error)
 		   (local-set-key (kbd "C-<f2>") 'flycheck-previous-error)))
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(when window-system
+  ; (set-frame-font "Fira Code-14")
+  ; https://github.com/ianpan870102/Emacs-Tron-Theme
+  (load-theme `tron t)
+  (set-frame-font "Fira Code-14"))
 
 (provide '.emacs)
 ;;; .emacs ends here
