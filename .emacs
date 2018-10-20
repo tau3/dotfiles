@@ -1,3 +1,5 @@
+
+;;; Code:
 (require 'package)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -21,9 +23,12 @@
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "C-c <right>") 'forward-sentence)
+(global-set-key (kbd "C-c <left>") 'backward-sentence)
 (ido-mode 1)
 (menu-bar-mode 0)
 (custom-set-faces
@@ -38,3 +43,11 @@
   (setq linum-format "%d ")
   (global-linum-mode))
 (setq backup-directory-alist `(("." . "~/.saves")))
+(add-hook 'haskell-mode-hook
+       (lambda ()
+		   (local-set-key (kbd "<f2>") 'flycheck-next-error)
+		   (local-set-key (kbd "C-<f2>") 'flycheck-previous-error)))
+
+(provide '.emacs)
+;;; .emacs ends here
+
