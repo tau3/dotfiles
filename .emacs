@@ -17,6 +17,7 @@
 
 ;; haskell-mode stuff
 (package-initialize)
+(exec-path-from-shell-initialize)
 (ac-config-default)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'haskell-mode-hook #'hindent-mode)
@@ -51,9 +52,9 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (when window-system
-  ; (set-frame-font "Fira Code-14")
   ; https://github.com/ianpan870102/Emacs-Tron-Theme
   (load-theme `tron t)
+  (scroll-bar-mode -1)
   (set-frame-font "Fira Code-14"))
 
 (provide '.emacs)
