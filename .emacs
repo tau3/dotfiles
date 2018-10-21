@@ -21,6 +21,7 @@
 (ac-config-default)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'haskell-mode-hook #'hindent-mode)
+(add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
