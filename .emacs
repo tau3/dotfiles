@@ -38,7 +38,7 @@
 (add-hook 'haskell-mode-hook 'company-mode)
 (add-hook 'haskell-interactive-mode-hook 'company-mode)
 
-;; irony mode stuff
+;; c/c++ stuff
 (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
@@ -46,6 +46,8 @@
 (add-hook 'objc-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+(load "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el")
+(global-set-key (kbd "C-M-l") 'clang-format-region)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
@@ -74,13 +76,13 @@
   (global-linum-mode))
 (setq backup-directory-alist `(("." . "~/.saves")))
 (add-hook 'haskell-mode-hook
-       (lambda ()
-		   (local-set-key (kbd "<f2>") 'flycheck-next-error)
-		   (local-set-key (kbd "C-<f2>") 'flycheck-previous-error)))
+	  (lambda ()
+	    (local-set-key (kbd "<f2>") 'flycheck-next-error)
+	    (local-set-key (kbd "C-<f2>") 'flycheck-previous-error)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (when window-system
-  ; https://github.com/ianpan870102/Emacs-Tron-Theme
+					; https://github.com/ianpan870102/Emacs-Tron-Theme
   (load-theme `tron t)
   (scroll-bar-mode -1)
   (set-frame-font "Fira Code-14"))
