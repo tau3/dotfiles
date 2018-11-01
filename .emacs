@@ -24,7 +24,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
+    (dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
 
 ;; haskell-mode stuff
 (package-initialize)
@@ -58,6 +58,7 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C-c <right>") 'forward-sentence)
 (global-set-key (kbd "C-c <left>") 'backward-sentence)
+(global-set-key (kbd "C-c b") 'dumb-jump-go)
 
 (ido-mode 1)
 (menu-bar-mode 0)
