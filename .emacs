@@ -46,7 +46,7 @@
 (add-hook 'objc-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-(load "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el")
+(when (file-exists-p "/usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.el") (load "/usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.el"))
 (global-set-key (kbd "C-M-l") 'clang-format-region)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -76,6 +76,7 @@
   (setq linum-format "%d ")
   (global-linum-mode))
 (setq backup-directory-alist `(("." . "~/.saves")))
+(setq inhibit-startup-screen t)
 (add-hook 'haskell-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "<f2>") 'flycheck-next-error)
@@ -83,10 +84,12 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (when window-system
-					; https://github.com/ianpan870102/Emacs-Tron-Theme
+  ; https://github.com/ianpan870102/Emacs-Tron-Theme
   (load-theme `tron t)
   (scroll-bar-mode -1)
-  (set-frame-font "Fira Code-14"))
+  (if (eq system-type 'gnu/linux)
+      (set-frame-font "Fira Code-10")
+    (set-frame-font "Fire Code-14")))
 
 (provide '.emacs)
 ;;; .emacs ends here
