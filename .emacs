@@ -46,7 +46,7 @@
 (add-hook 'objc-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-(when (file-exists-p "/usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.el") (load "/usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.el"))
+(when (file-exists-p "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el") (load "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el"))
 (global-set-key (kbd "C-M-l") 'clang-format-region)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -89,7 +89,7 @@
   (scroll-bar-mode -1)
   (if (eq system-type 'gnu/linux)
       (set-frame-font "Fira Code-10")
-    (set-frame-font "Fire Code-14")))
+    (set-frame-font "Fira Code-14")))
 
 (provide '.emacs)
 ;;; .emacs ends here
