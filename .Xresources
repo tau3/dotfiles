@@ -1,5 +1,4 @@
 Xft.dpi: 102
-!Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: rgb
@@ -30,4 +29,4 @@ URxvt.internalBorder: 10
 *color13:	#A742EA
 *color14:	#47BAE8
 *color15:	#DEE6E7
-*color16: #2A33A5
+*color16:       #2A33A5

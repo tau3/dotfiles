@@ -92,6 +92,9 @@
       (set-frame-font "Fira Code-10")
     (set-frame-font "Fira Code-14")))
 
+(show-paren-mode 1)
+(setq show-paren-style 'mixed)
+
 (provide '.emacs)
 ;;; .emacs ends here
 
