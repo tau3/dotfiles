@@ -7,6 +7,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(dumb-jump-window (quote other))
+ '(haskell-interactive-popup-errors nil)
  '(haskell-mode-hook
    (quote
     (interactive-haskell-mode
