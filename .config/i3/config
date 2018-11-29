@@ -152,12 +152,33 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set_from_resource $color0  i3wm.color0
+set_from_resource $color8  i3wm.color8
+set_from_resource $color3  i3wm.color3
+set_from_resource $color11 i3wm.color11
+set_from_resource $color4  i3wm.color4
+set_from_resource $color12 i3wm.color12
+set_from_resource $color7  i3wm.color7
+set_from_resource $color6  i3wm.color6
+set_from_resource $color14 i3wm.color14
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         position top
         tray_output LVDS
         status_command i3status
+
+	colors {
+	       background $color0
+	       statusline $color8
+               separator $color8
+               #                  border   backgr. text
+               focused_workspace  $color11 $color3 $color7
+               #active_workspace  #333333  #5f676a #ffffff
+               inactive_workspace $color12 $color4 $color7
+               urgent_workspace   $color14 $color6 $color7
+	}
 }
 
 exec --no-startup-id ~/.local/bin/wal -R
