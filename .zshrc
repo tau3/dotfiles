@@ -64,6 +64,7 @@ ZSH_THEME="eastwood"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  cabal
   pass
 )
 
@@ -101,4 +102,3 @@ alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 
 eval $(thefuck --alias)
-
