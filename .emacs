@@ -26,7 +26,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
+    (company-jedi py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
 
 ;; haskell-mode stuff
 (package-initialize)
@@ -50,6 +50,12 @@
 (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 (when (file-exists-p "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el") (load "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el"))
 (global-set-key (kbd "C-M-l") 'clang-format-region)
+
+;; pyhton
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+(add-to-list 'company-backends 'company-jedi)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
