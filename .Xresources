@@ -10,13 +10,12 @@ URxvt.scrollBar: off
 URxvt.font: xft:Iosevka Term:Semibold:size=9
 URxvt.internalBorder: 10
 
-! Test
 *.foreground:  #fffaf4
 *.background:  #0e1019
 *.cursorColor: #ff0018
 
 ! Black
-*.color0:      #232323
+*.color0:      #0e1019
 *.color8:      #444444
 
 ! Red
