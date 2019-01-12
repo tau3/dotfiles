@@ -101,4 +101,4 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)

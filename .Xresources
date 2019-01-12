@@ -10,23 +10,44 @@ URxvt.scrollBar: off
 URxvt.font: xft:Iosevka Term:Semibold:size=9
 URxvt.internalBorder: 10
 
-*background:	#1E2541
-*foreground:	#EEFFFF
-*cursorColor:	#EEFFFF
-*color0:	#1E2541
-*color1:	#F0719B
-*color2:	#5AF7B0
-*color3:	#FFA56B
-*color4:	#57C7FF
-*color5:	#C792EA
-*color6:	#89DDFF
-*color7:	#EEFFFF
-*color8:	#354274
-*color9:	#F02E6E
-*color10:	#2CE592
-*color11:	#FF8537
-*color12:	#1DA0E2
-*color13:	#A742EA
-*color14:	#47BAE8
-*color15:	#DEE6E7
-*color16:       #2A33A5
+! Test
+*.foreground:  #fffaf4
+*.background:  #0e1019
+*.cursorColor: #ff0018
+
+! Black
+*.color0:      #232323
+*.color8:      #444444
+
+! Red
+*.color1:      #ff000f
+*.color9:      #ff2740
+
+! Green
+*.color2:      #8ce10b
+*.color10:     #abe15b
+
+! Yellow
+*.color3:      #ffb900
+*.color11:     #ffd242
+
+! Blue
+*.color4:      #008df8
+*.color12:     #0092ff
+
+! Magenta
+*.color5:      #6d43a6
+*.color13:     #9a5feb
+
+! Cyan
+*.color6:      #00d8eb
+*.color14:     #67fff0
+
+! White
+*.color7:      #ffffff
+*.color15:     #ffffff
+
+! Bold, Italic, Underline
+*.colorBD:     #9e9c9a
+!*.colorIT:
+!*.colorUL:

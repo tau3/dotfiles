@@ -152,54 +152,47 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec --no-startup-id ~/.local/bin/wal -R
+# exec --no-startup-id xrdb -merge ~/.Xresources 
+# exec --no-startup-id ~/.local/bin/wal -R
 
-set_from_resource $color0  i3wm.color0 #f0f0f0
-set_from_resource $color8  i3wm.color8 #f0f0f0
-set_from_resource $color3  i3wm.color3 #f0f0f0
-set_from_resource $color11 i3wm.color11 #f0f0f0
-set_from_resource $color4  i3wm.color4 #f0f0f0
-set_from_resource $color12 i3wm.color12 #f0f0f0
-set_from_resource $color7  i3wm.color7 #f0f0f0
-set_from_resource $color6  i3wm.color6 #f0f0f0
-set_from_resource $color14 i3wm.color14 #f0f0f0
+set_from_resource $blue    i3wm.color12 #0092ff
+set_from_resource $white   i3wm.color7  #ffffff
+set_from_resource $red     i3wm.color1  #ff000f
+
+# i3wm can't parse wildcards here and replace them correctly in dmenu call
+set_from_resource $fg i3wm.color7 #0e1019
+set_from_resource $bg i3wm.color2 #8ce10b
+
+set_from_resource $bar_bg i3wm.background #0e1019
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         position top
-        tray_output LVDS
+        tray_output LVDS-1
         status_command i3status
 
-	colors {
-	       background $color0
-	       statusline $color8
-               separator $color8
-               #                  border   backgr. text
-               focused_workspace  $color11 $color3 $color7
-               #active_workspace  #333333  #5f676a #ffffff
-               inactive_workspace $color12 $color4 $color7
-               urgent_workspace   $color14 $color6 $color7
-	}
+	    colors {
+	        background $bar_bg
+	        statusline $white
+            separator  $white
+        
+            #                  border   backgr.  text
+            focused_workspace  $blue    $bar_bg  $white
+            #active_workspace  #333333  #5f676a  #ffffff
+            inactive_workspace $bar_bg  $bar_bg  $white
+            urgent_workspace   $red     $bar_bg  $white
+	    }
 }
 
 exec --no-startup-id feh --bg-fill /home/sergey/images/wp.jpg
-exec --no-startup-id wicd-client --tray
-exec --no-startup-id telegram -startintray
+exec --no-startup-id wicd-gtk --tray
+exec --no-startup-id telegram-desktop -startintray
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id kbdd
 
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-
-
-# Set colors from Xresources
-# Change 'color7' and 'color2' to whatever colors you want i3 to use 
-# from the generated scheme.
-# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
-# it fails to get colors from Xresources.
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
