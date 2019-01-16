@@ -101,4 +101,8 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 
+stty start undef
+stty stop undef
+setopt noflowcontrol
+
 # eval $(thefuck --alias)

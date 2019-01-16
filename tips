@@ -1,0 +1,7 @@
+* disable sleep and hibernate on Ubuntu with systemd:
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+* attach/detach monitor
+xrandr | less
+xrandr --output HDMI-1 --mode 1920x1080 --auto --left-of LVDS-1
+xrandr -s 0

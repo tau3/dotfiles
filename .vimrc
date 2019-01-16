@@ -42,6 +42,7 @@ Plugin 'https://github.com/Shougo/neocomplcache.vim.git'
 Plugin 'https://github.com/Shougo/vimproc.vim.git'
 Plugin 'https://github.com/eagletmt/ghcmod-vim.git'
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
+Plugin 'https://github.com/scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,6 +66,13 @@ set shiftwidth=4
 set expandtab
 
 syntax on
+
+" bindings
+:nmap <c-s> :w<CR>
+:imap <c-s> <Esc>:w<CR>i
+:nmap <c-t> :tabnew<CR>
+:imap <c-t> :tabnew<CR>
+:map <C-n> :NERDTreeToggle<CR>
 
 " hindent
 let g:hindent_on_save=1
