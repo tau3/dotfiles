@@ -30,6 +30,9 @@
     (company-jedi exec-path-from-shell py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
 
 (package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+(package-install-selected-packages)
 
 ;; haskell-mode stuff
 (exec-path-from-shell-initialize)

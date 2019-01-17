@@ -39,10 +39,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/alx741/vim-hindent.git'
 Plugin 'https://github.com/eagletmt/neco-ghc.git'
 Plugin 'https://github.com/Shougo/neocomplcache.vim.git'
-Plugin 'https://github.com/Shougo/vimproc.vim.git'
+" Plugin 'https://github.com/Shougo/vimproc.vim.git'
 Plugin 'https://github.com/eagletmt/ghcmod-vim.git'
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
 Plugin 'https://github.com/scrooloose/nerdtree'
+Plugin 'https://github.com/junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -64,6 +65,8 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set rtp+=~/.fzf
 
 syntax on
 
