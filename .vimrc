@@ -36,14 +36,16 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'https://github.com/alx741/vim-hindent.git'
-Plugin 'https://github.com/eagletmt/neco-ghc.git'
-Plugin 'https://github.com/Shougo/neocomplcache.vim.git'
+" Plugin 'https://github.com/alx741/vim-hindent.git'
+" Plugin 'https://github.com/eagletmt/neco-ghc.git'
 " Plugin 'https://github.com/Shougo/vimproc.vim.git'
-Plugin 'https://github.com/eagletmt/ghcmod-vim.git'
+" Plugin 'https://github.com/eagletmt/ghcmod-vim.git'
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
 Plugin 'https://github.com/scrooloose/nerdtree'
 Plugin 'https://github.com/junegunn/fzf.vim'
+Plugin 'https://github.com/roxma/nvim-yarp'
+Plugin 'https://github.com/roxma/vim-hug-neovim-rpc'
+Plugin 'https://github.com/Shougo/deoplete.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -105,3 +107,5 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+let g:deoplete#enable_at_startup = 1
