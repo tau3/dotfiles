@@ -52,8 +52,10 @@
 (global-set-key (kbd "C-M-l") 'clang-format-region)
 
 ;; pyhton
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+(if (condition-case nil (require 'flycheck-pycheckers) (error nil))
+   ((with-eval-after-load 'flycheck
+     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
+  (message "flycheck-pycheckers if not available"))
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-to-list 'company-backends 'company-jedi)
 
