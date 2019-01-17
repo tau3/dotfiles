@@ -78,6 +78,7 @@ syntax on
 :nmap <c-t> :tabnew<CR>
 :imap <c-t> <Esc>:tabnew<CR>i
 :map <C-n> :NERDTreeToggle<CR>
+:nmap <c-c> :call deoplete#toggle()<CR>  
 
 " hindent
 let g:hindent_on_save=1
@@ -108,4 +109,4 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
