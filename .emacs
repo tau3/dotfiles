@@ -23,13 +23,15 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+     ("melpa-stable" . "http://stable.melpa.org/packages/")
+     ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (company-jedi py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
+    (company-jedi exec-path-from-shell py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
+
+(package-initialize)
 
 ;; haskell-mode stuff
-(package-initialize)
 (exec-path-from-shell-initialize)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'haskell-mode-hook #'hindent-mode)
@@ -52,14 +54,13 @@
 (global-set-key (kbd "C-M-l") 'clang-format-region)
 
 ;; pyhton
-(if (condition-case nil (require 'flycheck-pycheckers) (error nil))
-   ((with-eval-after-load 'flycheck
-     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)))
-  (message "flycheck-pycheckers if not available"))
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+(with-eval-after-load 'flycheck
+      (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-to-list 'company-backends 'company-jedi)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
 
@@ -73,6 +74,7 @@
 (ido-mode 1)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(setq vc-follow-symlinks nil)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
