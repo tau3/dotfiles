@@ -71,7 +71,7 @@ syntax on
 :nmap <c-s> :w<CR>
 :imap <c-s> <Esc>:w<CR>i
 :nmap <c-t> :tabnew<CR>
-:imap <c-t> :tabnew<CR>
+:imap <c-t> <Esc>:tabnew<CR>i
 :map <C-n> :NERDTreeToggle<CR>
 
 " hindent
