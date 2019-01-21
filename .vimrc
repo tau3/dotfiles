@@ -51,6 +51,7 @@ Plugin 'https://github.com/Shougo/deoplete.nvim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
+
 "filetype plugin on
 "
 " Brief help
@@ -108,5 +109,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_python_pylint_args = "--rcfile=pylint.rc"
 
 let g:deoplete#enable_at_startup = 0

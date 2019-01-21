@@ -100,9 +100,9 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
+alias mocp="mocp --theme nightly_theme"
 
+# this required for Ctrl+S to work in vim
 stty start undef
 stty stop undef
 setopt noflowcontrol
-
-# eval $(thefuck --alias)
