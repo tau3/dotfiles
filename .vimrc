@@ -46,6 +46,7 @@ Plugin 'https://github.com/junegunn/fzf.vim'
 Plugin 'https://github.com/roxma/nvim-yarp'
 Plugin 'https://github.com/roxma/vim-hug-neovim-rpc'
 Plugin 'https://github.com/Shougo/deoplete.nvim'
+Plugin 'https://github.com/tell-k/vim-autopep8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -109,7 +110,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pylint', 'flake8']
-let g:syntastic_python_pylint_args = "--rcfile=pylint.rc"
+let g:syntastic_python_checkers = ['flake8']
 
 let g:deoplete#enable_at_startup = 0
+
+let g:autopep8_on_save = 1
+let g:autopep8_disable_show_diff = 1
