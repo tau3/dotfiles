@@ -36,17 +36,28 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" Plugin 'https://github.com/alx741/vim-hindent.git'
-" Plugin 'https://github.com/eagletmt/neco-ghc.git'
-" Plugin 'https://github.com/Shougo/vimproc.vim.git'
-" Plugin 'https://github.com/eagletmt/ghcmod-vim.git'
+" Haskell plugins:
+Plugin 'https://github.com/alx741/vim-hindent.git'
+
+" Universal syntax checker:
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
+
+" Project tree:
 Plugin 'https://github.com/scrooloose/nerdtree'
+
+" Fuzzy search
 Plugin 'https://github.com/junegunn/fzf.vim'
+
+" Completion plugin
 Plugin 'https://github.com/roxma/nvim-yarp'
 Plugin 'https://github.com/roxma/vim-hug-neovim-rpc'
 Plugin 'https://github.com/Shougo/deoplete.nvim'
+
+" PEP8 for syntastic
 Plugin 'https://github.com/tell-k/vim-autopep8'
+
+" Start page
+Plugin 'https://github.com/mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -80,24 +91,10 @@ syntax on
 :nmap <c-t> :tabnew<CR>
 :imap <c-t> <Esc>:tabnew<CR>i
 :map <C-n> :NERDTreeToggle<CR>
-:nmap <c-c> :call deoplete#toggle()<CR>  
 
 " hindent
 let g:hindent_on_save=1
 let g:hindent_command="~/.local/bin/hindent"
-
-" neocomplcache, dependency of neco-ghc
-" let g:neocomplcache_enable_at_startup = 1
-
-" neco-ghc
-" Disable haskell-vim omnifunc
-" let g:haskellmode_completion_ghc = 0
-" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" let g:necoghc_enable_detailed_browse = 1
-" let g:necoghc_use_stack = 1
-
-" ghcmod-vim
-" autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 
 " syntastic
 map <Leader>s :SyntasticToggleMode<CR>
@@ -112,7 +109,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
-let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_at_startup = 1
 
 let g:autopep8_on_save = 1
 let g:autopep8_disable_show_diff = 1
