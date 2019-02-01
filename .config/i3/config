@@ -187,7 +187,6 @@ bar {
 }
 
 exec --no-startup-id feh --bg-fill /home/sergey/images/wp.jpg
-exec --no-startup-id wicd-gtk --tray
 exec --no-startup-id telegram-desktop -startintray
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id kbdd

@@ -27,12 +27,12 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (company-jedi exec-path-from-shell py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci company-irony flycheck-irony apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
+    (company-jedi exec-path-from-shell py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
 
 (package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-(package-install-selected-packages)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (package-install-selected-packages)
 
 ;; haskell-mode stuff
 (exec-path-from-shell-initialize)
@@ -45,23 +45,13 @@
 (add-hook 'haskell-mode-hook 'company-mode)
 (add-hook 'haskell-interactive-mode-hook 'company-mode)
 
-;; c/c++ stuff
-(eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
-(add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-(when (file-exists-p "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el") (load "/usr/local/Cellar/llvm/7.0.0/share/clang/clang-format.el"))
-(global-set-key (kbd "C-M-l") 'clang-format-region)
-
 ;; pyhton
 (with-eval-after-load 'flycheck
   (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
 (with-eval-after-load 'flycheck
       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+(add-hook 'python-mode-hook 'company-mode)
 (add-to-list 'company-backends 'company-jedi)
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
@@ -96,15 +86,6 @@
 	  (lambda ()
 	    (local-set-key (kbd "<f2>") 'flycheck-next-error)
 	    (local-set-key (kbd "C-<f2>") 'flycheck-previous-error)))
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(when window-system
-  ; https://github.com/ianpan870102/Emacs-Tron-Theme
-  (load-theme `tron t)
-  (scroll-bar-mode -1)
-  (if (eq system-type 'gnu/linux)
-      (set-frame-font "Fira Code-10")
-    (set-frame-font "Fira Code-14")))
 
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
