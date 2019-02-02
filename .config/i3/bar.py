@@ -16,7 +16,8 @@ def write_and_flush(line):
 
 
 def get_date():
-    return strftime('DATE %d.%m.%Y', localtime())
+    result = strftime('%a %d.%m', localtime())
+    return result.upper()
 
 
 def get_time():

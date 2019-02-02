@@ -59,6 +59,8 @@ Plugin 'https://github.com/tell-k/vim-autopep8'
 " Start page
 Plugin 'https://github.com/mhinz/vim-startify'
 
+Plugin 'https://github.com/mhinz/vim-signify'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -80,6 +82,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set splitbelow
 
 set rtp+=~/.fzf
 
