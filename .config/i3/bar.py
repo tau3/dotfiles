@@ -32,7 +32,7 @@ def get_battery():
 
 
 def get_cpu_temp():
-    path = '/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input'
+    path = '/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input'
     with open(path, 'r') as cpu_file:
         temp = int(cpu_file.readline())
     temp = temp / 1000

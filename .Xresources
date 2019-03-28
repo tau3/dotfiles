@@ -7,7 +7,7 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
 URxvt.scrollBar: off
-URxvt.font: xft:Iosevka Term:Semibold:size=9
+URxvt.font: xft:Iosevka:Semibold:size=9
 URxvt.internalBorder: 10
 
 *.foreground:  #fffaf4

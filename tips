@@ -5,3 +5,6 @@ sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.ta
 xrandr | less
 xrandr --output HDMI-1 --mode 1920x1080 --auto --left-of LVDS-1
 xrandr -s 0
+
+* look at D.Ritchie
+curl -sL git.io/unix | less
