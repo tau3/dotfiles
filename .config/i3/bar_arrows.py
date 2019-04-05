@@ -3,8 +3,11 @@ import json
 from time import localtime, strftime, sleep
 
 # TODO .Xresources
-CYAN = '#58d1eb'
-WHITE = '#c4c5b5'
+DARK_BG = '#6d43a6'
+LIGHT_BG = '#9a5feb'
+BG = '#0e1019'
+
+SEPARATOR = u'\uE0B2'
 
 
 def write_and_flush(line):
@@ -39,17 +42,31 @@ def get_cpu_temp():
 
 def wrap_with_colored(blocks):
     result = []
+    bg_current, bg_next = LIGHT_BG, DARK_BG
+
+    start = {'name': 'start', 'full_text': SEPARATOR,
+             'color': bg_current, 'background': BG}
+    result.append(start)
+
     for i, block in enumerate(blocks):
-        color = CYAN if i % 2 == 0 else WHITE
-        block['color'] = color
+        block['background'] = bg_current
+        block['full_text'] = ' ' + block['full_text'] + ' '
         result.append(block)
+
+        border = {'name': 'separator%d' % i, 'full_text': SEPARATOR,
+                  'color': bg_next, 'background': bg_current}
+        result.append(border)
+
+        bg_current, bg_next = bg_next, bg_current
+
+    result[-1]['color'] = BG
     return result
 
 
 def make_initial_blocks(functions):
     result = []
     for i, function in enumerate(functions):
-        block = {'name': 'block%d' % i, 'full_text': function()}
+        block = {'name': 'block%d' % i, 'full_text': function(), 'color': BG}
         result.append(block)
     return result
 
@@ -57,6 +74,7 @@ def make_initial_blocks(functions):
 def set_separators(blocks):
     for block in blocks:
         block['separator'] = False
+        block['separator_block_width'] = 0
 
 
 def main():
