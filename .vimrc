@@ -116,3 +116,5 @@ let g:deoplete#enable_at_startup = 1
 
 let g:autopep8_on_save = 1
 let g:autopep8_disable_show_diff = 1
+
+set backspace=indent,eol,start
