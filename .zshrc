@@ -102,6 +102,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 alias mocp="mocp --theme nightly_theme"
+alias w3m="w3m -no-cookie duckduckgo.com"
 
 # this required for Ctrl+S to work in vim
 stty start undef

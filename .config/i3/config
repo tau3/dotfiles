@@ -17,7 +17,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # font pango:monospace 8
 # PROTIP: use https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/
-font xft:Iosevka Term Semibold 9
+font xft:Fira Code Medium 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -153,24 +153,22 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# exec --no-startup-id xrdb -merge ~/.Xresources 
-# exec --no-startup-id ~/.local/bin/wal -R
-
-set_from_resource $blue    i3wm.color12 #0092ff
-set_from_resource $white   i3wm.color7  #ffffff
-set_from_resource $red     i3wm.color1  #ff000f
+set_from_resource $blue    i3wm.color6  #58d1eb
+set_from_resource $white   i3wm.color7  #c4c5b5
+set_from_resource $red     i3wm.color1  #f4005f
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
-set_from_resource $fg i3wm.color7 #0e1019
-set_from_resource $bg i3wm.color2 #8ce10b
+set_from_resource $fg i3wm.color0 #58d1eb
+set_from_resource $bg i3wm.color6 #9d65ff
 
-set_from_resource $bar_bg i3wm.background #0e1019
+# set_from_resource $bar_bg i3wm.background #0e1019
+set_from_resource $bar_bg i3wm.background #58d1eb
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         position top
-        tray_output LVDS-1
+        tray_output LVDS
         status_command "i3status | python3 ~/.config/i3/bar.py"
 
 	    colors {
@@ -186,8 +184,9 @@ bar {
 	    }
 }
 
+exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
 exec --no-startup-id feh --bg-fill /home/sergey/images/wp.jpg
-exec --no-startup-id telegram-desktop -startintray
+exec --no-startup-id /opt/telegram/Telegram -startintray
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id kbdd
 
