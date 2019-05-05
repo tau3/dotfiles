@@ -15,3 +15,6 @@ sudo xbps-install openresolv nscd unbound
 * set console font
 unzip /usr/share/kbd/consolefonts/ruscii_8x16.psf.gz
 setfont ruscii_8x16.psfu
+
+* weather forecast from console
+curl wttr.in
