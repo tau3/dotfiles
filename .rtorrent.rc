@@ -1,1 +1,10 @@
 session = ~/.rtorrent
+
+dht = on 
+encryption = require
+protocol.pex.set = yes
+
+throttle.max_downloads.global.set = 250
+throttle.max_uploads.global.set = 250
+
+throttle.max_peers.normal.set = 100
