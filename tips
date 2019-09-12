@@ -1,9 +1,11 @@
 * disable sleep and hibernate on Ubuntu with systemd:
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 
-* attach/detach monitor
+* attach monitor
 xrandr | less
 xrandr --output HDMI-1 --mode 1920x1080 --auto --left-of LVDS-1
+
+* detach
 xrandr -s 0
 
 * look at D.Ritchie
@@ -18,3 +20,12 @@ setfont ruscii_8x16.psfu
 
 * weather forecast from console
 curl wttr.in
+
+* mount usb wothout root
+udevil
+
+* add wifi connection 
+1. wpa_passphrase <wifi_name> <password>
+2. add this to /etc/wpa_suplicant/wpa_supplicant-<interface>.conf
+3. maybe set priority for each connection (lower is better)
+4. sudo sv restart wpa_supplicant
