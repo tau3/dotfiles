@@ -27,7 +27,7 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (company-jedi exec-path-from-shell py-autopep8 pyvenv flycheck-pycheckers dumb-jump company-ghci apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
+    (exec-path-from-shell dumb-jump company-ghci apt-sources-list yaml-mode flycheck-haskell hindent smex haskell-mode))))
 
 (package-initialize)
   (unless package-archive-contents
@@ -44,15 +44,6 @@
 (push 'company-ghci company-backends)
 (add-hook 'haskell-mode-hook 'company-mode)
 (add-hook 'haskell-interactive-mode-hook 'company-mode)
-
-;; pyhton
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
-(with-eval-after-load 'flycheck
-      (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-(add-hook 'python-mode-hook 'company-mode)
-(add-to-list 'company-backends 'company-jedi)
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
@@ -82,10 +73,6 @@
   (global-linum-mode))
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq inhibit-startup-screen t)
-(add-hook 'haskell-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "<f2>") 'flycheck-next-error)
-	    (local-set-key (kbd "C-<f2>") 'flycheck-previous-error)))
 
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
