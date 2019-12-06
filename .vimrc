@@ -37,7 +37,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " Haskell plugins:
-Plugin 'https://github.com/alx741/vim-hindent.git'
+" Plugin 'https://github.com/alx741/vim-hindent.git'
 
 " Universal syntax checker:
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
