@@ -44,3 +44,5 @@ scp -P 1234 <target_user>@localhost:file .
 7. ip a
 8. bring new interface up (e.g. modify /etc/netplan/<config>.yaml, and then netplan generate && netplay apply)
 
+* mount without root
+udevil mount /dev/sdd
