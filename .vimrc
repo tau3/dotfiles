@@ -62,6 +62,9 @@ Plugin 'https://github.com/mhinz/vim-startify'
 " Shows VCS changes
 Plugin 'https://github.com/mhinz/vim-signify'
 
+" File Structure
+Plugin 'https://github.com/majutsushi/tagbar'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -95,6 +98,7 @@ syntax on
 :nmap <c-t> :tabnew<CR>
 :imap <c-t> <Esc>:tabnew<CR>i
 :map <C-n> :NERDTreeToggle<CR>
+:nmap <F8> :TagbarToggle<CR>
 
 " hindent
 let g:hindent_on_save=1
