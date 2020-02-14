@@ -68,6 +68,9 @@ Plugin 'https://github.com/majutsushi/tagbar'
 " Buffers management
 Plugin 'jlanzarotta/bufexplorer'
 
+" Smart commenter
+Plugin 'preservim/nerdcommenter'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -105,6 +108,8 @@ syntax on
 :map <A-1> :NERDTreeToggle<CR>
 :map <A-7> :TagbarToggle<CR>
 :map <A-f> :Ag 
+:map <C-_> <plug>NERDCommenterToggle<CR>
+:imap <C-_> <Esc><plug>NERDCommenterToggle<CR>i
 
 " hindent
 " let g:hindent_on_save=1
