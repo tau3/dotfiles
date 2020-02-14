@@ -51,9 +51,7 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'https://github.com/junegunn/fzf.vim'
 
 " Completion plugin
-Plugin 'https://github.com/roxma/nvim-yarp'
-Plugin 'https://github.com/roxma/vim-hug-neovim-rpc'
-Plugin 'https://github.com/Shougo/deoplete.nvim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " PEP8 for syntastic
 Plugin 'https://github.com/tell-k/vim-autopep8'
