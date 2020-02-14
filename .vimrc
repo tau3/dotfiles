@@ -44,6 +44,8 @@ Plugin 'https://github.com/vim-syntastic/syntastic.git'
 
 " Project tree:
 Plugin 'https://github.com/scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Fuzzy search
 Plugin 'https://github.com/junegunn/fzf.vim'
@@ -134,5 +136,9 @@ let g:deoplete#enable_at_startup = 1
 
 let g:autopep8_on_save = 1
 let g:autopep8_disable_show_diff = 1
+
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
 
 set backspace=indent,eol,start
