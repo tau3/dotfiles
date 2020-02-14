@@ -60,7 +60,9 @@ Plugin 'https://github.com/tell-k/vim-autopep8'
 Plugin 'https://github.com/mhinz/vim-startify'
 
 " Shows VCS changes
-Plugin 'https://github.com/mhinz/vim-signify'
+" Plugin 'https://github.com/mhinz/vim-signify'
+" \hp to observe changed hunk
+Plugin 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
 Plugin 'https://github.com/majutsushi/tagbar'
