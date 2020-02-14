@@ -65,13 +65,16 @@ Plugin 'https://github.com/mhinz/vim-signify'
 " File Structure
 Plugin 'https://github.com/majutsushi/tagbar'
 
+" Buffers management
+Plugin 'jlanzarotta/bufexplorer'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 
 "filetype plugin on
-"
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -99,10 +102,13 @@ syntax on
 :imap <c-t> <Esc>:tabnew<CR>i
 :map <C-n> :NERDTreeToggle<CR>
 :nmap <F8> :TagbarToggle<CR>
+:map <A-1> :NERDTreeToggle<CR>
+:map <A-7> :TagbarToggle<CR>
+:map <A-f> :Ag 
 
 " hindent
-let g:hindent_on_save=1
-let g:hindent_command="~/.local/bin/hindent"
+" let g:hindent_on_save=1
+" let g:hindent_command="~/.local/bin/hindent"
 
 " syntastic
 map <Leader>s :SyntasticToggleMode<CR>
@@ -113,7 +119,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
