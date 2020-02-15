@@ -36,12 +36,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" Haskell plugins:
-" Plugin 'https://github.com/alx741/vim-hindent.git'
-
-" Universal syntax checker:
-Plugin 'https://github.com/vim-syntastic/syntastic.git'
-
 " Project tree:
 Plugin 'https://github.com/scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -53,14 +47,15 @@ Plugin 'https://github.com/junegunn/fzf.vim'
 " Completion plugin
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
-" PEP8 for syntastic
-Plugin 'https://github.com/tell-k/vim-autopep8'
+" Golang supprt
+Plugin 'fatih/vim-go'
+
+" PEP8 on save
+" Plugin 'https://github.com/tell-k/vim-autopep8'
 
 " Start page
 Plugin 'https://github.com/mhinz/vim-startify'
 
-" Shows VCS changes
-" Plugin 'https://github.com/mhinz/vim-signify'
 " \hp to observe changed hunk
 Plugin 'https://github.com/airblade/vim-gitgutter'
 
@@ -68,6 +63,7 @@ Plugin 'https://github.com/airblade/vim-gitgutter'
 Plugin 'https://github.com/majutsushi/tagbar'
 
 " Buffers management
+" \be to observe buffers
 Plugin 'jlanzarotta/bufexplorer'
 
 " Smart commenter
@@ -113,27 +109,8 @@ syntax on
 :map <C-_> <plug>NERDCommenterToggle<CR>
 :imap <C-_> <Esc><plug>NERDCommenterToggle<CR>i
 
-" hindent
-" let g:hindent_on_save=1
-" let g:hindent_command="~/.local/bin/hindent"
-
-" syntastic
-map <Leader>s :SyntasticToggleMode<CR>
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
-
-let g:deoplete#enable_at_startup = 1
-
-let g:autopep8_on_save = 1
-let g:autopep8_disable_show_diff = 1
+"let g:autopep8_on_save = 1
+"let g:autopep8_disable_show_diff = 1
 
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
