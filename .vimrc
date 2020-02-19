@@ -69,6 +69,8 @@ Plugin 'jlanzarotta/bufexplorer'
 " Smart commenter
 Plugin 'preservim/nerdcommenter'
 
+Plugin 'vim-airline/vim-airline'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -118,6 +120,8 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 
 set backspace=indent,eol,start
+
+set t_Co=256
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
