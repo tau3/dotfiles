@@ -45,6 +45,8 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'https://github.com/junegunn/fzf.vim'
 
 " Completion plugin
+" python-language-server/flake8/autopep8 should be installed for each
+" virtualenv
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Golang supprt
@@ -110,10 +112,15 @@ syntax on
 :map <A-f> :Ag 
 :map <C-_> <plug>NERDCommenterToggle<CR>
 :imap <C-_> <Esc><plug>NERDCommenterToggle<CR>i
-:map <F3> <Plug>(coc-diagnostic-next-error)
 
-"let g:autopep8_on_save = 1
-"let g:autopep8_disable_show_diff = 1
+" CoC bindings
+:map <F3> <Plug>(coc-diagnostic-next-error)
+:nmap <leader>rn <Plug>(coc-rename)
+:xmap <leader>f  <Plug>(coc-format-selected)
+:nmap <leader>f  <Plug>(coc-format-selected)
+
+" let g:autopep8_on_save = 1
+" let g:autopep8_disable_show_diff = 1
 
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -122,6 +129,9 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 set backspace=indent,eol,start
 
 set t_Co=256
+
+" CoC settings
+command! -nargs=0 Format :call CocAction('format')
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
