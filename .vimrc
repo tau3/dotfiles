@@ -118,6 +118,7 @@ syntax on
 :nmap <leader>rn <Plug>(coc-rename)
 :xmap <leader>f  <Plug>(coc-format-selected)
 :nmap <leader>f  <Plug>(coc-format-selected)
+:nmap <silent> gd <Plug>(coc-definition)
 
 " let g:autopep8_on_save = 1
 " let g:autopep8_disable_show_diff = 1

@@ -46,3 +46,12 @@ scp -P 1234 <target_user>@localhost:file .
 
 * mount without root
 udevil mount /dev/sdd
+
+* install powerline theme
+https://github.com/powerline/powerline
+use https://github.com/jimeh/tmux-themepack
+tmux source-file .tmux.conf
+
+* tmux sessions cleanup
+tmux ls
+tmux kill-session -t <number>
