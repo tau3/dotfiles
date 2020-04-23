@@ -49,9 +49,6 @@ Plugin 'https://github.com/junegunn/fzf.vim'
 " virtualenv
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Golang supprt
-Plugin 'fatih/vim-go'
-
 " PEP8 on save
 " Plugin 'https://github.com/tell-k/vim-autopep8'
 
@@ -62,7 +59,7 @@ Plugin 'https://github.com/mhinz/vim-startify'
 Plugin 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
-Plugin 'https://github.com/majutsushi/tagbar'
+" Plugin 'https://github.com/majutsushi/tagbar'
 
 " Buffers management
 " \be to observe buffers
@@ -134,30 +131,4 @@ set t_Co=256
 " CoC settings
 command! -nargs=0 Format :call CocAction('format')
 
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-    \ }
+set updatetime=300

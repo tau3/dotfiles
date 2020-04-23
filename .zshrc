@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.ghcup/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/Library/Python/3.7/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -64,9 +64,7 @@ ZSH_THEME="gentoo"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  cabal
   pip
-  pass
 )
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
