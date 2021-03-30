@@ -56,6 +56,9 @@ tmux source-file .tmux.conf
 tmux ls
 tmux kill-session -t <number>
 
+* tmux move pane to a new window
+ctrl +b !
+
 * pm deps on mac
 brew install autoconf automake libtool cppunit argon2 asciidoctor
 export everything for current version of openssl:

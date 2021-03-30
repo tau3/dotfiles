@@ -59,7 +59,7 @@ Plugin 'https://github.com/mhinz/vim-startify'
 Plugin 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
-" Plugin 'https://github.com/majutsushi/tagbar'
+ Plugin 'https://github.com/majutsushi/tagbar'
 
 " Buffers management
 " \be to observe buffers
