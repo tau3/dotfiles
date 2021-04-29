@@ -2,7 +2,7 @@
 
 sudo apt-get install -y curl ncdu htop vim mc ranger zsh git fzf silversearcher-ag nodejs tmux
 sudo apt-get install -y libncurses5-dev gcc make exuberant-ctags libssl-dev bison flex libelf-dev bc dwarves
-sudo apt-get install -y ccache
+sudo apt-get install -y ccache mutt codespell
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/tau3/dotfiles.git ~/git/dotfiles

@@ -59,7 +59,7 @@ Plugin 'https://github.com/mhinz/vim-startify'
 Plugin 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
- Plugin 'https://github.com/majutsushi/tagbar'
+Plugin 'https://github.com/majutsushi/tagbar'
 
 " Buffers management
 " \be to observe buffers
@@ -69,6 +69,10 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'preservim/nerdcommenter'
 
 Plugin 'vim-airline/vim-airline'
+
+" Markdown support
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -132,3 +136,6 @@ set t_Co=256
 command! -nargs=0 Format :call CocAction('format')
 
 set updatetime=300
+
+let g:NERDSpaceDelims = 1
+let g:vim_markdown_conceal = 2
