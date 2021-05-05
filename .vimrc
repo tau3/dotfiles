@@ -47,7 +47,7 @@ Plugin 'https://github.com/junegunn/fzf.vim'
 " Completion plugin
 " python-language-server/flake8/autopep8 should be installed for each
 " virtualenv
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " PEP8 on save
 " Plugin 'https://github.com/tell-k/vim-autopep8'
@@ -139,3 +139,7 @@ set updatetime=300
 
 let g:NERDSpaceDelims = 1
 let g:vim_markdown_conceal = 2
+
+" highlight current line
+set cursorline
+hi CursorLine cterm=NONE ctermbg=darkgray
