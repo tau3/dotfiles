@@ -65,6 +65,7 @@ ZSH_THEME="gentoo"
 plugins=(
   git
   pip
+  pass
 )
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
