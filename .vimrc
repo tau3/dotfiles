@@ -42,12 +42,14 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Fuzzy search
+" sudo apt-get install silversearcher-ag
+" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 Plugin 'https://github.com/junegunn/fzf.vim'
 
 " Completion plugin
 " python-language-server/flake8/autopep8 should be installed for each
 " virtualenv
-" Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " PEP8 on save
 " Plugin 'https://github.com/tell-k/vim-autopep8'
@@ -143,3 +145,7 @@ let g:vim_markdown_conceal = 2
 " highlight current line
 set cursorline
 hi CursorLine cterm=NONE ctermbg=darkgray
+
+" show open buffers as tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1

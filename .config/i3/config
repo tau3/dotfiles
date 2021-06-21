@@ -168,12 +168,12 @@ set_from_resource $bar_bg i3wm.background #0e1019
 bar {
         position top
         tray_output HDMI-A-0 
-        status_command "i3status -c ~/.i3status.conf" 
+        status_command "~/.config/i3/i3status.sh"
         # status_command "i3status | python3 ~/.config/i3/bar.py"
 
-	    colors {
-	        background $bar_bg
-	        statusline $white
+        colors {
+            background $bar_bg
+            statusline $white
             separator  $white
         
             #                  border   backgr.  text
@@ -181,7 +181,7 @@ bar {
             #active_workspace  #333333  #5f676a  #ffffff
             inactive_workspace $bar_bg  $bar_bg  $white
             urgent_workspace   $red     $bar_bg  $white
-	    }
+        }
 }
 
 exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
