@@ -1,13 +1,14 @@
 URxvt.font: xft:Fira Code:Regular:size=9
 URxvt.scrollBar: off
+URxvt.letterSpace: -1
 
-! -----------------------------------------------------------------------------
-! File: gruvbox-dark.xresources
-! Description: Retro groove colorscheme generalized
-! Author: morhetz <morhetz@gmail.com>
-! Source: https://github.com/morhetz/gruvbox-generalized
-! Last Modified: 6 Sep 2014
-! -----------------------------------------------------------------------------
+Xft.antialias: true
+Xft.hinting: true
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+Xft.dpi: 93
 
 ! hard contrast: *background: #1d2021
 *background: #282828
