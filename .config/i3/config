@@ -153,15 +153,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set_from_resource $blue    i3wm.color6  #58d1eb
-set_from_resource $white   i3wm.color7  #c4c5b5
-set_from_resource $red     i3wm.color1  #f4005f
+set_from_resource $blue    i3wm.color6  #88C0D0
+set_from_resource $white   i3wm.color7  #E5E9F0
+set_from_resource $red     i3wm.color1  #BF616A
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
-set_from_resource $fg i3wm.color0 #58d1eb
-set_from_resource $bg i3wm.color6 #9d65ff
+set_from_resource $fg i3wm.color0 #3B4252
+set_from_resource $bg i3wm.color6 #88C0D0
 
-set_from_resource $bar_bg i3wm.background #0e1019
+set_from_resource $bar_bg i3wm.background #2E3440
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

@@ -71,10 +71,14 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'preservim/nerdcommenter'
 
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Markdown support
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+Plugin 'https://github.com/rhysd/vim-clang-format'
+Plugin 'https://github.com/sunaku/vim-shortcut'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -149,3 +153,8 @@ hi CursorLine cterm=NONE ctermbg=darkgray
 " show open buffers as tabs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
+
+let g:clang_format#code_style = "llvm"
+let g:clang_format#detect_style_file = 1
+
+let g:airline_theme = 'base16_nord'
