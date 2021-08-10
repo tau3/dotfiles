@@ -186,8 +186,8 @@ bar {
 
 exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
 exec --no-startup-id feh --bg-fill /home/sergey/images/wp.jpg
-exec --no-startup-id /opt/telegram/Telegram -startintray
-exec --no-startup-id pulseaudio --start
+exec --no-startup-id apulse /opt/telegram/Telegram -startintray
+# exec --no-startup-id pulseaudio --start
 exec --no-startup-id kbdd
 exec --no-startup-id devmon
 

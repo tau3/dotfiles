@@ -47,12 +47,12 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'https://github.com/junegunn/fzf.vim'
 
 " Completion plugin
-" python-language-server/flake8/autopep8 should be installed for each
-" virtualenv
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'dense-analysis/ale'
 
-" PEP8 on save
-" Plugin 'https://github.com/tell-k/vim-autopep8'
+" Format code
+" Plugin 'https://github.com/sbdchd/neoformat'
+Plugin 'google/vim-maktaba'
+Plugin 'https://github.com/google/vim-codefmt'
 
 " Start page
 Plugin 'https://github.com/mhinz/vim-startify'
@@ -78,7 +78,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 Plugin 'https://github.com/rhysd/vim-clang-format'
-Plugin 'https://github.com/sunaku/vim-shortcut'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -120,15 +119,13 @@ syntax on
 :map <C-_> <plug>NERDCommenterToggle<CR>
 :imap <C-_> <Esc><plug>NERDCommenterToggle<CR>i
 
-" CoC bindings
-:map <F3> <Plug>(coc-diagnostic-next-error)
-:nmap <leader>rn <Plug>(coc-rename)
-:xmap <leader>f  <Plug>(coc-format-selected)
-:nmap <leader>f  <Plug>(coc-format-selected)
-:nmap <silent> gd <Plug>(coc-definition)
-
-" let g:autopep8_on_save = 1
-" let g:autopep8_disable_show_diff = 1
+nnoremap <silent> <Plug>(ale_rename) :ALERename<Return>
+:nmap <leader>rn <Plug>(ale_rename)
+nnoremap <silent> <Plug>(ale_hover) :ALEHover<Return>
+:nmap <C-p> <Plug>(ale_hover)
+nnoremap <silent> <Plug>(ale_gd) :ALEGoToDefinition<Return>
+:nmap <silent> gd <Plug>(ale_gd)
+:map <F3> <Plug>(ale_next_wrap)
 
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -137,10 +134,6 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 set backspace=indent,eol,start
 
 set t_Co=256
-
-" CoC settings
-command! -nargs=0 Format :call CocAction('format')
-
 set updatetime=300
 
 let g:NERDSpaceDelims = 1
@@ -158,3 +151,5 @@ let g:clang_format#code_style = "llvm"
 let g:clang_format#detect_style_file = 1
 
 let g:airline_theme = 'base16_nord'
+
+let g:ale_completion_enabled = 1
