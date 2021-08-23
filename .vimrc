@@ -49,8 +49,7 @@ Plugin 'https://github.com/junegunn/fzf.vim'
 " Completion plugin
 Plugin 'dense-analysis/ale'
 
-" Format code
-" Plugin 'https://github.com/sbdchd/neoformat'
+" Format selected code with :FormatLines
 Plugin 'google/vim-maktaba'
 Plugin 'https://github.com/google/vim-codefmt'
 
@@ -153,3 +152,4 @@ let g:clang_format#detect_style_file = 1
 let g:airline_theme = 'base16_nord'
 
 let g:ale_completion_enabled = 1
+highlight ALEError ctermbg=DarkRed
