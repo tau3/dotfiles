@@ -1,4 +1,4 @@
-URxvt.font: xft:Fira Code:Regular:size=11
+URxvt.font: xft:Fira Code:Regular:size=10
 URxvt.scrollBar: off
 URxvt.letterSpace: -1
 
@@ -8,7 +8,13 @@ Xft.autohint: false
 Xft.hintstyle: hintfull
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
-Xft.dpi: 109
+
+# home computer
+# Xft.dpi: 109
+
+# laptop
+Xft.dpi: 192
+Xcursor.size: 48
 
 #define nord0 #2E3440
 #define nord1 #3B4252
