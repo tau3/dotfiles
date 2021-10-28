@@ -57,6 +57,8 @@ Plugin 'https://github.com/google/vim-codefmt'
 Plugin 'https://github.com/mhinz/vim-startify'
 
 " \hp to observe changed hunk
+" ]c - next hunk; [c - prev hunt
+" \hu - revert current hunk
 Plugin 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
@@ -152,4 +154,3 @@ let g:clang_format#detect_style_file = 1
 let g:airline_theme = 'base16_nord'
 
 let g:ale_completion_enabled = 1
-highlight ALEError ctermbg=DarkRed
