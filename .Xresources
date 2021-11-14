@@ -13,6 +13,7 @@ Xft.lcdfilter: lcddefault
 Xft.dpi: 109
 
 ! laptop
+! dpi is recommended to be a multiple of 96. 192 -> 200% scaling
 ! Xft.dpi: 192
 ! Xcursor.size: 48
 

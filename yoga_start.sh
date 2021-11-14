@@ -9,6 +9,8 @@ synclient TapButton3=1
 synclient VertScrollDelta=-111
 synclient HorizScrollDelta=-111
 
+synclient HorizTwoFingerScroll=1
+
 # change language
 setxkbmap -option 'grp:alt_shift_toggle'
 setxkbmap -layout us,ru
