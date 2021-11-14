@@ -17,7 +17,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # font pango:monospace 8
 # PROTIP: use https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/
-font xft:Fira Code Medium 10
+font xft:Fira Code Medium 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -169,7 +169,7 @@ set_from_resource $bar_bg i3wm.background #2E3440
 # finds out, if available)
 bar {
         position top
-        tray_output primary 
+        tray_output HDMI-A-0 
         status_command "~/.config/i3/i3status.sh"
         # status_command "i3status | python3 ~/.config/i3/bar.py"
 
