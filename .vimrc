@@ -71,9 +71,6 @@ Plugin 'jlanzarotta/bufexplorer'
 " Smart commenter
 Plugin 'preservim/nerdcommenter'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
 " Markdown support
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -144,13 +141,7 @@ let g:vim_markdown_conceal = 2
 set cursorline
 hi CursorLine cterm=NONE ctermbg=darkgray
 
-" show open buffers as tabs
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
-
 let g:clang_format#code_style = "llvm"
 let g:clang_format#detect_style_file = 1
-
-let g:airline_theme = 'base16_nord'
 
 let g:ale_completion_enabled = 1
