@@ -17,7 +17,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # font pango:monospace 8
 # PROTIP: use https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/
-font xft:Fira Code Medium 11
+font xft:Fira Code Medium 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -155,15 +155,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set_from_resource $blue    i3wm.color6  #88C0D0
-set_from_resource $white   i3wm.color7  #E5E9F0
-set_from_resource $red     i3wm.color1  #BF616A
+set_from_resource $blue    i3wm.color6  #8abeb7
+set_from_resource $white   i3wm.color7  #c5c8c6
+set_from_resource $red     i3wm.color1  #cc6666
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
-set_from_resource $fg i3wm.color0 #3B4252
-set_from_resource $bg i3wm.color6 #88C0D0
+set_from_resource $fg i3wm.color0 #1d1f21
+set_from_resource $bg i3wm.color6 #8abeb7
 
-set_from_resource $bar_bg i3wm.background #2E3440
+set_from_resource $bar_bg i3wm.background #1d1f21
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -188,7 +188,7 @@ bar {
 
 exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
 exec --no-startup-id feh --bg-fill /home/sergey/images/wp.jpg
-exec --no-startup-id apulse /opt/telegram/Telegram -startintray
+# exec --no-startup-id apulse /opt/telegram/Telegram -startintray
 # exec --no-startup-id pulseaudio --start
 exec --no-startup-id kbdd
 exec --no-startup-id devmon
@@ -211,3 +211,5 @@ client.background       $bg
 
 # PROTIP: You can also dynamically set dmenu's colors this way:
 bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+bindsym $mod+b exec firefox -P
+
