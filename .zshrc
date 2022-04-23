@@ -102,6 +102,7 @@ alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 alias mocp="mocp --theme nightly_theme"
 alias w3m="w3m -no-cookie duckduckgo.com"
+alias nettop="sudo netstat -tulpen"
 
 # this required for Ctrl+S to work in vim
 stty start undef
