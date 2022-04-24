@@ -139,7 +139,7 @@ let g:vim_markdown_conceal = 2
 
 " highlight current line
 set cursorline
-hi CursorLine cterm=NONE ctermbg=darkgray
+hi CursorLine cterm=NONE ctermbg=black
 
 let g:clang_format#code_style = "llvm"
 let g:clang_format#detect_style_file = 1
