@@ -77,6 +77,7 @@ Plugin 'plasticboy/vim-markdown'
 
 Plugin 'https://github.com/rhysd/vim-clang-format'
 
+Plugin 'https://github.com/kien/ctrlp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
