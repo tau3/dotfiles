@@ -19,3 +19,4 @@
  )
 (global-set-key (kbd "M-x") 'smex)
 (global-git-gutter-mode +1)
+(setq vc-follow-symlinks t)

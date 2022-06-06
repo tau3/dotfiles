@@ -100,6 +100,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set splitbelow
+set ignorecase
+set smartcase
+set hlsearch
 
 set rtp+=~/.fzf
 
