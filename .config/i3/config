@@ -155,21 +155,22 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set_from_resource $blue    i3wm.color6  #8abeb7
-set_from_resource $white   i3wm.color7  #c5c8c6
-set_from_resource $red     i3wm.color1  #cc6666
+set_from_resource $blue    i3wm.color6  #c9c9c9
+set_from_resource $white   i3wm.color7  #d0b8a3
+set_from_resource $red     i3wm.color1  #a95551
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
-set_from_resource $fg i3wm.color0 #1d1f21
-set_from_resource $bg i3wm.color6 #8abeb7
+set_from_resource $fg i3wm.color0 #383838
+set_from_resource $bg i3wm.color6 #c9c9c9
 
-set_from_resource $bar_bg i3wm.background #1d1f21
+set_from_resource $bar_bg i3wm.background #222222
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         position top
-        tray_output HDMI-A-0 
+        tray_output primary 
+        # tray_output HDMI-A-0 
         status_command "~/.config/i3/i3status.sh"
         # status_command "i3status | python3 ~/.config/i3/bar.py"
 
@@ -201,9 +202,9 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused          $bg     $bg     $bg  $bg       $red
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $fg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 
