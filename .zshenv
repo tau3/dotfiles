@@ -1,3 +1,4 @@
+export QT_QPA_PLATFORMTHEME=qt5ct
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin
 . "$HOME/.cargo/env"
 
