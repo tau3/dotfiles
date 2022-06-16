@@ -169,8 +169,8 @@ set_from_resource $bar_bg i3wm.background #222222
 # finds out, if available)
 bar {
         position top
-        tray_output primary 
-        # tray_output HDMI-A-0 
+        # tray_output primary 
+        tray_output HDMI-A-0 
         status_command "~/.config/i3/i3status.sh"
         # status_command "i3status | python3 ~/.config/i3/bar.py"
 

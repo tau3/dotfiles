@@ -33,3 +33,10 @@
 ! white
 *.color7:       #5C6370
 *.color15:      #ABB2BF
+
+i3wm.color0:    #2C323C
+i3wm.color6:    #56B6C2
+i3wm.color7:    #ABB2BF
+i3wm.color1:    #E06C75
+i3wm.background: #282C34
+

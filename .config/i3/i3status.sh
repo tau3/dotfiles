@@ -11,8 +11,11 @@ do
     lang=$(echo $layouts | cut -d, -f$index)
 
     # put service here
-    status=$(SERVICE status | cut -d' ' -f3)
-    if [ "$status" = "Connected" ]; then status="yes"; else status="no"; fi
-    
+    # status=$(SERVICE status | cut -d' ' -f3)
+    # if [ "$status" = "Connected" ]; then status="yes"; else status="no"; fi
+
+    status=$(ip addr | grep tun0)
+    if [ -z "$status" ]; then status="no"; else status="yes"; fi
+
     echo "LANG: $lang | VPN: $status | $line" || exit 1
 done
