@@ -76,6 +76,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 Plugin 'https://github.com/rhysd/vim-clang-format'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 Plugin 'https://github.com/kien/ctrlp.vim'
 " All of your Plugins must be added before the following line
