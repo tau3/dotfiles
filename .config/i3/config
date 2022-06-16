@@ -165,12 +165,15 @@ set_from_resource $bg i3wm.color6 #c9c9c9
 
 set_from_resource $bar_bg i3wm.background #222222
 
+# "HDMI-A-0" or "primary"
+set_from_resource $tray_output i3wm.tray.output HDMI-A-0
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         position top
         # tray_output primary 
-        tray_output HDMI-A-0 
+        tray_output $tray_output 
         status_command "~/.config/i3/i3status.sh"
         # status_command "i3status | python3 ~/.config/i3/bar.py"
 

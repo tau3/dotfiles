@@ -10,14 +10,17 @@ Xft.hintstyle: hintfull
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! home computer
-Xft.dpi: 109
-
-! laptop
-! dpi is recommended to be a multiple of 96. 192 -> 200% scaling
-! Xft.dpi: 192
-! Xcursor.size: 48
-
 ! a C preprocessor, such as GNU CPP, is required to use this functionality.
+#define HOME
+#if defined( HOME )
+Xft.dpi: 109
+i3wm.tray.output: HDMI-A-0
+#else
+! dpi is recommended to be a multiple of 96. 192 -> 200% scaling
+Xft.dpi: 192
+Xcursor.size: 48
+i3wm.tray.output: primary
+#endif
+
 #include ".Xresources.d/terminal-colors"
 
