@@ -100,6 +100,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set splitbelow
+
+" case-insensitive search
 set ignorecase
 set smartcase
 set hlsearch
@@ -111,20 +113,18 @@ syntax on
 " bindings
 :nmap <c-s> :w<CR>
 :imap <c-s> <Esc>:w<CR>i
-:nmap <c-t> :tabnew<CR>
-:imap <c-t> <Esc>:tabnew<CR>i
 :map <C-n> :NERDTreeToggle<CR>
 :nmap <F8> :TagbarToggle<CR>
-:map <A-1> :NERDTreeToggle<CR>
-:map <A-7> :TagbarToggle<CR>
-:map <A-f> :Ag 
 :map <C-_> <plug>NERDCommenterToggle<CR>
 :imap <C-_> <Esc><plug>NERDCommenterToggle<CR>i
+
+execute "set <M-1>=\e1"
+nnoremap <M-1> :NERDTreeToggle<CR>
 
 nnoremap <silent> <Plug>(ale_rename) :ALERename<Return>
 :nmap <leader>rn <Plug>(ale_rename)
 nnoremap <silent> <Plug>(ale_hover) :ALEHover<Return>
-:nmap <C-p> <Plug>(ale_hover)
+:nmap <silent> cp <Plug>(ale_hover)
 nnoremap <silent> <Plug>(ale_gd) :ALEGoToDefinition<Return>
 :nmap <silent> gd <Plug>(ale_gd)
 :map <F3> <Plug>(ale_next_wrap)
@@ -132,13 +132,8 @@ nnoremap <silent> <Plug>(ale_gd) :ALEGoToDefinition<Return>
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
-
-set backspace=indent,eol,start
-
-set t_Co=256
-set updatetime=300
-
 let g:NERDSpaceDelims = 1
+
 let g:vim_markdown_conceal = 2
 
 " highlight current line
@@ -151,3 +146,8 @@ let g:clang_format#detect_style_file = 1
 let g:ale_completion_enabled = 1
 
 set langmap=йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ\\;;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\"zZxXcCvVbBnNmM\\,<.>$
+
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+set updatetime=300
