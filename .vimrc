@@ -79,6 +79,8 @@ Plugin 'https://github.com/rhysd/vim-clang-format'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
 Plugin 'https://github.com/kien/ctrlp.vim'
+
+Plugin 'https://github.com/joshdick/onedark.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -148,7 +150,9 @@ let g:ale_completion_enabled = 1
 
 set langmap=йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ\\;;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\"zZxXcCvVbBnNmM\\,<.>$
 
-highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-set updatetime=300
+set foldlevel=99
+
+set t_Co=256
+let g:onedark_termcolors=16
+colorscheme onedark
+
