@@ -115,7 +115,7 @@ syntax on
 
 " bindings
 :nmap <c-s> :w<CR>
-:imap <c-s> <Esc>:w<CR>i
+:imap <c-s> <Esc>:w<CR>
 :map <C-n> :NERDTreeToggle<CR>
 :nmap <F8> :TagbarToggle<CR>
 :map <C-_> <plug>NERDCommenterToggle<CR>

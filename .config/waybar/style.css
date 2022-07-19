@@ -1,0 +1,112 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Fira Code Medium";
+    font-size: 1em;
+    min-height: 0;
+    padding: 1px 0px;
+    color: #5c6370;
+}
+
+window#waybar {
+    background: #282c34;
+}
+
+tooltip {
+	background: #2a2e38;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #2a2e38;
+}
+
+#workspaces {
+}
+
+#workspaces button {
+    padding: 0px 2px;
+    color: #5c6370;
+    border: 1px solid transparent;
+}
+
+#workspaces button.visible {
+}
+
+#workspaces button.focused.current_output {
+    border: 1px solid #56b6c2;
+}
+
+#workspaces button.urgent {
+    border: 1px solid red;
+}
+
+#workspaces button:hover {
+    background: transparent; 
+    color: #5c6370;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#clock,
+#backlight,
+#battery,
+#cpu,
+#custom-cpu_speed,
+#custom-mail,
+#custom-media,
+#custom-powermenu,
+#custom-spotify,
+#custom-storage,
+#custom-weather,
+#idle_inhibitor,
+#language,
+#memory,
+#mode,
+#network,
+#pulseaudio {
+    padding: 1px 4px;
+}
+#temperature,
+#window,
+
+#custom-powermenu {
+}
+
+#battery {
+    color: #7bc275;
+}
+
+#battery.charging {
+    color: #7bc275;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #2a2e38;
+    color: #FCCE7B;
+}
+
+#custom-cpu_speed {
+	color: #C57BDB;
+	border-radius: 0px 0px 0px 0px;
+}
+
+#pulseaudio {
+	color: #4db5bd;
+}
+
+#custom-recorder {
+	font-size: 18px;
+	margin: 2px 7px 0px 7px;
+	color:#c9545d;
+}
+
+#custom-powermenu {
+    color:lightcoral;
+}
+
+#temperature {
+    color: lightpink;
+}
+
+#temperature.critical {
+    background: #eb4d4b;
+}
