@@ -17,14 +17,16 @@ set $term urxvt
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $fg #2c323c
+set $bg #56b6c2
+set $menu dmenu_path | dmenu -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -l 10 | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/sergey/images/wp.jpg fill
 #
 # Example configuration:
 #
@@ -63,6 +65,12 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+input "type:pointer" {
+    accel_profile "flat"
+    pointer_accel -0.5
+    calibration_matrix 1 0 0 0 1 0
+
+}
 
 ### Key bindings
 #
@@ -229,3 +237,6 @@ bar swaybar_command waybar
 include /etc/sway/config.d/*
 
 default_border pixel
+
+exec swaykbdd
+
