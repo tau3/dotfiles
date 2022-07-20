@@ -64,7 +64,6 @@ ZSH_THEME="gentoo"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  pip
   pass
 )
 
@@ -102,9 +101,10 @@ alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 alias mocp="mocp --theme nightly_theme"
 alias w3m="w3m -no-cookie duckduckgo.com"
-alias nettop="sudo netstat -tulpen"
+alias powertop="sudo powertop"
 
-# this required for Ctrl+S to work in vim
+# this is required for Ctrl+S to work in vim
 stty start undef
 stty stop undef
 setopt noflowcontrol
+
