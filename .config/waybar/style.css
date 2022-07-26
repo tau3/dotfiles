@@ -5,13 +5,11 @@
     font-size: 1em;
     min-height: 0;
     padding: 0px 0px 1px 0px;
-    color: #5c6370;
+    color: #abb2bf;
 }
-
 window#waybar {
     background: #282c34;
 }
-
 tooltip {
 	background: #2a2e38;
 	border-width: 2px;
@@ -19,34 +17,26 @@ tooltip {
 	border-color: #2a2e38;
 }
 
-#workspaces {
-}
-
 #workspaces button {
     padding: 0px 2px;
-    color: #5c6370;
     border: 1px solid transparent;
-}
-
-#workspaces button.visible {
 }
 
 #workspaces button.focused.current_output {
     border: 1px solid #56b6c2;
 }
-
 #workspaces button.urgent {
     border: 1px solid red;
 }
-
 #workspaces button:hover {
     background: transparent; 
     color: #5c6370;
     box-shadow: inherit;
     text-shadow: inherit;
 }
-
-#clock,
+#clock {
+    color: #98c379;
+}
 #backlight,
 #battery,
 #cpu,
@@ -58,7 +48,12 @@ tooltip {
 #custom-storage,
 #custom-weather,
 #idle_inhibitor,
-#language,
+#language {
+    color: #c678DD;
+}
+#custom-vpn {
+    color: #e5c07b;
+}
 #memory,
 #mode,
 #network,
