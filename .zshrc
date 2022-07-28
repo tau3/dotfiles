@@ -99,7 +99,6 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
-alias mocp="mocp --theme nightly_theme"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 

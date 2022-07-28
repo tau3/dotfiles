@@ -3,6 +3,10 @@ URxvt.scrollBar: off
 URxvt.letterSpace: -1
 URxvt.cursorBlink: 1
 
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+
 Xft.antialias: true
 Xft.hinting: true
 Xft.autohint: false
@@ -11,7 +15,7 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
 ! a C preprocessor, such as GNU CPP, is required to use this functionality.
-#define HOME
+! #define HOME
 #if defined( HOME )
 Xft.dpi: 109
 i3wm.tray.output: HDMI-A-0
