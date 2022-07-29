@@ -107,3 +107,5 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
+setopt HIST_IGNORE_SPACE
+
