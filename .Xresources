@@ -19,6 +19,7 @@ Xft.lcdfilter: lcddefault
 #if defined( HOME )
 Xft.dpi: 109
 i3wm.tray.output: HDMI-A-0
+Xcursor.size: 24
 #else
 ! dpi is recommended to be a multiple of 96. 192 -> 200% scaling
 Xft.dpi: 192
