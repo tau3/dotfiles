@@ -3,7 +3,7 @@
 sudo apt-get install -y curl ncdu htop vim mc ranger zsh git fzf silversearcher-ag tmux w3m
 sudo apt-get install -y firmware-realtek firmware-amd-graphics 
 
-sudo apt-get install -y kbdd ufw devmon feh apulse fonts-firacode i3 i3status dmenu rxvt-unicode tldr lxappearance qt5ct xinit firefox-esr xorg alsa-utils deborphan ncal stow vrms pass xclip nethogs micro
+sudo apt-get install -y kbdd ufw devmon feh apulse fonts-firacode i3 i3status dmenu polybar rxvt-unicode tldr lxappearance qt5ct xinit firefox-esr xorg alsa-utils deborphan ncal stow vrms pass xclip nethogs micro dunst
 sudo apt-get install -y vainfo vulkan-tool libva-glx2
 
 # also install swaykbdd
