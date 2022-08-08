@@ -10,10 +10,10 @@ sudo apt-get install -y vainfo vulkan-tool libva-glx2
 # sudo apt-get install sway qtwayland5 waybar xwayland
 
 # requred to make icons work
-sudo apt-get install gnome-icon-theme hicolor-icon-theme
+sudo apt-get install -y gnome-icon-theme hicolor-icon-theme
 
 # notebook
-# sudo apt-get install -y arandr tlp tlp-rdw wpasupplicant i3lock powertop xserver-xorg-input-synaptics lightdm mate-power-manager network-manager-gnome caffeine
+# sudo apt-get install -y arandr tlp tlp-rdw wpasupplicant i3lock powertop xserver-xorg-input-synaptics lightdm mate-power-manager network-manager-gnome caffeine xss-lock
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/tau3/dotfiles.git ~/git/dotfiles

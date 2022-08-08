@@ -101,6 +101,7 @@ alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
+alias mpv="mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --hwdec=auto --hwdec-codecs=all"
 
 # this is required for Ctrl+S to work in vim
 stty start undef

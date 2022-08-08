@@ -199,6 +199,7 @@ exec --no-startup-id devmon
 exec --no-startup-id ~/git/dotfiles/yoga_start.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id mate-power-manager
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
