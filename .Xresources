@@ -1,7 +1,9 @@
+! URxvt.font: xft:Fira Code:Regular:size=10
 URxvt.font: xft:MxPlus IBM VGA 9x16:size=12
 URxvt.boldFont: xft:MxPlus IBM VGA 9x16:size=12
+
 URxvt.scrollBar: off
-! URxvt.letterSpace: -1
+URxvt.letterSpace: -1
 URxvt.cursorBlink: 1
 
 URxvt*scrollTtyOutput:      false
@@ -16,7 +18,7 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
 ! a C preprocessor, such as GNU CPP, is required to use this functionality.
-#define HOME
+! #define HOME
 #if defined( HOME )
 Xft.dpi: 109
 i3wm.tray.output: HDMI-A-0

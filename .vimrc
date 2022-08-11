@@ -156,3 +156,5 @@ set t_Co=256
 let g:onedark_termcolors=16
 colorscheme onedark
 
+set mouse=a
+

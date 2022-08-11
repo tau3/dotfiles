@@ -4,5 +4,9 @@ export EDITOR=/usr/bin/vim
 . "$HOME/.cargo/env"
 
 # scaling hidpi apps
-# export GDK_DPI_SCALE=0.5
-# export GDK_SCALE=2
+if [[ $HOST = "q3dm6"  ]]
+then
+export GDK_DPI_SCALE=0.5
+export GDK_SCALE=2
+fi
+
