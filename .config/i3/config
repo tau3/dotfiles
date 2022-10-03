@@ -160,8 +160,9 @@ set_from_resource $white   i3wm.color7  #d0b8a3
 set_from_resource $red     i3wm.color1  #a95551
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
-set_from_resource $fg i3wm.color0 #383838
-set_from_resource $bg i3wm.color6 #c9c9c9
+# fg = BACKGROUND color, bg = font color in dmenu
+set_from_resource $fg i3wm.color7 #161821
+set_from_resource $bg i3wm.color3 #e2a478
 
 set_from_resource $bar_bg i3wm.background #222222
 
@@ -181,7 +182,6 @@ set_from_resource $tray_output i3wm.tray.output HDMI-A-0
             # background $bar_bg
             # statusline $white
             # separator  $white
-        
             #                  border   backgr.  text
             # focused_workspace  $blue    $bar_bg  $white
             # active_workspace  #333333  #5f676a  #ffffff

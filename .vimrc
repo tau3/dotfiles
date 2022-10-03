@@ -80,10 +80,10 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 Plugin 'https://github.com/kien/ctrlp.vim'
 
-Plugin 'https://github.com/joshdick/onedark.vim'
+Plugin 'https://github.com/cocopon/iceberg.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on    " requireD
 " To ignore plugin indent changes, instead use:
 
 "filetype plugin on
@@ -153,8 +153,8 @@ set langmap=йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпП
 set foldlevel=99
 
 set t_Co=256
-let g:onedark_termcolors=16
-colorscheme onedark
+set background=dark
+" colorscheme iceberg
 
 set mouse=a
 
