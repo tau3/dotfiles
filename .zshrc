@@ -104,6 +104,7 @@ alias powertop="sudo powertop"
 alias mpv="mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --hwdec=auto --hwdec-codecs=all"
 
 alias gs="git status"
+alias gdh="git diff HEAD"
 
 # this is required for Ctrl+S to work in vim
 stty start undef
