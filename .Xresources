@@ -2,7 +2,7 @@ URxvt.font: xft:Fira Code:Regular:size=10
 
 URxvt.scrollBar: off
 URxvt.letterSpace: -1
-URxvt.cursorBlink: 0
+URxvt.cursorBlink: 1
 
 URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true

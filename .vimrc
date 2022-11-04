@@ -80,7 +80,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 Plugin 'https://github.com/kien/ctrlp.vim'
 
-Plugin 'https://github.com/cocopon/iceberg.vim'
+Plugin 'https://github.com/romgrk/doom-one.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " requireD
@@ -154,7 +154,6 @@ set foldlevel=99
 
 set t_Co=256
 set background=dark
-" colorscheme iceberg
 
 set mouse=a
 

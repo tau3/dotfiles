@@ -161,8 +161,8 @@ set_from_resource $red     i3wm.color1  #a95551
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
 # fg = BACKGROUND color, bg = font color in dmenu
-set_from_resource $fg i3wm.color7 #161821
-set_from_resource $bg i3wm.color3 #e2a478
+set_from_resource $fg i3wm.color7 #282c34
+set_from_resource $bg i3wm.color3 #98be65
 
 set_from_resource $bar_bg i3wm.background #222222
 

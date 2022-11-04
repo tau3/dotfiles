@@ -1,43 +1,45 @@
-! special
-*.foreground:   #c6c8d1
-*.background:   #161821
-*.cursorColor:  #c6c8d1
-
-! black
-*.color0:       #1e2132
-*.color8:       #6b7089
-
-! red
-*.color1:       #e27878
-*.color9:       #e98989
-
-! green
-*.color2:       #b4be82
-*.color10:      #c0ca8e
-
-! yellow
-*.color3:       #e2a478
-*.color11:      #e9b189
-
-! blue
-*.color4:       #84a0c6
-*.color12:      #91acd1
-
-! magenta
-*.color5:       #a093c7
-*.color13:      #ada0d3
-
-! cyan
-*.color6:       #89b8c2
-*.color14:      #95c4ce
-
-! white
-*.color7:       #c6c8d1
-*.color15:      #d2d4de
-
-! i3wm.color0:    #161821
-! i3wm.color6:    #89b8c2
-! i3wm.color7:    #161821
-! i3wm.color1:    #e27878
-! i3wm.color3:    #e2a478
+!
+! Generated with :
+! XRDB2Xreources.py
+!
+*.foreground:  #bbc2cf
+*.background:  #282c34
+*.cursorColor: #51afef
+!
+! Black
+*.color0: #1E2127
+*.color8: #5C6370
+!
+! Red
+*.color1:      #ff6c6b
+*.color9:      #ff6655
+!
+! Green
+*.color2:      #98be65
+*.color10:     #99bb66
+!
+! Yellow
+*.color3:      #ecbe7b
+*.color11:     #ecbe7b
+!
+! Blue
+*.color4:      #a9a1e1
+*.color12:     #a9a1e1
+!
+! Magenta
+*.color5:      #c678dd
+*.color13:     #c678dd
+!
+! Cyan
+*.color6:      #51afef
+*.color14:     #51afef
+!
+! White
+*.color7:      #bbc2cf
+*.color15:     #bfbfbf
+!
+! Bold, Italic, Underline
+*.colorBD:     #bbc2cf
+!*.colorIT:
+!*.colorUL:
 
