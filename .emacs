@@ -1,4 +1,3 @@
-;; TODO comment lines
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (ido-mode 1)
@@ -12,17 +11,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ispell-dictionary nil)
+ '(column-number-mode t)
  '(package-selected-packages
-   '(doom-themes use-package which-key-posframe markdown-mode xresources-theme magit git-gutter smex markdown-mode which-key-mode)))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-					
+   '(flycheck company lsp-treemacs all-the-icons lsp-ui lsp-mode doom-themes use-package markdown-mode magit git-gutter smex markdown-mode which-key-mode)))
+			
 (global-set-key (kbd "M-x") 'smex)
 (global-git-gutter-mode +1)
 (setq vc-follow-symlinks t)
@@ -49,4 +41,13 @@
   (doom-themes-org-config))
 
 (global-set-key "\C-z" 'undo)
+(global-set-key (kbd "C-_") 'comment-line)
 
+(lsp-treemacs-sync-mode 1)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
