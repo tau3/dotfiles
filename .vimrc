@@ -68,7 +68,6 @@ Plugin 'https://github.com/majutsushi/tagbar'
 " \be to observe buffers
 Plugin 'jlanzarotta/bufexplorer'
 
-" Smart commenter
 Plugin 'preservim/nerdcommenter'
 
 " Markdown support
@@ -79,6 +78,12 @@ Plugin 'https://github.com/rhysd/vim-clang-format'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
 Plugin 'https://github.com/kien/ctrlp.vim'
+Plugin 'https://github.com/lervag/vimtex'
+
+" doesn't work?
+Plugin 'frazrepo/vim-rainbow'
+
+Plugin 'https://github.com/ap/vim-buftabline'
 
 Plugin 'https://github.com/romgrk/doom-one.vim'
 " All of your Plugins must be added before the following line
@@ -120,8 +125,9 @@ syntax on
 :nmap <F8> :TagbarToggle<CR>
 :map <C-_> <plug>NERDCommenterToggle<CR>
 :imap <C-_> <Esc><plug>NERDCommenterToggle<CR>i
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
 
-execute "set <M-1>=\e1"
 nnoremap <M-1> :NERDTreeToggle<CR>
 
 nnoremap <silent> <Plug>(ale_rename) :ALERename<Return>
@@ -131,6 +137,11 @@ nnoremap <silent> <Plug>(ale_hover) :ALEHover<Return>
 nnoremap <silent> <Plug>(ale_gd) :ALEGoToDefinition<Return>
 :nmap <silent> gd <Plug>(ale_gd)
 :map <F3> <Plug>(ale_next_wrap)
+
+" works only in neovim, too much struggle to make it work in vim 
+:imap <C-Del> X<Esc>lbce
+:imap <C-x> <Esc>ddi
+:imap <C-H> <C-W>
 
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
@@ -156,4 +167,8 @@ set t_Co=256
 set background=dark
 
 set mouse=a
+
+let g:vimtex_view_method = 'zathura'
+
+let g:rainbow_active = 1
 
