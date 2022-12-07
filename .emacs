@@ -1,4 +1,3 @@
-(setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (ido-mode 1)
 (xterm-mouse-mode 1)
@@ -13,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(flycheck company lsp-treemacs all-the-icons lsp-ui lsp-mode doom-themes use-package markdown-mode magit git-gutter smex markdown-mode which-key-mode)))
+   '(reverse-im flycheck company lsp-treemacs all-the-icons lsp-ui lsp-mode doom-themes use-package markdown-mode magit git-gutter smex markdown-mode which-key-mode)))
 			
 (global-set-key (kbd "M-x") 'smex)
 (global-git-gutter-mode +1)
@@ -42,8 +41,20 @@
 
 (global-set-key "\C-z" 'undo)
 (global-set-key (kbd "C-_") 'comment-line)
+(global-set-key "\M-." 'end-of-buffer)
+(global-set-key "\M-," 'beginning-of-buffer)
+;; (global-set-key "\M-[" 'backward-paragraph)
+;; (global-set-key "\M-]" 'forward-paragraph)
 
 (lsp-treemacs-sync-mode 1)
+
+;; make hotkeys work on russian keyboard
+(use-package reverse-im
+  :ensure t
+  :custom
+  (reverse-im-input-methods '("russian-computer"))
+  :config
+  (reverse-im-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
