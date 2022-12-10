@@ -13,9 +13,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ ;; '(dired-listing-switches "-l")
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(rust-mode dashboard tron-legacy-theme reverse-im flycheck company lsp-treemacs all-the-icons lsp-ui lsp-mode use-package markdown-mode magit git-gutter smex markdown-mode which-key-mode)))
+   '(centaur-tabs free-keys rust-mode dashboard tron-legacy-theme reverse-im flycheck company lsp-treemacs all-the-icons lsp-ui lsp-mode use-package markdown-mode magit git-gutter smex markdown-mode which-key-mode)))
 			
 (global-set-key (kbd "M-x") 'smex)
 (global-git-gutter-mode +1)
@@ -27,11 +28,36 @@
 
 (which-key-mode 1)
 
+(setq treemacs-is-never-other-window -1)
+
+(use-package lsp-mode
+  :ensure t
+  :defer t
+  :hook (lsp-mode . (lambda ()
+                      (let ((lsp-keymap-prefix "C-c l"))
+                        (lsp-enable-which-key-integration))))
+  :init
+  ;; (setq lsp-keep-workspace-alive nil
+  ;;       lsp-signature-doc-lines 5
+  ;;       lsp-idle-delay 0.5
+  ;;       lsp-prefer-capf t
+  ;;       lsp-client-packages nil)
+  :config
+  (define-key lsp-mode-map (kbd "C-x l") lsp-command-map))
+
 (use-package tron-legacy-theme
   :config
   (setq tron-legacy-theme-vivid-cursor t)
   ;; (setq tron-legacy-theme-softer-bg t)
   (load-theme 'tron-legacy t))
+
+(defun db/lsp-treemacs-symbols-toggle ()
+  "Toggle the lsp-treemacs-symbols buffer."
+  (interactive)
+  (if (get-buffer "*LSP Symbols List*")
+      (kill-buffer "*LSP Symbols List*")
+    (progn (lsp-treemacs-symbols)
+           (other-window -1))))
 
 (global-set-key "\C-z" 'undo)
 (global-set-key (kbd "C-/") 'comment-line)
@@ -39,8 +65,13 @@
 (global-set-key "\M-," 'beginning-of-buffer)
 (global-set-key "\M-[" 'backward-paragraph)
 (global-set-key "\M-]" 'forward-paragraph)
+(global-set-key (kbd "C-x c") 'make-empty-file)
+;; TODO do not focus
+(global-set-key "\M-n" 'treemacs)
+;; TODO toggle
+(global-set-key (kbd "<f8>") 'db/lsp-treemacs-symbols-toggle)
 
-(lsp-treemacs-sync-mode 1)
+(lsp-treemacs-sync-mode -1)
 
 ;; make hotkeys work on russian keyboard
 (use-package reverse-im
@@ -54,6 +85,15 @@
   :ensure t
   :config
   (dashboard-setup-startup-hook))
+
+;; TODO all tabs in one group
+(use-package centaur-tabs
+  :demand
+  :config
+  (centaur-tabs-mode t)
+  :bind
+  ("C-<prior>" . centaur-tabs-backward)
+  ("C-<next>" . centaur-tabs-forward))
 
 ;; Preserve the cursor position relative to the screen when scrolling
 (setq scroll-preserve-screen-position 'always)
