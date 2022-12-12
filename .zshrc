@@ -1,5 +1,4 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/Library/Python/3.7/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -65,6 +64,7 @@ ZSH_THEME="gentoo"
 plugins=(
   git
   pass
+  zsh-autosuggestions
 )
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -101,14 +101,10 @@ alias cclip="xclip -selection clipboard < "
 alias mc="mc -S dark"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
+alias nethogs="sudo nethogs"
 
 alias gs="git status"
 alias gdh="git diff HEAD"
-
-# this is required for Ctrl+S to work in vim
-stty start undef
-stty stop undef
-setopt noflowcontrol
 
 setopt HIST_IGNORE_SPACE
 
