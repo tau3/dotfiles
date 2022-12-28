@@ -1,69 +1,58 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin()
 " Project tree:
-Plugin 'https://github.com/scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Fuzzy search
 " sudo apt-get install silversearcher-ag
 " git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-Plugin 'https://github.com/junegunn/fzf.vim'
+Plug 'https://github.com/junegunn/fzf.vim'
 
 " Completion plugin
-Plugin 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
 " Format selected code with :FormatLines
-Plugin 'google/vim-maktaba'
-Plugin 'https://github.com/google/vim-codefmt'
+Plug 'google/vim-maktaba'
+Plug 'https://github.com/google/vim-codefmt'
 
 " Start page
-Plugin 'https://github.com/mhinz/vim-startify'
+Plug 'https://github.com/mhinz/vim-startify'
 
 " \hp to observe changed hunk
 " ]c - next hunk; [c - prev hunt
 " \hu - revert current hunk
-Plugin 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
 " may need universal-ctags instead of exuberant-crags
-Plugin 'https://github.com/majutsushi/tagbar'
+Plug 'https://github.com/majutsushi/tagbar'
 
 " Buffers management
 " \be to observe buffers
-Plugin 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 
-Plugin 'preservim/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 
 " Markdown support
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-Plugin 'https://github.com/rhysd/vim-clang-format'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'https://github.com/rhysd/vim-clang-format'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
-Plugin 'https://github.com/lervag/vimtex'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'https://github.com/ap/vim-buftabline'
+Plug 'https://github.com/lervag/vimtex'
+Plug 'frazrepo/vim-rainbow'
+Plug 'https://github.com/ap/vim-buftabline'
 
-" Plugin 'https://github.com/romgrk/doom-one.vim'
-Plugin 'romgrk/doom-one.vim'
+Plug 'romgrk/doom-one.vim'
 
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 " :TestNearest
-Plugin 'https://github.com/vim-test/vim-test'
+Plug 'https://github.com/vim-test/vim-test'
 
-Plugin 'mbbill/undotree'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" Put your non-Plugin stuff after this line
+Plug 'mbbill/undotree'
+call plug#end()
 
 syntax on
 set number
@@ -98,13 +87,20 @@ nnoremap <M-1> :NERDTreeToggle<CR>
 nnoremap <C-h> :History<CR>
 nnoremap <C-p> :Files<CR>
 
-nnoremap <silent> <Plug>(ale_rename) :ALERename<Return>
-:nmap <leader>rn <Plug>(ale_rename)
+" nnoremap <silent> <Plug>(ale_rename) :ALERename<Return>
+" :nmap <leader>rn <Plug>(ale_rename)
 nnoremap <silent> <Plug>(ale_hover) :ALEHover<Return>
 :nmap <silent> cp <Plug>(ale_hover)
 nnoremap <silent> <Plug>(ale_gd) :ALEGoToDefinition<Return>
 :nmap <silent> gd <Plug>(ale_gd)
 :map <F3> <Plug>(ale_next_wrap)zz
+:map <C-F3> <Plug>(ale_previous_wrap)zz<CR>
+:nnoremap <C-F10> :TestNearest<CR>
+:imap <C-F10> <Esc>:TestNearest<CR>
+:imap <M-CR> <Esc>:ALECodeAction<CR>
+:nnoremap <M-CR> :ALECodeAction<CR>
+:imap <C-F6> <ESC>:ALERename<CR>
+:nnoremap <C-F6> :ALERename<CR>
 
 " thanks, Primeagen
 vnoremap J :m '>+1<CR>gv=gv
@@ -117,7 +113,6 @@ vnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 " TODO
 nnoremap <leader>p "_dP 
-
 
 " works only in neovim, too much struggle to make it work in vim 
 :imap <C-Del> X<Esc>lbce
