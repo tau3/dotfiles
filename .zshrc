@@ -102,6 +102,7 @@ alias mc="mc -S dark"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 alias nethogs="sudo nethogs"
+alias nnn="nnn -c"
 
 alias gs="git status"
 alias gdh="git diff HEAD"
@@ -112,16 +113,4 @@ setopt HIST_IGNORE_SPACE
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 . ~/git/z/z.sh
-
-# vterm_printf() {
-    # if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
-        # Tell tmux to pass the escape sequences through
-        # printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    # elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        # printf "\eP\e]%s\007\e\\" "$1"
-    # else
-        # printf "\e]%s\e\\" "$1"
-    # fi
-# }
 

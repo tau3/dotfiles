@@ -52,12 +52,15 @@ Plug 'rust-lang/rust.vim'
 Plug 'https://github.com/vim-test/vim-test'
 
 Plug 'mbbill/undotree'
+
+Plug 'https://github.com/vimpostor/vim-tpipeline'
 call plug#end()
 
 syntax on
 set number
 set relativenumber
 set autoindent
+set cindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -147,5 +150,6 @@ let test#neovim#term_position = "below"
 let test#strategy = "neovim"
 
 set termguicolors
+set background=dark
 colorscheme doom-one
 
