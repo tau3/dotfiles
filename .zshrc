@@ -98,11 +98,11 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cclip="xclip -selection clipboard < "
-alias mc="mc -S dark"
+alias mc="mc -S mc46"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 alias nethogs="sudo nethogs"
-alias nnn="nnn -c"
+alias ytfzf="ytfzf --show-thumbnails -T mpv"
 
 alias gs="git status"
 alias gdh="git diff HEAD"
@@ -113,4 +113,29 @@ setopt HIST_IGNORE_SPACE
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 . ~/git/z/z.sh
+
+
+unalias z 2> /dev/null
+z() {
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
+vterm_printf() {
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
+vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+setopt PROMPT_SUBST
+PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
