@@ -1,7 +1,6 @@
 export QT_QPA_PLATFORMTHEME=qt5ct
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin
-export EDITOR=/usr/bin/vim
-export NNN_OPENER=/usr/bin/vim
+export EDITOR=/usr/bin/emacsclient
 
 . "$HOME/.cargo/env"
 

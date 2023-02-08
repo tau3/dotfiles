@@ -25,7 +25,7 @@ Plug 'https://github.com/mhinz/vim-startify'
 Plug 'https://github.com/airblade/vim-gitgutter'
 
 " File Structure
-" may need universal-ctags instead of exuberant-crags
+" may need universal-ctags instead of exuberant-ctags
 Plug 'https://github.com/majutsushi/tagbar'
 
 " Buffers management
@@ -143,8 +143,7 @@ set langmap=йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпП
 
 let g:vimtex_view_method = 'zathura'
 
-" set rainbow brackets active everywhere
-let g:rainbow_active = 1
+let g:rainbow_active = 1 " set rainbow brackets active everywhere
 
 let test#neovim#term_position = "below"
 let test#strategy = "neovim"
