@@ -5,9 +5,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Fuzzy search
-" sudo apt-get install silversearcher-ag
-" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-Plug 'https://github.com/junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
+source /usr/share/doc/fzf/examples/fzf.vim
 
 " Completion plugin
 Plug 'dense-analysis/ale'
@@ -76,8 +75,6 @@ set mouse=a
 set ignorecase
 set smartcase
 set hlsearch
-
-set rtp+=~/.fzf
 
 " bindings
 :nmap <c-s> :w<CR>

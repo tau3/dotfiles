@@ -1,4 +1,4 @@
-URxvt.font: xft:GoMono Nerd Font Mono:Book:size=10
+URxvt.font: xft:JetBrainsMonoNL Nerd Font Mono:Regular:size=11
 
 URxvt.scrollBar: off
 URxvt.letterSpace: -1
