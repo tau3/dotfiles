@@ -16,22 +16,19 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(multi-vterm org-roam projectile elisp-format
-								elfeed-summary elfeed undo-tree
-								mingus phscroll xclip sudo-edit
-								apt-sources-list embark-consult
-								embark consult-dir disk-usage
-								all-the-icons dired+ openwith
-								vertico consult rainbow-delimiters
-								dired-hide-dotfiles
-								quelpa-use-package quelpa
-								evil-collection evil marginalia
-								orderless solaire-mode doom-themes
-								rust-mode dashboard reverse-im
-								flycheck company lsp-treemacs lsp-ui
-								lsp-mode markdown-mode magit
-								git-gutter which-key
-								which-key-mode)))
+(custom-set-variables '(package-selected-packages '(async tldr multi-vterm org-roam projectile
+							  elisp-format elfeed-summary elfeed
+							  undo-tree mingus phscroll xclip sudo-edit
+							  apt-sources-list embark-consult embark
+							  consult-dir disk-usage all-the-icons
+							  dired+ openwith vertico consult
+							  rainbow-delimiters dired-hide-dotfiles
+							  quelpa-use-package quelpa evil-collection
+							  evil marginalia orderless solaire-mode
+							  doom-themes rust-mode dashboard reverse-im
+							  flycheck company lsp-treemacs lsp-ui
+							  lsp-mode markdown-mode magit git-gutter
+							  which-key which-key-mode)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -40,6 +37,8 @@
 (require 'quelpa-use-package)
 (setq quelpa-update-melpa-p nil)
 
+(autoload 'dired-async-mode "dired-async.el" nil t)
+(dired-async-mode 1)
 (setq diredp-hide-details-initially-flag nil) ; doesn't work inside use-package
 (use-package 
   dired+ 
@@ -182,6 +181,7 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (setq vterm-timer-delay 0.01)
 (xclip-mode 1)				; copy/yank to OS clipboard
+(async-bytecomp-package-mode 1)
 
 (use-package 
   display-line-numbers 
