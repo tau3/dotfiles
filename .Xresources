@@ -16,8 +16,7 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
 ! a C preprocessor, such as GNU CPP, is required to use this functionality.
-! #define HOME
-#if defined( HOME )
+#ifndef SRVR_q3dm6
 Xft.dpi: 109
 i3wm.tray.output: HDMI-A-0
 Xcursor.size: 24

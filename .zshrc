@@ -97,12 +97,12 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cclip="xclip -selection clipboard < "
 alias mc="mc -S mc46"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 alias nethogs="sudo nethogs"
 alias ytfzf="ytfzf --show-thumbnails -T mpv"
+alias weapon="sh ~/git/notes/weapon_toggle.sh"
 
 alias gs="git status"
 alias gdh="git diff HEAD"
