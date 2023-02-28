@@ -55,6 +55,7 @@
   :config (openwith-mode t) 
   (setq openwith-associations '(("\\.djvu\\'" "zathura" (file)) 
 				("\\.pdf\\'" "zathura" (file)) 
+				("\\.docx\\'" "libreoffice" (file)) 
 				("\\.mkv\\'" "mpv" (file)))))
 
 (use-package 
@@ -74,7 +75,7 @@
 
 (use-package 
   consult 
-  :config (setq consult-preview-excluded-files '(".*\\.pdf")) 
+  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx")) 
   :bind ("C-x b" . consult-buffer) 
   ("C-x j" . consult-recent-file))
 
@@ -182,6 +183,7 @@
 (setq vterm-timer-delay 0.01)
 (xclip-mode 1)				; copy/yank to OS clipboard
 (async-bytecomp-package-mode 1)
+(setq org-agenda-files (directory-files-recursively "~/git/notes/" "\\.org$"))
 
 (use-package 
   display-line-numbers 
@@ -244,6 +246,7 @@
 ;; fix tables in org-mode with line wrap
 (use-package 
   phscroll 
+  :after org 
   :quelpa (phscroll :fetcher github 
 		    :repo "misohena/phscroll") 
   :config (require 'phscroll) 
@@ -273,6 +276,7 @@
 
 (use-package 
   tab-bar 
+  :defer t 
   :config (setq tab-bar-new-button-show nil) 
   (setq tab-bar-close-button-show nil))
 

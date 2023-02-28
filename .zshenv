@@ -1,6 +1,5 @@
 export QT_QPA_PLATFORMTHEME=qt5ct
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin
-# export EDITOR=/usr/bin/emacsclient
 export EDITOR=/usr/bin/emacs
 
 . "$HOME/.cargo/env"
