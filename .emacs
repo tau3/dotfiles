@@ -70,10 +70,6 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package 
-  marginalia 
-  :init (marginalia-mode))
-
-(use-package 
   consult 
   :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx")) 
   :bind ("C-x b" . consult-buffer) 
@@ -87,21 +83,15 @@
   :init (setq lsp-headerline-arrow "=>") 
   (setq lsp-keymap-prefix "C-x l") 
   (setq treemacs-is-never-other-window -1) 
-  (setq lsp-rust-analyzer-server-display-inlay-hints t) 
   (setq lsp-signature-doc-lines 3) 
   (setq company-minimum-prefix-length 1 company-idle-delay 0.0) ; default is 0.2
   :bind (:map lsp-mode-map
-	      ("M-RET" . lsp-execute-code-action)) 
-  (:map lsp-mode-map
-	("C-<f10>" . lsp-rust-analyzer-run)) 
-  (:map lsp-mode-map
-	("<f3>" . flycheck-next-error)) 
-  (:map lsp-mode-map
-	("<S-f3>" . flycheck-previous-error)) 
-  (:map lsp-mode-map
-	("<f6>" . lsp-rename)) 
-  (:map lsp-mode-map 
-	("C-b" . lsp-find-definition)) 
+	      ("M-RET" . lsp-execute-code-action) 
+	      ("C-<f10>" . lsp-rust-analyzer-run) 
+	      ("<f3>" . flycheck-next-error) 
+	      ("<S-f3>" . flycheck-previous-error) 
+	      ("<f6>" . lsp-rename) 
+	      ("C-b" . lsp-find-definition)) 
   :config (define-key lsp-mode-map (kbd "C-x l") lsp-command-map))
 
 (use-package 
@@ -179,6 +169,7 @@
 (delete-selection-mode t)
 (global-git-gutter-mode +1)
 (vertico-mode 1)
+(marginalia-mode 1)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (setq vterm-timer-delay 0.01)
 (xclip-mode 1)				; copy/yank to OS clipboard
@@ -189,12 +180,11 @@
   display-line-numbers 
   :init (setq display-line-numbers-type 'relative) 
   (global-display-line-numbers-mode t) 
-  (add-hook 'mingus-playlist-mode-hook (lambda () 
-					 (display-line-numbers-mode 0))) 
-  (add-hook 'mingus-browser-mode-hook (lambda () 
-					(display-line-numbers-mode 0))) 
-  (add-hook 'vterm-mode-hook (lambda () 
-			       (display-line-numbers-mode 0))) 
+  (defun tau3/disable-display-line-numbers () 
+    (display-line-numbers-mode 0)) 
+  (add-hook 'mingus-playlist-mode-hook 'tau3/disable-display-line-numbers) 
+  (add-hook 'mingus-browser-mode-hook 'tau3/disable-display-line-numbers) 
+  (add-hook 'vterm-mode-hook 'tau3/disable-display-line-numbers) 
   (add-hook 'elfeed-summary-mode-hook #'display-line-numbers-mode))
 
 (global-set-key (kbd "M-o") 'ace-window)
@@ -231,7 +221,6 @@
   org 
   :mode (("\\.org$" . org-mode)) 
   :config (setq org-emphasis-alist '(("*" (bold :foreground "Orange")) 
-				     ("/" italic) 
 				     ("_" underline) 
 				     ("=" 
 				      (:background "maroon" 
