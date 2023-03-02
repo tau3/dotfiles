@@ -16,19 +16,29 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(async tldr multi-vterm org-roam projectile
-							  elisp-format elfeed-summary elfeed
-							  undo-tree mingus phscroll xclip sudo-edit
-							  apt-sources-list embark-consult embark
-							  consult-dir disk-usage all-the-icons
-							  dired+ openwith vertico consult
-							  rainbow-delimiters dired-hide-dotfiles
-							  quelpa-use-package quelpa evil-collection
-							  evil marginalia orderless solaire-mode
-							  doom-themes rust-mode dashboard reverse-im
-							  flycheck company lsp-treemacs lsp-ui
-							  lsp-mode markdown-mode magit git-gutter
-							  which-key which-key-mode)))
+(custom-set-variables '(package-selected-packages '(gruber-darker-theme crontab-mode async tldr
+									multi-vterm org-roam
+									projectile elisp-format
+									elfeed-summary elfeed
+									undo-tree mingus phscroll
+									xclip sudo-edit
+									apt-sources-list
+									embark-consult embark
+									consult-dir disk-usage
+									all-the-icons dired+
+									openwith vertico consult
+									rainbow-delimiters
+									dired-hide-dotfiles
+									quelpa-use-package quelpa
+									evil-collection evil
+									marginalia orderless
+									solaire-mode doom-themes
+									rust-mode dashboard
+									reverse-im flycheck company
+									lsp-treemacs lsp-ui lsp-mode
+									markdown-mode magit
+									git-gutter which-key
+									which-key-mode)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -171,10 +181,16 @@
 (vertico-mode 1)
 (marginalia-mode 1)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(setq vterm-timer-delay 0.01)
 (xclip-mode 1)				; copy/yank to OS clipboard
 (async-bytecomp-package-mode 1)
 (setq org-agenda-files (directory-files-recursively "~/git/notes/" "\\.org$"))
+
+(use-package 
+  multi-vterm 
+  :defer t 
+  :config (setq vterm-timer-delay 0.01) 
+  (add-hook 'vterm-mode-hook (lambda() 
+			       (setq-local global-hl-line-mode nil))))
 
 (use-package 
   display-line-numbers 
@@ -189,7 +205,7 @@
 
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer) 
 (global-set-key (kbd "C-x `") 'multi-vterm)
 
 (use-package 
