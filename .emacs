@@ -16,29 +16,21 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(gruber-darker-theme crontab-mode async tldr
-									multi-vterm org-roam
-									projectile elisp-format
-									elfeed-summary elfeed
-									undo-tree mingus phscroll
-									xclip sudo-edit
-									apt-sources-list
-									embark-consult embark
-									consult-dir disk-usage
-									all-the-icons dired+
-									openwith vertico consult
-									rainbow-delimiters
-									dired-hide-dotfiles
-									quelpa-use-package quelpa
-									evil-collection evil
-									marginalia orderless
-									solaire-mode doom-themes
-									rust-mode dashboard
-									reverse-im flycheck company
-									lsp-treemacs lsp-ui lsp-mode
-									markdown-mode magit
-									git-gutter which-key
-									which-key-mode)))
+(custom-set-variables '(package-selected-packages '(crontab-mode async multi-vterm org-roam
+								 elisp-format elfeed-summary elfeed
+								 undo-tree mingus phscroll xclip
+								 sudo-edit consult-dir disk-usage
+								 all-the-icons dired+ openwith
+								 vertico consult rainbow-delimiters
+								 dired-hide-dotfiles
+								 quelpa-use-package quelpa
+								 evil-collection evil marginalia
+								 orderless solaire-mode doom-themes
+								 rust-mode dashboard reverse-im
+								 flycheck company lsp-treemacs
+								 lsp-ui lsp-mode markdown-mode magit
+								 git-gutter which-key
+								 which-key-mode)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -66,6 +58,8 @@
   (setq openwith-associations '(("\\.djvu\\'" "zathura" (file)) 
 				("\\.pdf\\'" "zathura" (file)) 
 				("\\.docx\\'" "libreoffice" (file)) 
+				("\\.webm\\'" "mpv" (file)) 
+				("\\.mp4\\'" "mpv" (file)) 
 				("\\.mkv\\'" "mpv" (file)))))
 
 (use-package 
@@ -81,7 +75,7 @@
 
 (use-package 
   consult 
-  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx")) 
+  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx" ".*\\.mp4")) 
   :bind ("C-x b" . consult-buffer) 
   ("C-x j" . consult-recent-file))
 
@@ -205,7 +199,7 @@
 
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
-(global-set-key (kbd "C-x C-b") 'ibuffer) 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x `") 'multi-vterm)
 
 (use-package 
@@ -284,13 +278,5 @@
   :defer t 
   :config (setq tab-bar-new-button-show nil) 
   (setq tab-bar-close-button-show nil))
-
-(use-package 
-  projectile 
-  :diminish projectile-mode 
-  :config (projectile-mode) 
-  :bind-keymap ("C-c p" . projectile-command-map) 
-  :init (when (file-directory-p "~/git") 
-	  (setq projectile-project-search-path '("~/git"))))
 
 (custom-set-faces)
