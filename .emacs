@@ -123,9 +123,7 @@
   (add-to-list 'recentf-exclude ".*\.gpg") 
   (setq dashboard-show-shortcuts nil) 
   (setq dashboard-items '((recents . 15) 
-			  (bookmarks . 5)
-			  ;; (registers . 5)))
-			  (projects . 5))) 
+			  (bookmarks . 5)))
   (setq initial-buffer-choice (lambda () 
 				(get-buffer "*dashboard*"))) 
   (setq dashboard-set-navigator t) 
@@ -136,7 +134,7 @@
   :config (evil-set-initial-state 'vterm-mode 'emacs) 
   (evil-set-initial-state 'disk-usage-mode 'emacs) 
   (evil-set-initial-state 'elfeed-show-mode 'emacs) 
-  (evil-set-initial-state 'mingus-browser-mode 'emacs) 
+  (evil-set-initial-state 'mingus-browse-mode 'emacs) 
   (evil-set-initial-state 'mingus-playlist-mode 'emacs) 
   (evil-set-undo-system 'undo-tree) 
   (define-key evil-normal-state-map (kbd "C-/") 'comment-line) 
@@ -166,6 +164,16 @@
 
 (when (file-exists-p "~/git/emacs/rss.el") 
   (load-file "~/git/emacs/rss.el"))
+
+(use-package 
+  elfeed-summary 
+  :defer t 
+  :config   (add-hook 'elfeed-summary-mode-hook (lambda () 
+						  (local-set-key (kbd "<mouse-1>") 
+								 (lambda () 
+								   (interactive) 
+								   (execute-kbd-macro
+								    (read-kbd-macro "RET")))))))
 
 (which-key-mode 1)
 (setq mingus-use-mouse-p nil)
@@ -201,21 +209,6 @@
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x `") 'multi-vterm)
-
-(use-package 
-  embark 
-  :ensure t 
-  :bind (("C-." . embark-act)	      ;; pick some comfortable binding
-	 ("C-;" . embark-dwim)	      ;; good alternative: M-.
-	 ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-  :init (setq prefix-help-command #'embark-prefix-help-command) 
-  :config (add-to-list 'display-buffer-alist '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-					       nil (window-parameters (mode-line-format . none)))))
-
-(use-package 
-  embark-consult 
-  :ensure t ; only need to install it, embark loads it after consult if found
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package 
   doom-themes 
