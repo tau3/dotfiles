@@ -16,10 +16,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(crontab-mode async multi-vterm org-roam
-								 elisp-format elfeed-summary elfeed
-								 undo-tree mingus phscroll xclip
-								 sudo-edit consult-dir disk-usage
+(custom-set-variables '(package-selected-packages '(crontab-mode async multi-vterm elisp-format
+								 elfeed-summary elfeed undo-tree
+								 mingus phscroll xclip sudo-edit
+								 consult-dir disk-usage
 								 all-the-icons dired+ openwith
 								 vertico consult rainbow-delimiters
 								 dired-hide-dotfiles
@@ -75,7 +75,7 @@
 
 (use-package 
   consult 
-  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx" ".*\\.mp4")) 
+  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx" ".*\\.mp4" ".*\\.webm")) 
   :bind ("C-x b" . consult-buffer) 
   ("C-x j" . consult-recent-file))
 
@@ -123,7 +123,7 @@
   (add-to-list 'recentf-exclude ".*\.gpg") 
   (setq dashboard-show-shortcuts nil) 
   (setq dashboard-items '((recents . 15) 
-			  (bookmarks . 5)))
+			  (bookmarks . 5))) 
   (setq initial-buffer-choice (lambda () 
 				(get-buffer "*dashboard*"))) 
   (setq dashboard-set-navigator t) 
@@ -177,7 +177,7 @@
 
 (which-key-mode 1)
 (setq mingus-use-mouse-p nil)
-(solaire-global-mode +1)
+(solaire-global-mode +1  )
 (delete-selection-mode t)
 (global-git-gutter-mode +1)
 (vertico-mode 1)
@@ -185,7 +185,6 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (xclip-mode 1)				; copy/yank to OS clipboard
 (async-bytecomp-package-mode 1)
-(setq org-agenda-files (directory-files-recursively "~/git/notes/" "\\.org$"))
 
 (use-package 
   multi-vterm 
@@ -209,6 +208,7 @@
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x `") 'multi-vterm)
+(global-set-key (kbd "C-;") 'avy-goto-char)
 
 (use-package 
   doom-themes 
@@ -235,17 +235,6 @@
 				      (:strike-through t)))) 
   (add-hook 'org-mode-hook #'visual-line-mode))
 
-;; fix tables in org-mode with line wrap
-(use-package 
-  phscroll 
-  :after org 
-  :quelpa (phscroll :fetcher github 
-		    :repo "misohena/phscroll") 
-  :config (require 'phscroll) 
-  (setq org-startup-truncated nil) 
-  (with-eval-after-load "org" 
-    (require 'org-phscroll)))
-
 (use-package 
   undo-tree 
   :ensure t 
@@ -256,15 +245,6 @@
     (defun undo-tree-overridden-undo-bindings-p () 
       nil)) 
   :custom (undo-tree-auto-save-history nil))
-
-(use-package 
-  org-roam 
-  :ensure t 
-  :custom (org-roam-directory "~/documents/roam") 
-  :bind (("C-c n l" . org-roam-buffer-toggle) 
-	 ("C-c n f" . org-roam-node-find) 
-	 ("C-c n i" . org-roam-node-insert)) 
-  :config (org-roam-setup))
 
 (use-package 
   tab-bar 
