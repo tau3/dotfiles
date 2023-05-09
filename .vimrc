@@ -53,6 +53,8 @@ Plug 'https://github.com/vim-test/vim-test'
 Plug 'mbbill/undotree'
 
 Plug 'https://github.com/vimpostor/vim-tpipeline'
+
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 syntax on
@@ -66,7 +68,6 @@ set shiftwidth=4
 set expandtab
 set splitbelow
 set mouse=a
-set scrolloff=8
 set colorcolumn=80
 set foldlevel=99
 set mouse=a
@@ -86,9 +87,9 @@ set hlsearch
 nnoremap <M-1> :NERDTreeToggle<CR>
 nnoremap <C-h> :History<CR>
 nnoremap <C-p> :Files<CR>
+:map <C-j> <Plug>(easymotion-overwin-f)
+:imap <C-j> <Esc><Plug>(easymotion-overwin-f)
 
-" nnoremap <silent> <Plug>(ale_rename) :ALERename<Return>
-" :nmap <leader>rn <Plug>(ale_rename)
 nnoremap <silent> <Plug>(ale_hover) :ALEHover<Return>
 :nmap <silent> cp <Plug>(ale_hover)
 nnoremap <silent> <Plug>(ale_gd) :ALEGoToDefinition<Return>
@@ -144,6 +145,9 @@ let g:rainbow_active = 1 " set rainbow brackets active everywhere
 
 let test#neovim#term_position = "below"
 let test#strategy = "neovim"
+
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
 
 set termguicolors
 set background=dark
