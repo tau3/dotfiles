@@ -5,13 +5,14 @@
 (xterm-mouse-mode 1)
 (show-paren-mode 1)			; highlight parens pairs
 (setq vc-follow-symlinks t)
-(setq calendar-week-start-day 1)
 (setq make-backup-files nil)
 (column-number-mode t)
 (savehist-mode)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-hl-line-mode t)
 (setq recentf-max-saved-items 100)
+(setq calendar-week-start-day 1)
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -44,6 +45,8 @@
 (setq diredp-hide-details-initially-flag nil) ; doesn't work inside use-package
 (use-package 
   dired+ 
+  :bind (:map dired-mode-map
+	      ("<f5>" . revert-buffer)) 
   :quelpa (dired+ :fetcher github 
 		  :repo "emacsmirror/dired-plus") 
   :custom ((dired-listing-switches "-agho --group-directories-first")) 
@@ -134,6 +137,7 @@
   :config (evil-set-initial-state 'vterm-mode 'emacs) 
   (evil-set-initial-state 'disk-usage-mode 'emacs) 
   (evil-set-initial-state 'elfeed-show-mode 'emacs) 
+  (evil-set-initial-state 'elfeed-search-mode 'emacs) 
   (evil-set-initial-state 'mingus-browse-mode 'emacs) 
   (evil-set-initial-state 'mingus-playlist-mode 'emacs) 
   (evil-set-undo-system 'undo-tree) 
@@ -159,7 +163,6 @@
 
 ;; Scrolling settings
 (setq scroll-step 1)
-(setq scroll-margin 8)
 (setq scroll-conservatively 10000)
 
 (when (file-exists-p "~/git/emacs/rss.el") 
@@ -177,7 +180,7 @@
 
 (which-key-mode 1)
 (setq mingus-use-mouse-p nil)
-(solaire-global-mode +1  )
+(solaire-global-mode +1)
 (delete-selection-mode t)
 (global-git-gutter-mode +1)
 (vertico-mode 1)
@@ -252,4 +255,6 @@
   :config (setq tab-bar-new-button-show nil) 
   (setq tab-bar-close-button-show nil))
 
-(custom-set-faces)
+(custom-set-faces '(calendar-today ((t 
+				     (:background "snow" 
+						  :foreground "grey17")))))
