@@ -17,42 +17,44 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables
- '(package-selected-packages '(color-theme-sanityinc-tomorrow crontab-mode async multi-vterm
-							      elisp-format elfeed-summary elfeed
-							      undo-tree mingus phscroll xclip
-							      sudo-edit consult-dir disk-usage
-							      all-the-icons dired+ openwith vertico
-							      consult rainbow-delimiters
-							      dired-hide-dotfiles quelpa-use-package
-							      quelpa evil-collection evil marginalia
-							      orderless solaire-mode doom-themes
-							      rust-mode dashboard reverse-im
-							      flycheck company lsp-treemacs lsp-ui
-							      lsp-mode markdown-mode magit
-							      git-gutter which-key which-key-mode)))
+(custom-set-variables '(package-selected-packages '(color-theme-sanityinc-tomorrow
+						    dired-hide-dotfiles multi-vterm dirvish
+						    crontab-mode async elisp-format elfeed-summary
+						    elfeed undo-tree mingus phscroll xclip sudo-edit
+						    consult-dir disk-usage all-the-icons openwith
+						    vertico consult rainbow-delimiters
+						    evil-collection evil marginalia orderless
+						    solaire-mode doom-themes rust-mode dashboard
+						    reverse-im flycheck company lsp-treemacs lsp-ui
+						    lsp-mode markdown-mode magit git-gutter
+						    which-key which-key-mode use-package)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
 (setq use-package-always-ensure t)
 
-(require 'quelpa-use-package)
-(setq quelpa-update-melpa-p nil)
-
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
-(setq diredp-hide-details-initially-flag nil) ; doesn't work inside use-package
 (use-package 
-  dired+ 
-  :bind (:map dired-mode-map
-	      ("<f5>" . revert-buffer)) 
-  :quelpa (dired+ :fetcher github 
-		  :repo "emacsmirror/dired-plus") 
-  :custom ((dired-listing-switches "-agho --group-directories-first")) 
+  dirvish 
+  :init (dirvish-override-dired-mode) 
   :config (setq dired-dwim-target t) 
-  (add-hook 'dired-mode-hook (lambda () 
-			       (setq truncate-lines t) 
-			       (dired-hide-dotfiles-mode))))
+  (setq dirvish-mode-line-format 
+	'(:left (sort symlink) 
+		:right (omit yank index))) 
+  (setq dirvish-attributes '(file-time file-size vc-state)) 
+  (setq dired-listing-switches
+	"-l --almost-all --human-readable --group-directories-first --no-group") 
+  :bind	     ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
+  (:map dirvish-mode-map	   ; Dirvish inherits `dired-mode-map'
+	("N"   . dirvish-narrow) 
+	("^"   . dirvish-history-last) 
+	("s"   . dirvish-quicksort) ; remapped `dired-sort-toggle-or-edit'
+	("TAB" . dirvish-subtree-toggle) 
+	("M-f" . dirvish-history-go-forward) 
+	("M-b" . dirvish-history-go-backward) 
+	("M-l" . dirvish-ls-switches-menu) 
+	("M-m" . dirvish-mark-menu)))
 
 (use-package 
   openwith 
@@ -151,7 +153,7 @@
   evil-collection 
   :after evil 
   :config (define-key evil-motion-state-map [down-mouse-1] nil) 
-  (setq evil-collection-mode-list '(dashboard ibuffer xref dired dired-plus)) 
+  (setq evil-collection-mode-list '(dashboard ibuffer xref dired)) 
   (evil-collection-init) 
   (evil-collection-define-key 'normal 'dired-mode-map "H" 'dired-hide-dotfiles-mode))
 
@@ -254,7 +256,6 @@
   :config (setq tab-bar-new-button-show nil) 
   (setq tab-bar-close-button-show nil))
 
-(custom-set-faces
- '(calendar-today ((t 
-		    (:background "snow" 
-				 :foreground "grey17")))))
+(custom-set-faces '(calendar-today ((t 
+				     (:background "snow" 
+						  :foreground "grey17")))))
