@@ -17,21 +17,20 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(crontab-mode async multi-vterm elisp-format
-								 elfeed-summary elfeed undo-tree
-								 mingus phscroll xclip sudo-edit
-								 consult-dir disk-usage
-								 all-the-icons dired+ openwith
-								 vertico consult rainbow-delimiters
-								 dired-hide-dotfiles
-								 quelpa-use-package quelpa
-								 evil-collection evil marginalia
-								 orderless solaire-mode doom-themes
-								 rust-mode dashboard reverse-im
-								 flycheck company lsp-treemacs
-								 lsp-ui lsp-mode markdown-mode magit
-								 git-gutter which-key
-								 which-key-mode)))
+(custom-set-variables
+ '(package-selected-packages '(color-theme-sanityinc-tomorrow crontab-mode async multi-vterm
+							      elisp-format elfeed-summary elfeed
+							      undo-tree mingus phscroll xclip
+							      sudo-edit consult-dir disk-usage
+							      all-the-icons dired+ openwith vertico
+							      consult rainbow-delimiters
+							      dired-hide-dotfiles quelpa-use-package
+							      quelpa evil-collection evil marginalia
+							      orderless solaire-mode doom-themes
+							      rust-mode dashboard reverse-im
+							      flycheck company lsp-treemacs lsp-ui
+							      lsp-mode markdown-mode magit
+							      git-gutter which-key which-key-mode)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -255,6 +254,7 @@
   :config (setq tab-bar-new-button-show nil) 
   (setq tab-bar-close-button-show nil))
 
-(custom-set-faces '(calendar-today ((t 
-				     (:background "snow" 
-						  :foreground "grey17")))))
+(custom-set-faces
+ '(calendar-today ((t 
+		    (:background "snow" 
+				 :foreground "grey17")))))
