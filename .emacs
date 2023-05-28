@@ -20,7 +20,7 @@
 (custom-set-variables '(package-selected-packages '(color-theme-sanityinc-tomorrow
 						    dired-hide-dotfiles multi-vterm dirvish
 						    crontab-mode async elisp-format elfeed-summary
-						    elfeed undo-tree mingus phscroll xclip sudo-edit
+						    elfeed undo-tree mingus xclip sudo-edit
 						    consult-dir disk-usage all-the-icons openwith
 						    vertico consult rainbow-delimiters
 						    evil-collection evil marginalia orderless
@@ -206,13 +206,15 @@
   (add-hook 'mingus-playlist-mode-hook 'tau3/disable-display-line-numbers) 
   (add-hook 'mingus-browser-mode-hook 'tau3/disable-display-line-numbers) 
   (add-hook 'vterm-mode-hook 'tau3/disable-display-line-numbers) 
-  (add-hook 'elfeed-summary-mode-hook #'display-line-numbers-mode))
+  (add-hook 'dired-mode-hook 'tau3/disable-display-line-numbers) 
+  (add-hook 'elfeed-search-mode-hook 'tau3/disable-display-line-numbers)
+  (add-hook 'elfeed-summary-mode-hook 'tau3/disable-display-line-numbers))
 
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x `") 'multi-vterm)
-(global-set-key (kbd "C-;") 'avy-goto-char)
+(global-set-key (kbd "C-;") 'avy-goto-char-2)
 
 (use-package 
   doom-themes 
