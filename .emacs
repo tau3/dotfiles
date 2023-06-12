@@ -47,9 +47,15 @@
 	"-l --almost-all --human-readable --group-directories-first --no-group") 
   :bind	     ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
   (:map dirvish-mode-map	   ; Dirvish inherits `dired-mode-map'
-	("N"   . dirvish-narrow) 
-	("^"   . dirvish-history-last) 
-	("s"   . dirvish-quicksort) ; remapped `dired-sort-toggle-or-edit'
+	("N" . dirvish-narrow) 
+	("^" . dired-up-directory)
+	("h" . dired-up-directory)
+	("<left>" . dired-up-directory)
+	("<right>" . dired-find-file) 
+	("l" . dired-find-file) 
+	("j" . dired-next-line)
+	("k" . dired-previous-line)
+	("s" . dirvish-quicksort) ; remapped `dired-sort-toggle-or-edit'
 	("TAB" . dirvish-subtree-toggle) 
 	("M-f" . dirvish-history-go-forward) 
 	("M-b" . dirvish-history-go-backward) 
@@ -105,7 +111,7 @@
 (use-package 
   lsp-treemacs 
   :defer t 
-  :config (defun db/lsp-treemacs-symbols-toggle () 
+  :config (defun tau3/lsp-treemacs-symbols-toggle () 
 	    "Toggle the lsp-treemacs-symbols buffer." 
 	    (interactive) 
 	    (if (get-buffer "*LSP Symbols List*") 
@@ -113,7 +119,7 @@
 	      (progn (lsp-treemacs-symbols) 
 		     (other-window -1)))) 
   (global-set-key "\M-n" 'treemacs) 
-  (global-set-key (kbd "<f8>") 'db/lsp-treemacs-symbols-toggle))
+  (global-set-key (kbd "<f8>") 'tau3/lsp-treemacs-symbols-toggle))
 
 (use-package 
   reverse-im 
@@ -137,6 +143,7 @@
   evil 
   :config (evil-set-initial-state 'vterm-mode 'emacs) 
   (evil-set-initial-state 'disk-usage-mode 'emacs) 
+  (evil-set-initial-state 'dired-mode 'emacs) 
   (evil-set-initial-state 'elfeed-show-mode 'emacs) 
   (evil-set-initial-state 'elfeed-search-mode 'emacs) 
   (evil-set-initial-state 'mingus-browse-mode 'emacs) 
@@ -152,8 +159,8 @@
 (use-package 
   evil-collection 
   :after evil 
-  :config (define-key evil-motion-state-map [down-mouse-1] nil) 
-  (setq evil-collection-mode-list '(dashboard ibuffer xref dired)) 
+  :config (define-key evil-motion-state-map [down-mouse-1] nil)
+  (setq evil-collection-mode-list '(dashboard ibuffer xref)) 
   (evil-collection-init) 
   (evil-collection-define-key 'normal 'dired-mode-map "H" 'dired-hide-dotfiles-mode))
 
@@ -200,15 +207,8 @@
 (use-package 
   display-line-numbers 
   :init (setq display-line-numbers-type 'relative) 
-  (global-display-line-numbers-mode t) 
-  (defun tau3/disable-display-line-numbers () 
-    (display-line-numbers-mode 0)) 
-  (add-hook 'mingus-playlist-mode-hook 'tau3/disable-display-line-numbers) 
-  (add-hook 'mingus-browser-mode-hook 'tau3/disable-display-line-numbers) 
-  (add-hook 'vterm-mode-hook 'tau3/disable-display-line-numbers) 
-  (add-hook 'dired-mode-hook 'tau3/disable-display-line-numbers) 
-  (add-hook 'elfeed-search-mode-hook 'tau3/disable-display-line-numbers)
-  (add-hook 'elfeed-summary-mode-hook 'tau3/disable-display-line-numbers))
+  (add-hook 'prog-mode-hook (lambda() 
+			      (display-line-numbers-mode t))))
 
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
