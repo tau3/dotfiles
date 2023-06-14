@@ -17,17 +17,17 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(color-theme-sanityinc-tomorrow
-						    dired-hide-dotfiles multi-vterm dirvish
-						    crontab-mode async elisp-format elfeed-summary
-						    elfeed undo-tree mingus xclip sudo-edit
-						    consult-dir disk-usage all-the-icons openwith
-						    vertico consult rainbow-delimiters
-						    evil-collection evil marginalia orderless
-						    solaire-mode doom-themes rust-mode dashboard
-						    reverse-im flycheck company lsp-treemacs lsp-ui
-						    lsp-mode markdown-mode magit git-gutter
-						    which-key which-key-mode use-package)))
+(custom-set-variables '(package-selected-packages '(async dired-hide-dotfiles multi-vterm dirvish
+							  crontab-mode elisp-format elfeed-summary
+							  elfeed undo-tree mingus xclip sudo-edit
+							  consult-dir disk-usage all-the-icons
+							  openwith vertico consult
+							  rainbow-delimiters evil-collection evil
+							  marginalia orderless solaire-mode
+							  doom-themes rust-mode dashboard reverse-im
+							  flycheck company lsp-treemacs lsp-ui
+							  lsp-mode markdown-mode magit git-gutter
+							  which-key which-key-mode use-package)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -48,17 +48,14 @@
   :bind	     ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
   (:map dirvish-mode-map	   ; Dirvish inherits `dired-mode-map'
 	("N" . dirvish-narrow) 
-	("^" . dired-up-directory)
-	("h" . dired-up-directory)
-	("<left>" . dired-up-directory)
+	("h" . dired-up-directory) 
+	("<left>" . dired-up-directory) 
 	("<right>" . dired-find-file) 
 	("l" . dired-find-file) 
-	("j" . dired-next-line)
-	("k" . dired-previous-line)
+	("j" . dired-next-line) 
+	("k" . dired-previous-line) 
+	("M-RET" . dired-find-file-other-window) 
 	("s" . dirvish-quicksort) ; remapped `dired-sort-toggle-or-edit'
-	("TAB" . dirvish-subtree-toggle) 
-	("M-f" . dirvish-history-go-forward) 
-	("M-b" . dirvish-history-go-backward) 
 	("M-l" . dirvish-ls-switches-menu) 
 	("M-m" . dirvish-mark-menu)))
 
@@ -112,7 +109,6 @@
   lsp-treemacs 
   :defer t 
   :config (defun tau3/lsp-treemacs-symbols-toggle () 
-	    "Toggle the lsp-treemacs-symbols buffer." 
 	    (interactive) 
 	    (if (get-buffer "*LSP Symbols List*") 
 		(kill-buffer "*LSP Symbols List*") 
@@ -132,8 +128,7 @@
   (add-to-list 'recentf-exclude ".*\/.rustup\/.*") 
   (add-to-list 'recentf-exclude ".*\.gpg") 
   (setq dashboard-show-shortcuts nil) 
-  (setq dashboard-items '((recents . 15) 
-			  (bookmarks . 5))) 
+  (setq dashboard-items '((recents . 15))) 
   (setq initial-buffer-choice (lambda () 
 				(get-buffer "*dashboard*"))) 
   (setq dashboard-set-navigator t) 
@@ -159,7 +154,7 @@
 (use-package 
   evil-collection 
   :after evil 
-  :config (define-key evil-motion-state-map [down-mouse-1] nil)
+  :config (define-key evil-motion-state-map [down-mouse-1] nil) 
   (setq evil-collection-mode-list '(dashboard ibuffer xref)) 
   (evil-collection-init) 
   (evil-collection-define-key 'normal 'dired-mode-map "H" 'dired-hide-dotfiles-mode))
@@ -179,12 +174,12 @@
 (use-package 
   elfeed-summary 
   :defer t 
-  :config   (add-hook 'elfeed-summary-mode-hook (lambda () 
-						  (local-set-key (kbd "<mouse-1>") 
-								 (lambda () 
-								   (interactive) 
-								   (execute-kbd-macro
-								    (read-kbd-macro "RET")))))))
+  :config (defun tau3/press-enter () 
+	    (interactive) 
+	    (execute-kbd-macro (read-kbd-macro "RET"))) 
+  (defun tau3/elfeed-bind-lmb () 
+    (local-set-key (kbd "<mouse-1>") 'tau3/press-enter)) 
+  (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-lmb))
 
 (which-key-mode 1)
 (setq mingus-use-mouse-p nil)
@@ -203,6 +198,12 @@
   :config (setq vterm-timer-delay 0.01) 
   (add-hook 'vterm-mode-hook (lambda() 
 			       (setq-local global-hl-line-mode nil))))
+(defun tau3/vterm-other-window () 
+  (interactive) 
+  (clone-indirect-buffer-other-window "terminal" t) 
+  (multi-vterm))
+(global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
+(global-set-key (kbd "C-x `") 'multi-vterm)
 
 (use-package 
   display-line-numbers 
@@ -213,7 +214,6 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x `") 'multi-vterm)
 (global-set-key (kbd "C-;") 'avy-goto-char-2)
 
 (use-package 
