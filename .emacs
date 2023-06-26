@@ -133,7 +133,7 @@
 (use-package 
   consult-lsp 
   :after lsp-mode 
-  :config (global-set-key "C-<F12>" 'consult-lsp-file-symbols))
+  :config (global-set-key (kbd "C <F12>") 'consult-lsp-file-symbols))
 
 (use-package 
   evil 
