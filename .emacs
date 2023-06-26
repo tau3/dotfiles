@@ -17,17 +17,18 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(async dired-hide-dotfiles multi-vterm dirvish
-							  crontab-mode elisp-format elfeed-summary
-							  elfeed undo-tree mingus xclip sudo-edit
-							  consult-dir disk-usage all-the-icons
-							  openwith vertico consult
-							  rainbow-delimiters evil-collection evil
-							  marginalia orderless solaire-mode
-							  doom-themes rust-mode dashboard reverse-im
-							  flycheck company lsp-treemacs lsp-ui
-							  lsp-mode markdown-mode magit git-gutter
-							  which-key which-key-mode use-package)))
+(custom-set-variables '(package-selected-packages '(evil consult-lsp apt-sources-list async
+							 dired-hide-dotfiles multi-vterm dirvish
+							 crontab-mode elisp-format elfeed-summary
+							 elfeed undo-tree mingus xclip sudo-edit
+							 consult-dir disk-usage all-the-icons
+							 openwith vertico consult rainbow-delimiters
+							 evil-collection marginalia orderless
+							 solaire-mode doom-themes rust-mode
+							 dashboard reverse-im flycheck company
+							 lsp-treemacs lsp-ui lsp-mode markdown-mode
+							 magit git-gutter which-key which-key-mode
+							 use-package)))
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -102,14 +103,14 @@
 	      ("<f3>" . flycheck-next-error) 
 	      ("<S-f3>" . flycheck-previous-error) 
 	      ("<f6>" . lsp-rename) 
+	      ("<f8>" . lsp-ui-menu) 
 	      ("C-b" . lsp-find-definition)) 
   :config (define-key lsp-mode-map (kbd "C-x l") lsp-command-map))
 
 (use-package 
   lsp-treemacs 
   :defer t 
-  :config (global-set-key "\M-n" 'treemacs) 
-  (global-set-key (kbd "<f8>") 'lsp-ui-imenu))
+  :config (global-set-key "\M-n" 'treemacs))
 
 (use-package 
   reverse-im 
@@ -127,6 +128,11 @@
 				(get-buffer "*dashboard*"))) 
   (setq dashboard-set-navigator t) 
   (dashboard-setup-startup-hook))
+
+(use-package
+  consult-lsp
+  :after lsp-mode
+  :config (global-set-key "C-<F12>" 'consult-lsp-file-symbols))
 
 (use-package 
   evil 
