@@ -17,10 +17,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(async apt-sources-list dired-hide-dotfiles
-							  multi-vterm dirvish crontab-mode
-							  elisp-format elfeed-summary elfeed
-							  undo-tree mingus xclip sudo-edit
+(custom-set-variables '(package-selected-packages '(async consult-lsp apt-sources-list
+							  dired-hide-dotfiles multi-vterm dirvish
+							  crontab-mode elisp-format elfeed-summary
+							  elfeed undo-tree mingus xclip sudo-edit
 							  consult-dir disk-usage all-the-icons
 							  openwith vertico consult
 							  rainbow-delimiters evil-collection evil
@@ -29,7 +29,6 @@
 							  flycheck company lsp-treemacs lsp-ui
 							  lsp-mode markdown-mode magit git-gutter
 							  which-key which-key-mode use-package)))
->>>>>>> a12a619 (exclude tramp files from preview)
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -131,9 +130,9 @@
   (setq dashboard-set-navigator t) 
   (dashboard-setup-startup-hook))
 
-(use-package
-  consult-lsp
-  :after lsp-mode
+(use-package 
+  consult-lsp 
+  :after lsp-mode 
   :config (global-set-key "C-<F12>" 'consult-lsp-file-symbols))
 
 (use-package 
