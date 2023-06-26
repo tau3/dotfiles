@@ -108,14 +108,8 @@
 (use-package 
   lsp-treemacs 
   :defer t 
-  :config (defun tau3/lsp-treemacs-symbols-toggle () 
-	    (interactive) 
-	    (if (get-buffer "*LSP Symbols List*") 
-		(kill-buffer "*LSP Symbols List*") 
-	      (progn (lsp-treemacs-symbols) 
-		     (other-window -1)))) 
-  (global-set-key "\M-n" 'treemacs) 
-  (global-set-key (kbd "<f8>") 'tau3/lsp-treemacs-symbols-toggle))
+  :config (global-set-key "\M-n" 'treemacs) 
+  (global-set-key (kbd "<f8>") 'lsp-ui-imenu))
 
 (use-package 
   reverse-im 
@@ -220,7 +214,7 @@
   doom-themes 
   :ensure t 
   :config (setq doom-themes-enable-bold t ; if nil, bold is universally disabled
-		doom-themes-enable-italic t) ; if nil, italics is universally disabled
+ 		doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (load-theme 'doom-one t) 
   (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
   (doom-themes-treemacs-config) 
