@@ -17,18 +17,19 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(evil consult-lsp apt-sources-list async
-							 dired-hide-dotfiles multi-vterm dirvish
-							 crontab-mode elisp-format elfeed-summary
-							 elfeed undo-tree mingus xclip sudo-edit
-							 consult-dir disk-usage all-the-icons
-							 openwith vertico consult rainbow-delimiters
-							 evil-collection marginalia orderless
-							 solaire-mode doom-themes rust-mode
-							 dashboard reverse-im flycheck company
-							 lsp-treemacs lsp-ui lsp-mode markdown-mode
-							 magit git-gutter which-key which-key-mode
-							 use-package)))
+(custom-set-variables '(package-selected-packages '(async apt-sources-list dired-hide-dotfiles
+							  multi-vterm dirvish crontab-mode
+							  elisp-format elfeed-summary elfeed
+							  undo-tree mingus xclip sudo-edit
+							  consult-dir disk-usage all-the-icons
+							  openwith vertico consult
+							  rainbow-delimiters evil-collection evil
+							  marginalia orderless solaire-mode
+							  doom-themes rust-mode dashboard reverse-im
+							  flycheck company lsp-treemacs lsp-ui
+							  lsp-mode markdown-mode magit git-gutter
+							  which-key which-key-mode use-package)))
+>>>>>>> a12a619 (exclude tramp files from preview)
 
 (unless (package-installed-p 'use-package) 
   (package-install 'use-package))
@@ -83,7 +84,8 @@
 
 (use-package 
   consult 
-  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx" ".*\\.mp4" ".*\\.webm")) 
+  :config (setq consult-preview-excluded-files '(".*\\.pdf" ".*\\.docx" ".*\\.mp4" ".*\\.webm"
+						 ".*sudo:root.*")) 
   :bind ("C-x b" . consult-buffer) 
   ("C-x j" . consult-recent-file))
 
@@ -139,8 +141,8 @@
   :config (evil-set-initial-state 'vterm-mode 'emacs) 
   (evil-set-initial-state 'disk-usage-mode 'emacs) 
   (evil-set-initial-state 'dired-mode 'emacs) 
-  (evil-set-initial-state 'elfeed-show-mode 'emacs) 
-  (evil-set-initial-state 'elfeed-search-mode 'emacs) 
+  (evil-set-initial-state 'elfeed-show-mode 'emacs) ; when an entry is opened
+  (evil-set-initial-state 'elfeed-search-mode 'emacs) ; when a feed is opened
   (evil-set-initial-state 'mingus-browse-mode 'emacs) 
   (evil-set-initial-state 'mingus-playlist-mode 'emacs) 
   (evil-set-undo-system 'undo-tree) 
@@ -177,9 +179,16 @@
   :config (defun tau3/press-enter () 
 	    (interactive) 
 	    (execute-kbd-macro (read-kbd-macro "RET"))) 
-  (defun tau3/elfeed-bind-lmb () 
-    (local-set-key (kbd "<mouse-1>") 'tau3/press-enter)) 
-  (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-lmb))
+  (defun tau3/elfeed-bind-keys () 
+    (local-set-key (kbd "<mouse-1>") 'tau3/press-enter) 
+    (local-unset-key (kbd "C-<tab>"))) 
+  (defun tau3/elfeed-bind-search-buttons () 
+    (local-set-key (kbd "h") 'elfeed-search-quit-window) 
+    (local-set-key (kbd "j") 'next-line) 
+    (local-set-key (kbd "k") 'previous-line) 
+    (local-set-key (kbd "l") 'tau3/press-enter)) 
+  (add-hook 'elfeed-search-mode-hook 'tau3/elfeed-bind-search-buttons) 
+  (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys))
 
 (which-key-mode 1)
 (setq mingus-use-mouse-p nil)
