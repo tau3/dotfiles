@@ -17,7 +17,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(custom-set-variables '(package-selected-packages '(async consult-lsp apt-sources-list
+(custom-set-variables '(mingus-current-song-props 
+			'(:weight bold 
+				  :background "deep sky blue")) 
+		      '(package-selected-packages '(async consult-lsp apt-sources-list
 							  dired-hide-dotfiles multi-vterm dirvish
 							  crontab-mode elisp-format elfeed-summary
 							  elfeed undo-tree mingus xclip sudo-edit
@@ -164,6 +167,23 @@
   magit 
   :defer t 
   :config (add-hook 'git-commit-post-finish-hook 'delete-window))
+
+;; TODO refactor
+(use-package 
+  disk-usage 
+  :defer t 
+  :config (add-hook 'disk-usage-mode-hook (lambda () 
+					    (local-set-key [return] 
+							   (lambda () 
+							     (interactive) 
+							     (move-end-of-line 1) 
+							     (left-char 1) 
+							     (push-button) 
+							     (move-beginning-of-line 1))) 
+					    (local-set-key (kbd "d") 
+							   (lambda () 
+							     (interactive) 
+							     (disk-usage-delete-marked-files 1))))))
 
 ;; Scrolling settings
 (setq scroll-step 1)

@@ -87,8 +87,8 @@ set hlsearch
 nnoremap <M-1> :NERDTreeToggle<CR>
 nnoremap <C-h> :History<CR>
 nnoremap <C-p> :Files<CR>
-:map <C-j> <Plug>(easymotion-overwin-f)
-:imap <C-j> <Esc><Plug>(easymotion-overwin-f)
+:map <C-j> <Plug>(easymotion-overwin-f2)
+:imap <C-j> <Esc><Plug>(easymotion-overwin-f2)
 
 nnoremap <silent> <Plug>(ale_hover) :ALEHover<Return>
 :nmap <silent> cp <Plug>(ale_hover)
