@@ -168,22 +168,22 @@
   :defer t 
   :config (add-hook 'git-commit-post-finish-hook 'delete-window))
 
-;; TODO refactor
 (use-package 
   disk-usage 
   :defer t 
-  :config (add-hook 'disk-usage-mode-hook (lambda () 
-					    (local-set-key [return] 
-							   (lambda () 
-							     (interactive) 
-							     (move-end-of-line 1) 
-							     (left-char 1) 
-							     (push-button) 
-							     (move-beginning-of-line 1))) 
-					    (local-set-key (kbd "d") 
-							   (lambda () 
-							     (interactive) 
-							     (disk-usage-delete-marked-files 1))))))
+  :config (defun tau3/disk-usage-enter () 
+	    (interactive) 
+	    (move-end-of-line 1) 
+	    (left-char 1) 
+	    (push-button) 
+	    (move-beginning-of-line 1)) 
+  (defun tau3/disk-usage-bind-local () 
+    (local-set-key [return] 'tau3/disk-usage-enter) 
+    (local-set-key (kbd "d") 
+		   (lambda () 
+		     (interactive) 
+		     (disk-usage-delete-marked-files 1)))) 
+  (add-hook 'disk-usage-mode-hook 'tau3/disk-usage-bind-local))
 
 ;; Scrolling settings
 (setq scroll-step 1)
