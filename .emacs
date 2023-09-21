@@ -91,6 +91,7 @@
          ".*sudo:root.*"))
  :bind ("C-x b" . consult-buffer) ("C-x j" . consult-recent-file))
 
+(add-hook 'rust-mode-hook 'lsp-mode)
 (use-package
  lsp-mode
  :defer t
@@ -98,6 +99,7 @@
  ((lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . lsp-treemacs-sync-mode))
  :init
+ (setq lsp-enable-snippet nil)
  (setq lsp-headerline-arrow "=>")
  (setq lsp-keymap-prefix "C-x l")
  (setq treemacs-is-never-other-window -1)
@@ -113,10 +115,12 @@
   ("<f3>" . flycheck-next-error)
   ("<S-f3>" . flycheck-previous-error)
   ("<f6>" . lsp-rename)
-  ("<f8>" . lsp-ui-imenu)
+  ("<f8>" . lsp-treemacs-symbols)
   ("C-<f12>" . consult-lsp-file-symbols)
   ("C-b" . lsp-find-definition))
- :config (define-key lsp-mode-map (kbd "C-x l") lsp-command-map))
+ :config
+ (define-key lsp-mode-map (kbd "C-x l") lsp-command-map)
+ (add-hook 'lsp-on-change-hook 'save-buffer))
 
 (use-package
  lsp-treemacs
