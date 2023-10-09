@@ -2,7 +2,8 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin
 export EDITOR=/usr/bin/emacs
 
-. "$HOME/.cargo/env"
+export PATH=$PATH:$HOME/.cargo/bin
+# . "$HOME/.cargo/env"
 
 # scaling hidpi apps
 if [[ $HOST = "q3dm6"  ]]
