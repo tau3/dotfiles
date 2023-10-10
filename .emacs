@@ -42,6 +42,7 @@
   dirvish-mode-map ; Dirvish inherits `dired-mode-map'
   ("N" . dirvish-narrow)
   ("h" . dired-up-directory)
+  ("<backspace>" . dired-up-directory)
   ("<left>" . dired-up-directory)
   ("<right>" . dired-find-file)
   ("l" . dired-find-file)
