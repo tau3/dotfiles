@@ -23,11 +23,7 @@
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(mingus-current-song-props '(:weight bold :background "deep sky blue"))
  '(package-selected-packages
-<<<<<<< Updated upstream
    '(latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
-=======
-   '(consult-flycheck ef-themes elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
->>>>>>> Stashed changes
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -86,13 +82,21 @@
 (use-package
  consult
  :config
+ (defun tau3/consult-recent-file-other-window ()
+   (interactive)
+   (let ((consult--buffer-display #'switch-to-buffer-other-window))
+     (consult-recent-file)))
  (setq consult-preview-excluded-files
        '(".*\\.pdf"
          ".*\\.docx"
          ".*\\.mp4"
          ".*\\.webm"
          ".*sudo:root.*"))
- :bind ("C-x b" . consult-buffer) ("C-x j" . consult-recent-file))
+ :bind
+ ("C-x b" . consult-buffer)
+ ("C-x j" . consult-recent-file)
+ ("C-x B" . consult-buffer-other-window)
+ ("C-x J" . tau3/consult-recent-file-other-window))
 
 (add-hook 'rust-mode-hook 'lsp-mode)
 (use-package
