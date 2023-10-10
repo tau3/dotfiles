@@ -156,7 +156,6 @@
 (use-package
  evil
  :config
- (evil-set-initial-state 'vterm-mode 'emacs)
  (evil-set-initial-state 'disk-usage-mode 'emacs)
  (evil-set-initial-state 'dired-mode 'emacs)
  (evil-set-initial-state 'elfeed-show-mode 'emacs) ; when an entry is opened
@@ -243,7 +242,15 @@
 (use-package
  multi-vterm
  :defer t
- :config (setq vterm-timer-delay 0.01)
+ :hook
+ (vterm-mode . evil-emacs-state)
+ (vterm-copy-mode . tau3/evil-normal-in-vterm-copy-mode)
+ :config
+ (setq vterm-timer-delay 0.01)
+ (defun tau3/evil-normal-in-vterm-copy-mode ()
+   (if (bound-and-true-p vterm-copy-mode)
+       (evil-normal-state)
+     (evil-emacs-state)))
  (add-hook
   'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
 (defun tau3/vterm-other-window ()
