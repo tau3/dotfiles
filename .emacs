@@ -42,6 +42,7 @@
   dirvish-mode-map ; Dirvish inherits `dired-mode-map'
   ("N" . dirvish-narrow)
   ("h" . dired-up-directory)
+  ("H" . dired-hide-dotfiles-mode)
   ("<backspace>" . dired-up-directory)
   ("<left>" . dired-up-directory)
   ("<right>" . dired-find-file)
@@ -83,13 +84,21 @@
 (use-package
  consult
  :config
+ (defun tau3/consult-recent-file-other-window ()
+   (interactive)
+   (let ((consult--buffer-display #'switch-to-buffer-other-window))
+     (consult-recent-file)))
  (setq consult-preview-excluded-files
        '(".*\\.pdf"
          ".*\\.docx"
          ".*\\.mp4"
          ".*\\.webm"
          ".*sudo:root.*"))
- :bind ("C-x b" . consult-buffer) ("C-x j" . consult-recent-file))
+ :bind
+ ("C-x b" . consult-buffer)
+ ("C-x j" . consult-recent-file)
+ ("C-x B" . consult-buffer-other-window)
+ ("C-x J" . tau3/consult-recent-file-other-window))
 
 (add-hook 'rust-mode-hook 'lsp-mode)
 (use-package
@@ -169,9 +178,7 @@
  :config
  (define-key evil-motion-state-map [down-mouse-1] nil)
  (setq evil-collection-mode-list '(dashboard ibuffer xref))
- (evil-collection-init)
- (evil-collection-define-key
-  'normal 'dired-mode-map "H" 'dired-hide-dotfiles-mode))
+ (evil-collection-init))
 
 (use-package
  magit
@@ -241,8 +248,8 @@
   'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
 (defun tau3/vterm-other-window ()
   (interactive)
-  (clone-indirect-buffer-other-window "terminal" t)
-  (multi-vterm))
+  (let ((consult--buffer-display #'switch-to-buffer-other-window))
+    (multi-vterm)))
 (global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
 (global-set-key (kbd "C-x `") 'multi-vterm)
 
