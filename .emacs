@@ -248,8 +248,8 @@
   'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
 (defun tau3/vterm-other-window ()
   (interactive)
-  (let ((consult--buffer-display #'switch-to-buffer-other-window))
-    (multi-vterm)))
+  (clone-indirect-buffer-other-window "terminal" t)
+  (multi-vterm))
 (global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
 (global-set-key (kbd "C-x `") 'multi-vterm)
 
