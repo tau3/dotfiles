@@ -42,6 +42,7 @@
   dirvish-mode-map ; Dirvish inherits `dired-mode-map'
   ("N" . dirvish-narrow)
   ("h" . dired-up-directory)
+  ("H" . dired-hide-dotfiles-mode)
   ("<left>" . dired-up-directory)
   ("<right>" . dired-find-file)
   ("l" . dired-find-file)
@@ -176,9 +177,7 @@
  :config
  (define-key evil-motion-state-map [down-mouse-1] nil)
  (setq evil-collection-mode-list '(dashboard ibuffer xref))
- (evil-collection-init)
- (evil-collection-define-key
-  'normal 'dired-mode-map "H" 'dired-hide-dotfiles-mode))
+ (evil-collection-init))
 
 (use-package
  magit
@@ -248,8 +247,8 @@
   'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
 (defun tau3/vterm-other-window ()
   (interactive)
-  (clone-indirect-buffer-other-window "terminal" t)
-  (multi-vterm))
+  (let ((consult--buffer-display #'switch-to-buffer-other-window))
+    (multi-vterm)))
 (global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
 (global-set-key (kbd "C-x `") 'multi-vterm)
 
