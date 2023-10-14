@@ -145,7 +145,10 @@
 (use-package
  lsp-treemacs
  :defer t
- :config (global-set-key "\M-n" 'treemacs))
+ :config
+ (global-set-key "\M-n" 'treemacs)
+ (require 'ace-window)
+ (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))
 
 (use-package
  reverse-im
