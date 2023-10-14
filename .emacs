@@ -21,11 +21,9 @@
 (package-initialize)
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
- '(lsp-pylsp-plugins-pylint-enabled t)
- '(lsp-pylsp-plugins-yapf-enabled t)
  '(mingus-current-song-props '(:weight bold :background "deep sky blue"))
  '(package-selected-packages
-   '(pyenv-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -111,6 +109,11 @@
  ((lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . lsp-treemacs-sync-mode))
  :init
+ (setq
+  lsp-pylsp-plugins-autopep8-enabled t
+  lsp-pylsp-plugins-pydocstyle-enabled nil
+  lsp-pylsp-plugins-pylint-enabled t
+  lsp-pylsp-plugins-yapf-enabled t)
  (setq lsp-enable-snippet nil)
  (setq lsp-headerline-arrow "=>")
  (setq lsp-keymap-prefix "C-x l")
