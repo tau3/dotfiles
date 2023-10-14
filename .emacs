@@ -145,7 +145,9 @@
 (use-package
  lsp-treemacs
  :defer t
+ :bind (:map treemacs-mode-map ("\M-n" . treemacs))
  :config
+ (define-key treemacs-mode-map "\M-n" 'treemacs)
  (global-set-key "\M-n" 'treemacs)
  (require 'ace-window)
  (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))
