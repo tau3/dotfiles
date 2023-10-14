@@ -21,9 +21,11 @@
 (package-initialize)
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
+ '(lsp-pylsp-plugins-pylint-enabled t)
+ '(lsp-pylsp-plugins-yapf-enabled t)
  '(mingus-current-song-props '(:weight bold :background "deep sky blue"))
  '(package-selected-packages
-   '(latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(pyenv-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -86,7 +88,8 @@
  :config
  (defun tau3/consult-recent-file-other-window ()
    (interactive)
-   (let ((consult--buffer-display #'switch-to-buffer-other-window))
+   (let ((tau3--buf-name (buffer-name)))
+     (clone-indirect-buffer-other-window tau3--buf-name t)
      (consult-recent-file)))
  (setq consult-preview-excluded-files
        '(".*\\.pdf"
@@ -125,10 +128,15 @@
   ("<S-f3>" . flycheck-previous-error)
   ("<f6>" . lsp-rename)
   ("<f8>" . lsp-treemacs-symbols)
-  ("C-<f12>" . consult-lsp-file-symbols)
-  ("C-b" . lsp-find-definition))
+  ("C-<f12>" . consult-lsp-file-symbols))
  :config
+ (defun tau3/gd-other-window ()
+   (interactive)
+   (let ((tau3--buf-name (buffer-name)))
+     (clone-indirect-buffer-other-window tau3--buf-name t)
+     (evil-goto-definition)))
  (define-key lsp-mode-map (kbd "C-x l") lsp-command-map)
+ (define-key evil-normal-state-map (kbd "g-D") 'tau3/gd-other-window)
  (add-hook 'lsp-on-change-hook 'save-buffer))
 
 (use-package
@@ -255,8 +263,9 @@
   'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
 (defun tau3/vterm-other-window ()
   (interactive)
-  (clone-indirect-buffer-other-window "terminal" t)
-  (multi-vterm))
+  (let ((tau3--buf-name (buffer-name)))
+    (clone-indirect-buffer-other-window tau3--buf-name t)
+    (multi-vterm)))
 (global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
 (global-set-key (kbd "C-x `") 'multi-vterm)
 
