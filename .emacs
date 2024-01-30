@@ -1,4 +1,4 @@
-(set-frame-font "JetBrainsMonoNL Nerd Font Mono 11" nil t)
+(set-frame-font "Fira Code Retina 11" nil t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -37,6 +37,7 @@
  (setq
   dired-listing-switches
   "-l --almost-all --human-readable --group-directories-first --no-group")
+ (add-hook 'dired-mode-hook (lambda () (dired-hide-dotfiles-mode)))
  :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
  (:map
   dirvish-mode-map ; Dirvish inherits `dired-mode-map'
@@ -93,6 +94,7 @@
        '(".*\\.pdf"
          ".*\\.docx"
          ".*\\.mp4"
+         ".*\\.mkv"
          ".*\\.webm"
          ".*sudo:root.*"))
  :bind
@@ -295,8 +297,8 @@
  (setq
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-one t)
- (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+ (load-theme 'doom-sourcerer t)
+ (setq doom-themes-treemacs-theme "doom-sourcerer") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package
