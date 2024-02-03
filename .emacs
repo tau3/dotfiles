@@ -23,7 +23,7 @@
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(mingus-current-song-props '(:weight bold :background "deep sky blue"))
  '(package-selected-packages
-   '(latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(magit-delta latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -201,6 +201,8 @@
  magit
  :defer t
  :config (add-hook 'git-commit-post-finish-hook 'delete-window))
+
+(use-package magit-delta :hook (magit-mode . magit-delta-mode))
 
 (use-package
  disk-usage
