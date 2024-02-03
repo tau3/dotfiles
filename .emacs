@@ -21,6 +21,7 @@
 (package-initialize)
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
+ '(mingus-current-song-props '(:weight bold :background "#87AFD7"))
  '(package-selected-packages
    '(magit-delta latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
@@ -345,4 +346,8 @@
  (setq tab-bar-close-button-show nil))
 
 (custom-set-faces
- '(calendar-today ((t (:background "snow" :foreground "grey17")))))
+ '(calendar-today ((t (:background "snow" :foreground "grey17"))))
+ '(mingus-album-stale-face ((t (:foreground "#aa4450"))))
+ '(mingus-artist-face ((t (:foreground "#cc8800"))))
+ '(mingus-pausing-face ((t (:foreground "#d2d2d2"))))
+ '(mingus-song-file-face ((t (:foreground "#719611")))))
