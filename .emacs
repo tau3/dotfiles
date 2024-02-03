@@ -11,8 +11,6 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-hl-line-mode t)
 (setq recentf-max-saved-items 100)
-(setq calendar-week-start-day 1)
-(add-hook 'calendar-today-visible-hook 'calendar-mark-today)
 
 (require 'package)
 (add-to-list
@@ -58,6 +56,11 @@
 (use-package
  mingus
  :defer t
+ :custom-face
+ (mingus-album-stale-face ((t (:foreground "#aa4450"))))
+ (mingus-artist-face ((t (:foreground "#cc8800"))))
+ (mingus-pausing-face ((t (:foreground "#d2d2d2"))))
+ (mingus-song-file-face ((t (:foreground "#719611"))))
  :config
  (setq mingus-current-song-props
        '(:weight bold :background "deep sky blue"))
@@ -345,9 +348,11 @@
  (setq tab-bar-new-button-show nil)
  (setq tab-bar-close-button-show nil))
 
-(custom-set-faces
- '(calendar-today ((t (:background "snow" :foreground "grey17"))))
- '(mingus-album-stale-face ((t (:foreground "#aa4450"))))
- '(mingus-artist-face ((t (:foreground "#cc8800"))))
- '(mingus-pausing-face ((t (:foreground "#d2d2d2"))))
- '(mingus-song-file-face ((t (:foreground "#719611")))))
+(use-package
+ calendar
+ :defer t
+ :config
+ (setq calendar-week-start-day 1)
+ (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
+ :custom-face
+ (calendar-today ((t (:background "#c2c2b0" :foreground "#171717")))))
