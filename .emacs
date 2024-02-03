@@ -21,7 +21,6 @@
 (package-initialize)
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
- '(mingus-current-song-props '(:weight bold :background "deep sky blue"))
  '(package-selected-packages
    '(magit-delta latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
@@ -54,6 +53,17 @@
   ("s" . dirvish-quicksort) ; remapped `dired-sort-toggle-or-edit'
   ("M-l" . dirvish-ls-switches-menu)
   ("M-m" . dirvish-mark-menu)))
+
+(use-package
+ mingus
+ :defer t
+ :config
+ (setq mingus-current-song-props
+       '(:weight bold :background "deep sky blue"))
+ (setq mingus-use-mouse-p nil)
+ (add-hook
+  'mingus-playlist-mode-hook
+  (lambda () (unbind-key "Z" mingus-playlist-mode-map))))
 
 (use-package
  openwith
@@ -249,7 +259,6 @@
  (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys))
 
 (which-key-mode 1)
-(setq mingus-use-mouse-p nil)
 (solaire-global-mode +1)
 (delete-selection-mode t)
 (global-git-gutter-mode +1)
