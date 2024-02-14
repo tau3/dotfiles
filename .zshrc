@@ -138,3 +138,5 @@ vterm_prompt_end() {
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
+
+[ -f "/home/sergey/.ghcup/env" ] && source "/home/sergey/.ghcup/env" # ghcup-env
