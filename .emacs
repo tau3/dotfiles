@@ -1,4 +1,5 @@
 (set-frame-font "Fira Code Retina 11" nil t)
+(setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -10,6 +11,7 @@
 (savehist-mode)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-hl-line-mode t)
+(pixel-scroll-precision-mode 1)
 (setq recentf-max-saved-items 100)
 
 (require 'package)
