@@ -23,7 +23,7 @@
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(mingus-current-song-props '(:weight bold :background "#87AFD7"))
  '(package-selected-packages
-   '(yaml-mode lsp-haskell haskell-mode magit-delta latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode elfeed-summary elfeed undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key→
+   '(yaml-mode lsp-haskell haskell-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -59,13 +59,13 @@
  mingus
  :defer t
  :custom-face
- (mingus-album-stale-face ((t (:foreground "#aa4450"))))
- (mingus-artist-face ((t (:foreground "#cc8800"))))
+ (mingus-album-stale-face ((t (:foreground "#fc6a5d"))))
+ (mingus-artist-face ((t (:foreground "#d0bf68"))))
  (mingus-pausing-face ((t (:foreground "#d2d2d2"))))
- (mingus-song-file-face ((t (:foreground "#719611"))))
+ (mingus-song-file-face ((t (:foreground "#67b7a4"))))
  :config
  (setq mingus-current-song-props
-       '(:weight bold :background "deep sky blue"))
+       '(:weight bold :background "#a167e6"))
  (setq mingus-use-mouse-p nil)
  (add-hook
   'mingus-playlist-mode-hook
@@ -120,6 +120,7 @@
  ("C-x J" . tau3/consult-recent-file-other-window))
 
 (add-hook 'rust-mode-hook 'lsp-mode)
+(add-hook 'c++-mode-hook 'lsp-mode)
 (use-package
  lsp-mode
  :defer t
@@ -158,6 +159,7 @@
      (evil-goto-definition)))
  (define-key lsp-mode-map (kbd "C-x l") lsp-command-map)
  (define-key evil-normal-state-map (kbd "g-D") 'tau3/gd-other-window)
+ (global-unset-key (kbd "C-x C-l"))
  (add-hook 'lsp-on-change-hook 'save-buffer))
 
 (use-package
@@ -192,8 +194,6 @@
  :config
  (evil-set-initial-state 'disk-usage-mode 'emacs)
  (evil-set-initial-state 'dired-mode 'emacs)
- (evil-set-initial-state 'elfeed-show-mode 'emacs) ; when an entry is opened
- (evil-set-initial-state 'elfeed-search-mode 'emacs) ; when a feed is opened
  (evil-set-initial-state 'mingus-browse-mode 'emacs)
  (evil-set-initial-state 'mingus-playlist-mode 'emacs)
  (evil-set-undo-system 'undo-tree)
@@ -218,8 +218,6 @@
  :defer t
  :config (add-hook 'git-commit-post-finish-hook 'delete-window))
 
-(use-package magit-delta :hook (magit-mode . magit-delta-mode))
-
 (use-package
  disk-usage
  :defer t
@@ -242,27 +240,6 @@
 ;; Scrolling settings
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
-
-(when (file-exists-p "~/git/emacs/rss.el")
-  (load-file "~/git/emacs/rss.el"))
-
-(use-package
- elfeed-summary
- :defer t
- :config
- (defun tau3/press-enter ()
-   (interactive)
-   (execute-kbd-macro (read-kbd-macro "RET")))
- (defun tau3/elfeed-bind-keys ()
-   (local-set-key (kbd "<mouse-1>") 'tau3/press-enter)
-   (local-unset-key (kbd "C-<tab>")))
- (defun tau3/elfeed-bind-search-buttons ()
-   (local-set-key (kbd "h") 'elfeed-search-quit-window)
-   (local-set-key (kbd "j") 'next-line)
-   (local-set-key (kbd "k") 'previous-line)
-   (local-set-key (kbd "l") 'tau3/press-enter))
- (add-hook 'elfeed-search-mode-hook 'tau3/elfeed-bind-search-buttons)
- (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys))
 
 (which-key-mode 1)
 (solaire-global-mode +1)
@@ -314,8 +291,8 @@
  (setq
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-sourcerer t)
- (setq doom-themes-treemacs-theme "doom-sourcerer") ; use "doom-colors" for less minimal icon theme
+ (load-theme 'doom-xcode t)
+ (setq doom-themes-treemacs-theme "doom-xcode") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package
