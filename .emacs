@@ -38,6 +38,18 @@
   dired-listing-switches
   "-l --almost-all --human-readable --group-directories-first --no-group")
  (add-hook 'dired-mode-hook (lambda () (dired-hide-dotfiles-mode)))
+ (defun tau3/dirvish-bind-local ()
+   (local-set-key
+    [home]
+    (lambda ()
+      (interactive)
+      (beginning-of-buffer)))
+   (local-set-key
+    [end]
+    (lambda ()
+      (interactive)
+      (end-of-buffer))))
+ (add-hook 'dired-mode-hook 'tau3/dirvish-bind-local)
  :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
  (:map
   dirvish-mode-map ; Dirvish inherits `dired-mode-map'
@@ -109,6 +121,7 @@
  (setq consult-preview-excluded-files
        '(".*\\.pdf"
          ".*\\.docx"
+         ".*\\.mkv"
          ".*\\.mp4"
          ".*\\.mkv"
          ".*\\.webm"
@@ -236,10 +249,6 @@
       (interactive)
       (disk-usage-delete-marked-files 1))))
  (add-hook 'disk-usage-mode-hook 'tau3/disk-usage-bind-local))
-
-;; Scrolling settings
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
 
 (which-key-mode 1)
 (solaire-global-mode +1)
