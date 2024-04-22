@@ -23,7 +23,7 @@
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(mingus-current-song-props '(:weight bold :background "#87AFD7"))
  '(package-selected-packages
-   '(yaml-mode lsp-haskell haskell-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(expand-region yaml-mode lsp-haskell haskell-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -66,6 +66,9 @@
   ("s" . dirvish-quicksort) ; remapped `dired-sort-toggle-or-edit'
   ("M-l" . dirvish-ls-switches-menu)
   ("M-m" . dirvish-mark-menu)))
+
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 
 (use-package
  mingus
