@@ -21,9 +21,8 @@
 (package-initialize)
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
- '(mingus-current-song-props '(:weight bold :background "#87AFD7"))
  '(package-selected-packages
-   '(expand-region yaml-mode lsp-haskell haskell-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree mingus xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(expand-region yaml-mode lsp-haskell haskell-mode latex-preview-pane auctex elisp-autofmt async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -67,24 +66,7 @@
   ("M-l" . dirvish-ls-switches-menu)
   ("M-m" . dirvish-mark-menu)))
 
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
-
-(use-package
- mingus
- :defer t
- :custom-face
- (mingus-album-stale-face ((t (:foreground "#fc6a5d"))))
- (mingus-artist-face ((t (:foreground "#d0bf68"))))
- (mingus-pausing-face ((t (:foreground "#d2d2d2"))))
- (mingus-song-file-face ((t (:foreground "#67b7a4"))))
- :config
- (setq mingus-current-song-props
-       '(:weight bold :background "#a167e6"))
- (setq mingus-use-mouse-p nil)
- (add-hook
-  'mingus-playlist-mode-hook
-  (lambda () (unbind-key "Z" mingus-playlist-mode-map))))
+(use-package expand-region :bind ("C-=" . er/expand-region))
 
 (use-package
  openwith
@@ -93,6 +75,7 @@
        '(("\\.djvu\\'" "zathura" (file))
          ("\\.pdf\\'" "zathura" (file))
          ("\\.docx\\'" "libreoffice" (file))
+         ("\\.mp3\\'" "audacious" (file))
          ("\\.webm\\'" "mpv" (file))
          ("\\.mp4\\'" "mpv" (file))
          ("\\.mkv\\'" "mpv" (file)))))
@@ -126,6 +109,7 @@
          ".*\\.docx"
          ".*\\.mkv"
          ".*\\.mp4"
+         ".*\\.mp3"
          ".*\\.mkv"
          ".*\\.webm"
          ".*sudo:root.*"))
@@ -210,8 +194,6 @@
  :config
  (evil-set-initial-state 'disk-usage-mode 'emacs)
  (evil-set-initial-state 'dired-mode 'emacs)
- (evil-set-initial-state 'mingus-browse-mode 'emacs)
- (evil-set-initial-state 'mingus-playlist-mode 'emacs)
  (evil-set-undo-system 'undo-tree)
  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
  (define-key evil-insert-state-map (kbd "C-/") 'comment-line)
