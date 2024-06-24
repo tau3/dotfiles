@@ -37,6 +37,7 @@
   dired-listing-switches
   "-l --almost-all --human-readable --group-directories-first --no-group")
  (add-hook 'dired-mode-hook (lambda () (dired-hide-dotfiles-mode)))
+ (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file) ; a click in dirvish won't open another panel
  (defun tau3/dirvish-bind-local ()
    (local-set-key
     [home]
@@ -277,6 +278,7 @@
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-;") 'avy-goto-char-2)
+(global-set-key (kbd "<f12>") 'which-key-show-top-level)
 
 (use-package
  doom-themes
@@ -285,7 +287,7 @@
  (setq
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-xcode t)
+ (load-theme 'doom-one t)
  (setq doom-themes-treemacs-theme "doom-xcode") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
