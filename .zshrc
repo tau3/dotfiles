@@ -102,6 +102,7 @@ alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 alias nethogs="sudo nethogs"
 alias weapon="sh ~/git/notes/weapon_toggle.sh"
+alias reboot="/sbin/reboot"
 
 alias gs="git status"
 alias gdh="git diff HEAD"
