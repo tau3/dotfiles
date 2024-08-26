@@ -13,6 +13,7 @@
 (global-hl-line-mode t)
 (pixel-scroll-precision-mode 1)
 (setq recentf-max-saved-items 100)
+(setq mouse-drag-and-drop-region t)
 
 (require 'package)
 (add-to-list
