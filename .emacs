@@ -281,6 +281,11 @@
     (if (bound-and-true-p vterm-copy-mode)
 	(evil-normal-state)
       (evil-emacs-state)))
+  (defun tau3/delete-vterm-window()
+    (when (eq major-mode 'vterm-mode)
+      (when (not (one-window-p))
+        (delete-window))))
+  (add-hook 'kill-buffer-hook #'tau3/delete-vterm-window)
   (add-hook
    'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
 (defun tau3/vterm-other-window ()
@@ -358,3 +363,9 @@
   (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
   :custom-face
   (calendar-today ((t (:background "#c2c2b0" :foreground "#171717")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
