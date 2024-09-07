@@ -22,7 +22,8 @@
 (package-initialize)
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
- '(package-selected-packages '(elisp-autofmt elisp-format elfeed-summary expand-region yaml-mode lsp-haskell haskell-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+ '(package-selected-packages
+   '(elisp-autofmt elisp-format elfeed-summary expand-region yaml-mode lsp-haskell haskell-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -257,7 +258,25 @@
    (local-set-key (kbd "k") 'previous-line)
    (local-set-key (kbd "l") 'tau3/press-enter))
  (add-hook 'elfeed-search-mode-hook 'tau3/elfeed-bind-search-buttons)
- (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys))
+ (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys)
+ (setq
+  elfeed-show-mode-hook ; word wrap and font size for elfeed preview
+  (lambda ()
+    (set-face-attribute 'variable-pitch (selected-frame)
+                        :font
+                        (font-spec
+                         :family "Fira Code Retina"
+                         :size 16))
+    (setq fill-column 120)
+    (setq elfeed-show-entry-switch #'tau3/configure-elfeed-preview)))
+ (defun tau3/configure-elfeed-preview (buffer)
+   (with-current-buffer buffer
+     (setq buffer-read-only nil)
+     (goto-char (point-min))
+     (re-search-forward "\n\n")
+     (fill-individual-paragraphs (point) (point-max))
+     (setq buffer-read-only t))
+   (switch-to-buffer buffer)))
 
 (which-key-mode 1)
 (solaire-global-mode +1)
