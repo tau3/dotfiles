@@ -23,7 +23,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(elisp-autofmt elisp-format elfeed-summary expand-region yaml-mode lsp-haskell haskell-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(elisp-autofmt elfeed-summary expand-region yaml-mode lsp-haskell haskell-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -198,6 +198,7 @@
  (evil-set-initial-state 'dired-mode 'emacs)
  (evil-set-initial-state 'elfeed-show-mode 'emacs) ; when an entry is opened
  (evil-set-initial-state 'elfeed-search-mode 'emacs) ; when a feed is opened
+ (evil-set-initial-state 'elfeed-summary-mode 'emacs) ; main window of elfeed-summary
  (evil-set-undo-system 'undo-tree)
  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
  (define-key evil-insert-state-map (kbd "C-/") 'comment-line)
@@ -250,14 +251,17 @@
    (interactive)
    (execute-kbd-macro (read-kbd-macro "RET")))
  (defun tau3/elfeed-bind-keys ()
+   (tau3/elfeed-bind-motions)
    (local-set-key (kbd "<mouse-1>") 'tau3/press-enter)
    (local-unset-key (kbd "C-<tab>")))
- (defun tau3/elfeed-bind-search-buttons ()
+ (defun tau3/elfeed-bind-motions ()
+   (local-set-key (kbd "<home>") 'beginning-of-buffer)
+   (local-set-key (kbd "<end>") 'end-of-buffer)
    (local-set-key (kbd "h") 'elfeed-search-quit-window)
    (local-set-key (kbd "j") 'next-line)
    (local-set-key (kbd "k") 'previous-line)
    (local-set-key (kbd "l") 'tau3/press-enter))
- (add-hook 'elfeed-search-mode-hook 'tau3/elfeed-bind-search-buttons)
+ (add-hook 'elfeed-search-mode-hook 'tau3/elfeed-bind-motions)
  (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys)
  (setq
   elfeed-show-mode-hook ; word wrap and font size for elfeed preview
