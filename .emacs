@@ -232,6 +232,8 @@
    (push-button)
    (move-beginning-of-line 1))
  (defun tau3/disk-usage-bind-local ()
+   (local-set-key (kbd "<home>") 'beginning-of-buffer)
+   (local-set-key (kbd "<end>") 'end-of-buffer)
    (local-set-key [return] 'tau3/disk-usage-enter)
    (local-set-key
     (kbd "d")
