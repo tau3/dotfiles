@@ -3,8 +3,8 @@ export EDITOR=/usr/bin/emacs
 
 # for gthumb
 export GTK_THEME=Clearlooks
-
-. "$HOME/.cargo/env"
+export PATH=$PATH:$HOME/.cargo/bin
+# . "$HOME/.cargo/env"
 
 # scaling hidpi apps
 if [[ $HOST = "q3dm6"  ]]
