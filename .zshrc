@@ -99,7 +99,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
-alias nethogs="sudo nethogs"
+alias bandwhich="sudo bandwhich"
 alias weapon="sh ~/git/notes/weapon_toggle.sh"
 alias reboot="/sbin/reboot"
 
