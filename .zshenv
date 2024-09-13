@@ -1,6 +1,8 @@
-export QT_QPA_PLATFORMTHEME=qt5ct
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin
 export EDITOR=/usr/bin/emacs
+
+# for gthumb
+export GTK_THEME=Clearlooks
 
 . "$HOME/.cargo/env"
 

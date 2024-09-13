@@ -97,7 +97,6 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias mc="mc -S mc46"
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 alias nethogs="sudo nethogs"

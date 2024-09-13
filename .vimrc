@@ -55,6 +55,8 @@ Plug 'mbbill/undotree'
 Plug 'https://github.com/vimpostor/vim-tpipeline'
 
 Plug 'easymotion/vim-easymotion'
+
+Plug 'https://github.com/terryma/vim-expand-region'
 call plug#end()
 
 syntax on
