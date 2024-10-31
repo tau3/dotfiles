@@ -61,10 +61,11 @@ ZSH_THEME="gentoo"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 plugins=(
   git
   pass
-  zsh-autosuggestions
 )
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -102,6 +103,7 @@ alias powertop="sudo powertop"
 alias bandwhich="sudo bandwhich"
 alias weapon="sh ~/git/notes/weapon_toggle.sh"
 alias reboot="/sbin/reboot"
+alias hb="systemctl hibernate"
 
 alias gs="git status"
 alias gdh="git diff HEAD"
