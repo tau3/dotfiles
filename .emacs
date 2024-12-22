@@ -23,7 +23,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(elisp-autofmt elfeed-summary expand-region yaml-mode lsp-haskell haskell-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(elisp-autofmt expand-region yaml-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -242,48 +242,6 @@
       (disk-usage-delete-marked-files 1))))
  (add-hook 'disk-usage-mode-hook 'tau3/disk-usage-bind-local))
 
-(when (file-exists-p "~/git/emacs/rss.el")
-  (load-file "~/git/emacs/rss.el"))
-
-(use-package
- elfeed-summary
- :defer t
- :config
- (defun tau3/press-enter ()
-   (interactive)
-   (execute-kbd-macro (read-kbd-macro "RET")))
- (defun tau3/elfeed-bind-keys ()
-   (tau3/elfeed-bind-motions)
-   (local-set-key (kbd "<mouse-1>") 'tau3/press-enter)
-   (local-unset-key (kbd "C-<tab>")))
- (defun tau3/elfeed-bind-motions ()
-   (local-set-key (kbd "<home>") 'beginning-of-buffer)
-   (local-set-key (kbd "<end>") 'end-of-buffer)
-   (local-set-key (kbd "h") 'elfeed-search-quit-window)
-   (local-set-key (kbd "j") 'next-line)
-   (local-set-key (kbd "k") 'previous-line)
-   (local-set-key (kbd "l") 'tau3/press-enter))
- (add-hook 'elfeed-search-mode-hook 'tau3/elfeed-bind-motions)
- (add-hook 'elfeed-summary-mode-hook 'tau3/elfeed-bind-keys)
- (setq
-  elfeed-show-mode-hook ; word wrap and font size for elfeed preview
-  (lambda ()
-    (set-face-attribute 'variable-pitch (selected-frame)
-                        :font
-                        (font-spec
-                         :family "Fira Code Retina"
-                         :size 16))
-    (setq fill-column 120)
-    (setq elfeed-show-entry-switch #'tau3/configure-elfeed-preview)))
- (defun tau3/configure-elfeed-preview (buffer)
-   (with-current-buffer buffer
-     (setq buffer-read-only nil)
-     (goto-char (point-min))
-     (re-search-forward "\n\n")
-     (fill-individual-paragraphs (point) (point-max))
-     (setq buffer-read-only t))
-   (switch-to-buffer buffer)))
-
 (which-key-mode 1)
 (solaire-global-mode +1)
 (delete-selection-mode t)
@@ -376,16 +334,4 @@
  (setq tab-bar-new-button-show nil)
  (setq tab-bar-close-button-show nil))
 
-(let ((my-ghcup-path (expand-file-name "~/.ghcup/bin")))
-  (setenv "PATH" (concat my-ghcup-path ":" (getenv "PATH")))
-  (add-to-list 'exec-path my-ghcup-path))
-
-(use-package
- calendar
- :defer t
- :config
- (setq calendar-week-start-day 1)
- (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
- :custom-face
- (calendar-today ((t (:background "#c2c2b0" :foreground "#171717")))))
 (custom-set-faces)

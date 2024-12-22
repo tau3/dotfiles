@@ -163,34 +163,11 @@ set_from_resource $red     i3wm.color1  #a95551
 
 # i3wm can't parse wildcards here and replace them correctly in dmenu call
 # fg = BACKGROUND color, bg = font color in dmenu
-set_from_resource $fg i3wm.color7 #282c34
-set_from_resource $bg i3wm.color3 #98be65
-
-set_from_resource $bar_bg i3wm.background #222222
+set_from_resource $fg i3wm.background
+set_from_resource $bg i3wm.color2
 
 # "HDMI-A-0" or "primary"
 set_from_resource $tray_output i3wm.tray.output HDMI-A-0
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-        # position top
-        # tray_output primary 
-        # tray_output $tray_output 
-        # status_command "~/.config/i3/i3status.sh"
-        # status_command "i3status | python3 ~/.config/i3/bar.py"
-
-        # colors {
-            # background $bar_bg
-            # statusline $white
-            # separator  $white
-            #                  border   backgr.  text
-            # focused_workspace  $blue    $bar_bg  $white
-            # active_workspace  #333333  #5f676a  #ffffff
-            # inactive_workspace $bar_bg  $bar_bg  $white
-            # urgent_workspace   $red     $bar_bg  $white
-        # }
-# }
 
 exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
 exec --no-startup-id feh --bg-scale /home/sergey/images/wp.jpg
@@ -217,6 +194,6 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # PROTIP: You can also dynamically set dmenu's colors this way:
-bindsym $mod+d exec dmenu_run -i -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -fn "GoMono Nerd Font Mono-10"
+bindsym $mod+d exec dmenu_run -i -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -fn "GoMono Nerd Font Mono-12"
 bindsym $mod+b exec firefox -P
 
