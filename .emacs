@@ -130,6 +130,7 @@
  ((lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . lsp-treemacs-sync-mode))
  :init
+ (setq lsp-ui-sideline-show-diagnostics nil)
  (setq
   lsp-pylsp-plugins-autopep8-enabled t
   lsp-pylsp-plugins-pydocstyle-enabled nil
@@ -139,17 +140,18 @@
  (setq lsp-headerline-arrow "=>")
  (setq lsp-keymap-prefix "C-x l")
  (setq treemacs-is-never-other-window -1)
- (setq lsp-signature-doc-lines 3)
+ ;; (setq lsp-signature-doc-lines 3)
  (setq
   company-minimum-prefix-length 1
   company-idle-delay 0.0) ; default is 0.2
  :bind
  (:map
   lsp-mode-map
+  ("C-p" . lsp-ui-doc-glance)
   ("M-RET" . lsp-execute-code-action)
   ("C-<f10>" . lsp-rust-analyzer-run)
-  ("<f3>" . flycheck-next-error)
-  ("<S-f3>" . flycheck-previous-error)
+  ("<f2>" . flycheck-next-error)
+  ("<S-f2>" . flycheck-previous-error)
   ("<f6>" . lsp-rename)
   ("<f8>" . lsp-treemacs-symbols)
   ("C-<f12>" . consult-lsp-file-symbols))
@@ -202,6 +204,8 @@
  (evil-set-undo-system 'undo-tree)
  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
  (define-key evil-insert-state-map (kbd "C-/") 'comment-line)
+ (define-key evil-normal-state-map (kbd "C-p") nil)
+ (define-key evil-insert-state-map (kbd "C-p") nil)
  :init
  (setq evil-want-keybinding nil)
  (setq evil-vsplit-window-right t)
@@ -219,7 +223,10 @@
 (use-package
  magit
  :defer t
- :config (add-hook 'git-commit-post-finish-hook 'delete-window))
+ :config
+ (setq magit-display-buffer-function
+       #'magit-display-buffer-fullframe-status-v1)
+ (add-hook 'git-commit-post-finish-hook 'delete-window))
 
 (use-package
  disk-usage
