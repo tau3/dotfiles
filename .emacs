@@ -266,6 +266,7 @@
  (vterm-mode . evil-emacs-state)
  (vterm-copy-mode . tau3/evil-normal-in-vterm-copy-mode)
  :config
+ (setq multi-vterm-dedicated-window-height 10)
  (setq vterm-timer-delay 0.01)
  (defun tau3/evil-normal-in-vterm-copy-mode ()
    (if (bound-and-true-p vterm-copy-mode)
