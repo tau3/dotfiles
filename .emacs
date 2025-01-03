@@ -111,6 +111,7 @@
          ".*\\.docx"
          ".*\\.mkv"
          ".*\\.mp4"
+         ".*\\.djvu"
          ".*\\.mp3"
          ".*\\.mkv"
          ".*\\.webm"
@@ -199,9 +200,6 @@
  :config
  (evil-set-initial-state 'disk-usage-mode 'emacs)
  (evil-set-initial-state 'dired-mode 'emacs)
- (evil-set-initial-state 'elfeed-show-mode 'emacs) ; when an entry is opened
- (evil-set-initial-state 'elfeed-search-mode 'emacs) ; when a feed is opened
- (evil-set-initial-state 'elfeed-summary-mode 'emacs) ; main window of elfeed-summary
  (evil-set-undo-system 'undo-tree)
  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
  (define-key evil-insert-state-map (kbd "C-/") 'comment-line)
