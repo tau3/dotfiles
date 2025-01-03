@@ -68,7 +68,7 @@
   ("M-l" . dirvish-ls-switches-menu)
   ("M-m" . dirvish-mark-menu)))
 
-(use-package expand-region :bind ("C-=" . er/expand-region))
+(use-package expand-region :bind ("M-w" . er/expand-region))
 
 (use-package
  openwith
@@ -148,6 +148,7 @@
  (:map
   lsp-mode-map
   ("C-p" . lsp-ui-doc-glance)
+  ("C-M-l" . lsp-format-buffer)
   ("M-RET" . lsp-execute-code-action)
   ("C-<f10>" . lsp-rust-analyzer-run)
   ("<f2>" . flycheck-next-error)
@@ -265,6 +266,7 @@
  :hook
  (vterm-mode . evil-emacs-state)
  (vterm-copy-mode . tau3/evil-normal-in-vterm-copy-mode)
+ :bind (:map vterm-mode-map ("\C-q" . vterm-send-next-key))
  :config
  (setq multi-vterm-dedicated-window-height 10)
  (setq vterm-timer-delay 0.01)
