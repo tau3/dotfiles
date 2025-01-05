@@ -23,7 +23,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(elisp-autofmt expand-region yaml-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(elisp-autofmt expand-region async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -122,7 +122,6 @@
  ("C-x B" . consult-buffer-other-window)
  ("C-x J" . tau3/consult-recent-file-other-window))
 
-(add-hook 'rust-mode-hook 'lsp-mode)
 (add-hook 'c++-mode-hook 'lsp-mode)
 (use-package
  lsp-mode
@@ -151,7 +150,6 @@
   ("C-p" . lsp-ui-doc-glance)
   ("C-M-l" . lsp-format-buffer)
   ("M-RET" . lsp-execute-code-action)
-  ("C-<f10>" . lsp-rust-analyzer-run)
   ("<f2>" . flycheck-next-error)
   ("<S-f2>" . flycheck-previous-error)
   ("<f6>" . lsp-rename)
@@ -187,7 +185,6 @@
  dashboard
  :config
  (setq dashboard-center-content t)
- (add-to-list 'recentf-exclude ".*\/.rustup\/.*")
  (add-to-list 'recentf-exclude ".*\.gpg")
  (setq dashboard-show-shortcuts nil)
  (setq dashboard-items '((recents . 15)))
@@ -296,7 +293,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-;") 'avy-goto-char-2)
+(global-set-key (kbd "C-;") 'avy-goto-char)
 (global-set-key (kbd "<f12>") 'which-key-show-top-level)
 
 (use-package
