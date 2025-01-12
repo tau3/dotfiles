@@ -23,7 +23,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(elisp-autofmt expand-region async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(all-the-icons apt-sources-list async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish disk-usage doom-themes elisp-autofmt evil evil-collection expand-region flycheck git-gutter lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
