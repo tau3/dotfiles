@@ -77,7 +77,6 @@
        '(("\\.djvu\\'" "zathura" (file))
          ("\\.pdf\\'" "zathura" (file))
          ("\\.docx\\'" "libreoffice" (file))
-         ("\\.mp3\\'" "audacious" (file))
          ("\\.webm\\'" "mpv" (file))
          ("\\.mp4\\'" "mpv" (file))
          ("\\.mkv\\'" "mpv" (file)))))
@@ -252,6 +251,7 @@
 (vertico-mode 1)
 (marginalia-mode 1)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'subword-mode)
 (xclip-mode 1) ; copy/yank to OS clipboard
 (async-bytecomp-package-mode 1)
 
@@ -263,6 +263,10 @@
  (vterm-copy-mode . tau3/evil-normal-in-vterm-copy-mode)
  :bind (:map vterm-mode-map ("\C-q" . vterm-send-next-key))
  :config
+ (defun tau3/vterm-kill-with-no-query (&rest _)
+   (set-process-query-on-exit-flag
+    (get-buffer-process (current-buffer)) nil))
+ (advice-add 'multi-vterm :after #'tau3/vterm-kill-with-no-query)
  (setq multi-vterm-dedicated-window-height 10)
  (setq vterm-timer-delay 0.01)
  (defun tau3/evil-normal-in-vterm-copy-mode ()
