@@ -201,6 +201,8 @@
  (define-key evil-insert-state-map (kbd "C-/") 'comment-line)
  (define-key evil-normal-state-map (kbd "C-p") nil)
  (define-key evil-insert-state-map (kbd "C-p") nil)
+ (define-key evil-normal-state-map (kbd "C-t") nil)
+ (define-key evil-insert-state-map (kbd "C-t") nil)
  :init
  (setq evil-want-keybinding nil)
  (setq evil-vsplit-window-right t)
@@ -299,6 +301,7 @@
  (setq display-line-numbers-type 'relative)
  (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t))))
 
+(global-set-key (kbd "C-t") 'tab-bar-new-tab)
 (global-set-key (kbd "C-w") 'tab-bar-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
