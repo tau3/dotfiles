@@ -302,6 +302,12 @@
  (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t))))
 
 (global-set-key (kbd "C-t") 'tab-bar-new-tab)
+(global-set-key
+ (kbd "C-t")
+ (lambda ()
+   (interactive)
+   (tab-bar-new-tab)
+   (ibuffer)))
 (global-set-key (kbd "C-w") 'tab-bar-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
