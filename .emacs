@@ -205,7 +205,12 @@
  (setq evil-want-keybinding nil)
  (setq evil-vsplit-window-right t)
  (setq evil-split-window-below t)
- (evil-mode))
+ (evil-mode)
+ (eval-after-load "evil-maps"
+   (dolist (map
+            '(evil-motion-state-map
+              evil-insert-state-map evil-emacs-state-map))
+     (define-key (eval map) "\C-w" nil))))
 
 (use-package
  evil-collection
@@ -294,6 +299,7 @@
  (setq display-line-numbers-type 'relative)
  (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t))))
 
+(global-set-key (kbd "C-w") 'tab-bar-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
