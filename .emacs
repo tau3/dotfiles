@@ -37,7 +37,8 @@
 (use-package
  dirvish
  :init (dirvish-override-dired-mode)
- :config (setq dired-dwim-target t)
+ :config
+ (setq dired-dwim-target t)
  (setq dirvish-time-format-string "%d.%m.%y %R")
  (setq dirvish-mode-line-format
        '(:left (sort symlink) :right (omit yank index)))
@@ -45,7 +46,11 @@
  (setq
   dired-listing-switches
   "-l --almost-all --human-readable --group-directories-first --no-group")
- (add-hook 'dired-mode-hook (lambda () (dired-hide-dotfiles-mode)))
+ (add-hook
+  'dired-mode-hook
+  (lambda ()
+    (dired-hide-dotfiles-mode)
+    (auto-revert-mode)))
  (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file) ; a click in dirvish won't open another panel
  (defun tau3/dirvish-bind-local ()
    (local-set-key
