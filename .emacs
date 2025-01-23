@@ -38,6 +38,7 @@
  dirvish
  :init (dirvish-override-dired-mode)
  :config (setq dired-dwim-target t)
+ (setq dirvish-time-format-string "%d.%m.%y %R")
  (setq dirvish-mode-line-format
        '(:left (sort symlink) :right (omit yank index)))
  (setq dirvish-attributes '(file-time file-size vc-state))
