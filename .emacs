@@ -32,6 +32,11 @@
  '(package-selected-packages
    '(all-the-icons apt-sources-list async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish disk-usage doom-themes elisp-autofmt evil evil-collection expand-region flycheck git-gutter lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
 
+(defun tau3/open-new-tab ()
+  (interactive)
+  (tab-bar-new-tab)
+  (ibuffer))
+
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
 (use-package
@@ -58,6 +63,7 @@
     (lambda ()
       (interactive)
       (beginning-of-buffer)))
+   (local-set-key (kbd "C-t") 'tau3/open-new-tab)
    (local-set-key
     [end]
     (lambda ()
@@ -314,13 +320,7 @@
  (setq display-line-numbers-type 'relative)
  (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t))))
 
-(global-set-key (kbd "C-t") 'tab-bar-new-tab)
-(global-set-key
- (kbd "C-t")
- (lambda ()
-   (interactive)
-   (tab-bar-new-tab)
-   (ibuffer)))
+(global-set-key (kbd "C-t") 'tau3/open-new-tab)
 (global-set-key (kbd "C-w") 'tab-bar-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
