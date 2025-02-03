@@ -1,9 +1,8 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook
  ;; 800000 is the default value
- 'after-init-hook (lambda () (setq gc-cons-threshold (800000))))
+ 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 ;; for mystical reasons tuning gc threshold breaks magit initialization.
-(global-set-key (kbd "C-x g") 'magit-status)
 
 (set-frame-font "Fira Code Retina 11" nil t)
 (setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
