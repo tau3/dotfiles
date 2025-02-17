@@ -333,6 +333,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-;") 'avy-goto-char)
 (global-set-key (kbd "<f12>") 'which-key-show-top-level)
+(global-unset-key (kbd "<f11>"))
 
 (use-package
  doom-themes
