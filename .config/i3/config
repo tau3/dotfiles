@@ -182,7 +182,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5  
 bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5  
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $bg  $bg       $red
@@ -194,6 +194,6 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # PROTIP: You can also dynamically set dmenu's colors this way:
-bindsym $mod+d exec dmenu_run -i -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -fn "GoMono Nerd Font Mono-12"
+bindsym $mod+d exec dmenu_run -i -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -fn "GoMono Nerd Font Mono-10"
 bindsym $mod+b exec firefox -P
 
