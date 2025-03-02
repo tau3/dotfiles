@@ -234,3 +234,6 @@ exec_always devmon
 exec_always swaykbdd
 exec_always nm-applet
 exec_always swaybg -i /home/sergey/images/wp.jpg
+
+set $lock 'swaylock -f -c 000000'
+bindswitch --reload --locked lid:on exec $lock

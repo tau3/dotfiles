@@ -24,7 +24,6 @@
         "battery",
         "battery#bat2",
         "clock",
-        "clockMoscow",
         "tray"
     ],
     // Modules configuration
@@ -102,15 +101,9 @@
     },
     "clock": {
     	"format": "{:%H:%M}",
-        // "timezone": "America/New_York",
+        "timezones": [ "Europe/Moscow", "Asia/Bangkok" ],
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
-    },
-    "clockMoscow": {
-    	"format": "{:%H:%M}",
-        "timezone": "Europe/Moscow",
-        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        // "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -172,7 +165,7 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
