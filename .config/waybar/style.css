@@ -1,11 +1,11 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: GoMono Nerd Font Mono, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
+    background-color: rgba(43, 48, 59, 1);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
     color: #ffffff;
     transition-property: background-color;
@@ -114,17 +114,17 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    /* background-color: #64727D; */
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    /* background-color: #ffffff; */
+    /* color: #000000; */
 }
 
 #battery.charging, #battery.plugged {
     color: #ffffff;
-    background-color: #26A65B;
+    /* background-color: #26A65B; */
 }
 
 @keyframes blink {
@@ -182,7 +182,7 @@ label:focus {
 }
 
 #backlight {
-    background-color: #90b1b1;
+    /* background-color: #90b1b1; */
 }
 
 #network {
@@ -194,13 +194,13 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    /* background-color: #f1c40f; */
+    /* color: #000000; */
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    /* background-color: #90b1b1; */
+    /* color: #2a5c45; */
 }
 
 #wireplumber {
@@ -235,7 +235,8 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    /* background-color: #2980b9; */
+    /* background-color: #ffffff; */
 }
 
 #tray > .passive {
@@ -248,7 +249,7 @@ label:focus {
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    /* background-color: #2d3436; */
 }
 
 #idle_inhibitor.activated {
@@ -274,8 +275,8 @@ label:focus {
 }
 
 #language {
-    background: #00b093;
-    color: #740864;
+    /* background: #00b093; */
+    /* color: #740864; */
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;

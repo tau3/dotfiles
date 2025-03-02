@@ -12,17 +12,11 @@
         "sway/scratchpad",
         "custom/media"
     ],
-    "modules-center": [
-        "sway/window"
-    ],
     "modules-right": [
         "mpd",
         "idle_inhibitor",
         "pulseaudio",
-        "network",
         "power-profiles-daemon",
-        "cpu",
-        "memory",
         "temperature",
         "backlight",
         "keyboard-state",
@@ -30,8 +24,8 @@
         "battery",
         "battery#bat2",
         "clock",
-        "tray",
-        "custom/power"
+        "clockMoscow",
+        "tray"
     ],
     // Modules configuration
     // "sway/workspaces": {
@@ -107,9 +101,16 @@
         "spacing": 10
     },
     "clock": {
+    	"format": "{:%H:%M}",
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
+    },
+    "clockMoscow": {
+    	"format": "{:%H:%M}",
+        "timezone": "Europe/Moscow",
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -133,8 +134,8 @@
     },
     "battery": {
         "states": {
-            // "good": 95,
-            "warning": 30,
+            "good": 80,
+            "warning": 40,
             "critical": 15
         },
         "format": "{capacity}% {icon}",
