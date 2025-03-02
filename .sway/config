@@ -13,7 +13,7 @@ set $mod Mod4
 set $left h
 set $down j
 set $up k
-set $right l
+# set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
@@ -48,6 +48,10 @@ include /etc/sway/config-vars.d/*
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
+input type:keyboard {
+    xkb_layout us,ru
+    xkb_options grp:alt_shift_toggle
+}
 ### Input configuration
 #
 # Example configuration:
@@ -63,6 +67,7 @@ include /etc/sway/config-vars.d/*
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
+bindsym $mod+l exec swaylock
 #
 # Basics:
 #
@@ -94,7 +99,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    # bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -105,7 +110,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    # bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
@@ -186,7 +191,7 @@ mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    # bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -203,20 +208,15 @@ bindsym $mod+r mode "resize"
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     bindsym --locked XF86AudioLowerVolume exec pulsemixer --change-volume -5
     bindsym --locked XF86AudioRaiseVolume exec pulsemixer --change-volume +5
-    bindsym --locked XF86AudioMicMute exec pulsemixer --toggle-mute
+    bindsym --locked XF86AudioMute exec pulsemixer --toggle-mute
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
     bindsym Print exec grim
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
 bar {
     swaybar_command waybar
 }
@@ -229,3 +229,8 @@ input type:touchpad {
 }
 
 default_border none
+
+exec_always devmon
+exec_always swaykbdd
+exec_always nm-applet
+exec_always swaybg -i /home/sergey/images/wp.jpg
