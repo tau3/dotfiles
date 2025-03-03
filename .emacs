@@ -250,6 +250,7 @@
 (use-package
  magit
  :defer t
+ :bind (:map magit-mode-map ("C-w" . 'tab-bar-close-tab))
  :config
  (setq magit-display-buffer-function
        #'magit-display-buffer-fullframe-status-v1)

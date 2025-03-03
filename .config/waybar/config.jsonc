@@ -4,7 +4,7 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 6, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
@@ -18,11 +18,12 @@
         "pulseaudio",
         "power-profiles-daemon",
         "temperature",
-        "backlight",
+        // "backlight",
         "keyboard-state",
         "sway/language",
         "battery",
         "battery#bat2",
+	"custom/timezones",
         "clock",
         "tray"
     ],
@@ -100,8 +101,8 @@
         "spacing": 10
     },
     "clock": {
-    	"format": "{:%H:%M}",
-        "timezones": [ "Europe/Moscow", "Asia/Bangkok" ],
+    	"format": "{:%H:%M} BKK",
+        "timezone": "Asia/Bangkok",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -181,6 +182,11 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "custom/timezones": {
+        "format": "{text} MSK",
+        "exec": "bash -c 'TZ=\"Europe/Moscow\" date +%H:%M'",
+        "interval": 60
     },
     "custom/media": {
         "format": "{icon} {text}",

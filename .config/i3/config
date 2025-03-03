@@ -195,5 +195,4 @@ client.background       $bg
 
 # PROTIP: You can also dynamically set dmenu's colors this way:
 bindsym $mod+d exec dmenu_run -i -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg" -fn "GoMono Nerd Font Mono-10"
-bindsym $mod+b exec firefox -P
-
+bindsym $mod+b exec firefox
