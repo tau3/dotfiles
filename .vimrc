@@ -52,7 +52,7 @@ Plug 'https://github.com/vim-test/vim-test'
 
 Plug 'mbbill/undotree'
 
-Plug 'https://github.com/vimpostor/vim-tpipeline'
+" Plug 'https://github.com/vimpostor/vim-tpipeline'
 
 Plug 'easymotion/vim-easymotion'
 
@@ -139,7 +139,8 @@ let g:clang_format#detect_style_file = 1
 let g:ale_completion_enabled = 1
 let g:ale_linters = {'rust': ['analyzer', 'cargo']}
 
-set langmap=йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ\\;;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\"zZxXcCvVbBnNmM\\,<.>$
+" set langmap=йЙцЦуУкКеЕнНгГшШщЩзЗхХъЪфФыЫвВаАпПрРоОлЛдДжЖэЭяЯчЧсСмМиИтТьЬбБюЮ\\;;qQwWeErRtTyYuUiIoOpP[{]}aAsSdDfFgGhHjJkKlL;:'\"zZxXcCvVbBnNmM\\,<.>$
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 let g:vimtex_view_method = 'zathura'
 

@@ -1,3 +1,9 @@
+(setq gc-cons-threshold most-positive-fixnum)
+(add-hook
+ ;; 800000 is the default value
+ 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+;; for mystical reasons tuning gc threshold breaks magit initialization.
+
 (set-frame-font "Fira Code Retina 11" nil t)
 (setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
 (menu-bar-mode -1)
@@ -23,21 +29,32 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(elisp-autofmt expand-region yaml-mode async consult-lsp apt-sources-list dired-hide-dotfiles multi-vterm dirvish crontab-mode undo-tree xclip sudo-edit consult-dir disk-usage all-the-icons openwith vertico consult rainbow-delimiters evil-collection evil marginalia orderless solaire-mode doom-themes rust-mode dashboard reverse-im flycheck company lsp-treemacs lsp-ui lsp-mode markdown-mode magit git-gutter which-key which-key-mode)))
+   '(all-the-icons apt-sources-list async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish disk-usage doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region flycheck git-gutter lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
+
+(defun tau3/open-new-tab ()
+  (interactive)
+  (tab-bar-new-tab)
+  (ibuffer))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
 (use-package
  dirvish
  :init (dirvish-override-dired-mode)
- :config (setq dired-dwim-target t)
+ :config
+ (setq dired-dwim-target t)
+ (setq dirvish-time-format-string "%d.%m.%y %R")
  (setq dirvish-mode-line-format
        '(:left (sort symlink) :right (omit yank index)))
  (setq dirvish-attributes '(file-time file-size vc-state))
  (setq
   dired-listing-switches
   "-l --almost-all --human-readable --group-directories-first --no-group")
- (add-hook 'dired-mode-hook (lambda () (dired-hide-dotfiles-mode)))
+ (add-hook
+  'dired-mode-hook
+  (lambda ()
+    (dired-hide-dotfiles-mode)
+    (auto-revert-mode)))
  (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file) ; a click in dirvish won't open another panel
  (defun tau3/dirvish-bind-local ()
    (local-set-key
@@ -45,6 +62,7 @@
     (lambda ()
       (interactive)
       (beginning-of-buffer)))
+   (local-set-key (kbd "C-t") 'tau3/open-new-tab)
    (local-set-key
     [end]
     (lambda ()
@@ -68,7 +86,7 @@
   ("M-l" . dirvish-ls-switches-menu)
   ("M-m" . dirvish-mark-menu)))
 
-(use-package expand-region :bind ("C-=" . er/expand-region))
+(use-package expand-region :bind ("M-w" . er/expand-region))
 
 (use-package
  openwith
@@ -77,7 +95,6 @@
        '(("\\.djvu\\'" "zathura" (file))
          ("\\.pdf\\'" "zathura" (file))
          ("\\.docx\\'" "libreoffice" (file))
-         ("\\.mp3\\'" "audacious" (file))
          ("\\.webm\\'" "mpv" (file))
          ("\\.mp4\\'" "mpv" (file))
          ("\\.mkv\\'" "mpv" (file)))))
@@ -111,6 +128,7 @@
          ".*\\.docx"
          ".*\\.mkv"
          ".*\\.mp4"
+         ".*\\.djvu"
          ".*\\.mp3"
          ".*\\.mkv"
          ".*\\.webm"
@@ -121,7 +139,6 @@
  ("C-x B" . consult-buffer-other-window)
  ("C-x J" . tau3/consult-recent-file-other-window))
 
-(add-hook 'rust-mode-hook 'lsp-mode)
 (add-hook 'c++-mode-hook 'lsp-mode)
 (use-package
  lsp-mode
@@ -148,8 +165,8 @@
  (:map
   lsp-mode-map
   ("C-p" . lsp-ui-doc-glance)
+  ("C-M-l" . lsp-format-buffer)
   ("M-RET" . lsp-execute-code-action)
-  ("C-<f10>" . lsp-rust-analyzer-run)
   ("<f2>" . flycheck-next-error)
   ("<S-f2>" . flycheck-previous-error)
   ("<f6>" . lsp-rename)
@@ -185,7 +202,6 @@
  dashboard
  :config
  (setq dashboard-center-content t)
- (add-to-list 'recentf-exclude ".*\/.rustup\/.*")
  (add-to-list 'recentf-exclude ".*\.gpg")
  (setq dashboard-show-shortcuts nil)
  (setq dashboard-items '((recents . 15)))
@@ -198,19 +214,23 @@
  :config
  (evil-set-initial-state 'disk-usage-mode 'emacs)
  (evil-set-initial-state 'dired-mode 'emacs)
- (evil-set-initial-state 'elfeed-show-mode 'emacs) ; when an entry is opened
- (evil-set-initial-state 'elfeed-search-mode 'emacs) ; when a feed is opened
- (evil-set-initial-state 'elfeed-summary-mode 'emacs) ; main window of elfeed-summary
  (evil-set-undo-system 'undo-tree)
  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
  (define-key evil-insert-state-map (kbd "C-/") 'comment-line)
  (define-key evil-normal-state-map (kbd "C-p") nil)
  (define-key evil-insert-state-map (kbd "C-p") nil)
+ (define-key evil-normal-state-map (kbd "C-t") nil)
+ (define-key evil-insert-state-map (kbd "C-t") nil)
  :init
  (setq evil-want-keybinding nil)
  (setq evil-vsplit-window-right t)
  (setq evil-split-window-below t)
- (evil-mode))
+ (evil-mode)
+ (eval-after-load "evil-maps"
+   (dolist (map
+            '(evil-motion-state-map
+              evil-insert-state-map evil-emacs-state-map))
+     (define-key (eval map) "\C-w" nil))))
 
 (use-package
  evil-collection
@@ -221,8 +241,16 @@
  (evil-collection-init))
 
 (use-package
+ evil-visualstar
+ :after evil
+ :defer t
+ :commands global-evil-visualstar-mode
+ :hook (after-init . global-evil-visualstar-mode))
+
+(use-package
  magit
  :defer t
+ :bind (:map magit-mode-map ("C-w" . 'tab-bar-close-tab))
  :config
  (setq magit-display-buffer-function
        #'magit-display-buffer-fullframe-status-v1)
@@ -256,6 +284,7 @@
 (vertico-mode 1)
 (marginalia-mode 1)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'subword-mode)
 (xclip-mode 1) ; copy/yank to OS clipboard
 (async-bytecomp-package-mode 1)
 
@@ -265,7 +294,13 @@
  :hook
  (vterm-mode . evil-emacs-state)
  (vterm-copy-mode . tau3/evil-normal-in-vterm-copy-mode)
+ :bind (:map vterm-mode-map ("\C-q" . vterm-send-next-key))
  :config
+ (defun tau3/vterm-kill-with-no-query (&rest _)
+   (set-process-query-on-exit-flag
+    (get-buffer-process (current-buffer)) nil))
+ (advice-add 'multi-vterm :after #'tau3/vterm-kill-with-no-query)
+ (setq multi-vterm-dedicated-window-height 10)
  (setq vterm-timer-delay 0.01)
  (defun tau3/evil-normal-in-vterm-copy-mode ()
    (if (bound-and-true-p vterm-copy-mode)
@@ -292,11 +327,14 @@
  (setq display-line-numbers-type 'relative)
  (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t))))
 
+(global-set-key (kbd "C-t") 'tau3/open-new-tab)
+(global-set-key (kbd "C-w") 'tab-bar-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-;") 'avy-goto-char-2)
+(global-set-key (kbd "C-;") 'avy-goto-char)
 (global-set-key (kbd "<f12>") 'which-key-show-top-level)
+(global-unset-key (kbd "<f11>"))
 
 (use-package
  doom-themes

@@ -101,6 +101,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 alias w3m="w3m -no-cookie duckduckgo.com"
 alias powertop="sudo powertop"
 alias bandwhich="sudo bandwhich"
+alias ping="sudo ping"
 alias weapon="sh ~/git/notes/weapon_toggle.sh"
 alias reboot="/sbin/reboot"
 alias hb="systemctl hibernate"
