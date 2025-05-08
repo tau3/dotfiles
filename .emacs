@@ -95,6 +95,7 @@
        '(("\\.djvu\\'" "zathura" (file))
          ("\\.pdf\\'" "zathura" (file))
          ("\\.docx\\'" "libreoffice" (file))
+         ("\\.xls\\'" "libreoffice" (file))
          ("\\.webm\\'" "mpv" (file))
          ("\\.mp4\\'" "mpv" (file))
          ("\\.mkv\\'" "mpv" (file)))))
@@ -126,6 +127,7 @@
  (setq consult-preview-excluded-files
        '(".*\\.pdf"
          ".*\\.docx"
+         ".*\\.xls"
          ".*\\.mkv"
          ".*\\.mp4"
          ".*\\.djvu"
