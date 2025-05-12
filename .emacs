@@ -322,6 +322,8 @@
     (multi-vterm)))
 (global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
 (global-set-key (kbd "C-x `") 'multi-vterm)
+(with-eval-after-load 'vterm
+  (define-key vterm-mode-map (kbd "C-t") nil))
 
 (use-package
  display-line-numbers
@@ -331,6 +333,7 @@
 
 (global-set-key (kbd "C-t") 'tau3/open-new-tab)
 (global-set-key (kbd "C-w") 'tab-bar-close-tab)
+(global-set-key (kbd "C-<f4>") 'tab-bar-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -345,8 +348,8 @@
  (setq
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-one t)
- (setq doom-themes-treemacs-theme "doom-xcode") ; use "doom-colors" for less minimal icon theme
+ (load-theme 'doom-old-hope t)
+ (setq doom-themes-treemacs-theme "doom-old-hope") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package

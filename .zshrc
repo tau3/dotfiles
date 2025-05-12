@@ -112,6 +112,7 @@ alias gdh="git diff HEAD"
 setopt HIST_IGNORE_SPACE
 
 # for Ctrl+r
+export FZF_CTRL_T_COMMAND=
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 . ~/git/z/z.sh
