@@ -2,7 +2,6 @@
 (add-hook
  ;; 800000 is the default value
  'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
-;; for mystical reasons tuning gc threshold breaks magit initialization.
 
 (set-frame-font "Fira Code Retina 11" nil t)
 (setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
@@ -98,6 +97,7 @@
          ("\\.xls\\'" "libreoffice" (file))
          ("\\.webm\\'" "mpv" (file))
          ("\\.mp4\\'" "mpv" (file))
+         ("\\.avi\\'" "mpv" (file))
          ("\\.mkv\\'" "mpv" (file)))))
 
 (use-package
@@ -133,6 +133,7 @@
          ".*\\.djvu"
          ".*\\.mp3"
          ".*\\.mkv"
+         ".*\\.avi"
          ".*\\.webm"
          ".*sudo:root.*"))
  :bind
@@ -254,6 +255,11 @@
  :defer t
  :bind (:map magit-mode-map ("C-w" . 'tab-bar-close-tab))
  :config
+ ;; TODO ensure one tab
+ (defun tau3/magit-new-tab ()
+   (interactive)
+   (tab-bar-duplicate-tab)
+   (magit-status))
  (setq magit-display-buffer-function
        #'magit-display-buffer-fullframe-status-v1)
  (add-hook 'git-commit-post-finish-hook 'delete-window))
@@ -337,6 +343,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x g") 'tau3/magit-new-tab)
 (global-set-key (kbd "C-;") 'avy-goto-char)
 (global-set-key (kbd "<f12>") 'which-key-show-top-level)
 (global-unset-key (kbd "<f11>"))
