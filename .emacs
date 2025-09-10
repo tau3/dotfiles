@@ -3,7 +3,7 @@
  ;; 800000 is the default value
  'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
-(set-frame-font "Fira Code Retina 11" nil t)
+(set-frame-font "MxPlus IBM VGA 9x16 14" nil t)
 (setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -28,7 +28,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(all-the-icons apt-sources-list async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish disk-usage doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region flycheck git-gutter lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
+   '(all-the-icons apt-sources-list async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region flycheck git-gutter lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -215,7 +215,6 @@
 (use-package
  evil
  :config
- (evil-set-initial-state 'disk-usage-mode 'emacs)
  (evil-set-initial-state 'dired-mode 'emacs)
  (evil-set-undo-system 'undo-tree)
  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
@@ -263,27 +262,6 @@
  (setq magit-display-buffer-function
        #'magit-display-buffer-fullframe-status-v1)
  (add-hook 'git-commit-post-finish-hook 'delete-window))
-
-(use-package
- disk-usage
- :defer t
- :config
- (defun tau3/disk-usage-enter ()
-   (interactive)
-   (move-end-of-line 1)
-   (left-char 1)
-   (push-button)
-   (move-beginning-of-line 1))
- (defun tau3/disk-usage-bind-local ()
-   (local-set-key (kbd "<home>") 'beginning-of-buffer)
-   (local-set-key (kbd "<end>") 'end-of-buffer)
-   (local-set-key [return] 'tau3/disk-usage-enter)
-   (local-set-key
-    (kbd "d")
-    (lambda ()
-      (interactive)
-      (disk-usage-delete-marked-files 1))))
- (add-hook 'disk-usage-mode-hook 'tau3/disk-usage-bind-local))
 
 (which-key-mode 1)
 (solaire-global-mode +1)
