@@ -3,7 +3,7 @@
  ;; 800000 is the default value
  'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
-(set-frame-font "Fira Code Retina 11" nil t)
+(set-frame-font "MxPlus IBM VGA 9x16 12" nil t)
 (setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
