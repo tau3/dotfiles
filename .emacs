@@ -249,16 +249,16 @@
  :commands global-evil-visualstar-mode
  :hook (after-init . global-evil-visualstar-mode))
 
+;; TODO ensure one tab
+(defun tau3/magit-new-tab ()
+  (interactive)
+  (tab-bar-duplicate-tab)
+  (magit-status))
 (use-package
  magit
  :defer t
  :bind (:map magit-mode-map ("C-w" . 'tab-bar-close-tab))
  :config
- ;; TODO ensure one tab
- (defun tau3/magit-new-tab ()
-   (interactive)
-   (tab-bar-duplicate-tab)
-   (magit-status))
  (setq magit-display-buffer-function
        #'magit-display-buffer-fullframe-status-v1)
  (add-hook 'git-commit-post-finish-hook 'delete-window))
