@@ -112,6 +112,7 @@ alias weapon="sh ~/git/notes/weapon_toggle.sh"
 alias reboot="/sbin/reboot"
 alias hb="systemctl hibernate"
 
+alias gb="git branch --show-current"
 alias gs="git status"
 alias gdh="git diff HEAD"
 

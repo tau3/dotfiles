@@ -3,7 +3,7 @@
  ;; 800000 is the default value
  'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
-(set-frame-font "MxPlus IBM VGA 9x16 14" nil t)
+(set-frame-font "Fira Code Retina 11" nil t)
 (setq split-width-threshold 152) ; force allow vertical split on laptop with fira code 11
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -28,7 +28,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(all-the-icons apt-sources-list async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region flycheck git-gutter lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
+   '(all-the-icons async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region flycheck git-gutter latex-preview-pane lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
