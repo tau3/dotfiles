@@ -28,7 +28,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(all-the-icons async company consult consult-dir consult-lsp dashboard dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region flycheck git-gutter latex-preview-pane lsp-mode lsp-treemacs lsp-ui magit marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit undo-tree vertico which-key which-key-mode xclip)))
+   '(ace-window async avy company consult consult-dir consult-eglot dashboard dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter magit marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -118,6 +118,10 @@
 
 (use-package
  consult
+ :init
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
  :config
  (defun tau3/consult-recent-file-other-window ()
    (interactive)
@@ -141,60 +145,6 @@
  ("C-x j" . consult-recent-file)
  ("C-x B" . consult-buffer-other-window)
  ("C-x J" . tau3/consult-recent-file-other-window))
-
-(add-hook 'c++-mode-hook 'lsp-mode)
-(use-package
- lsp-mode
- :defer t
- :hook
- ((lsp-mode . lsp-enable-which-key-integration)
-  (lsp-mode . lsp-treemacs-sync-mode))
- :init
- (setq lsp-ui-sideline-show-diagnostics nil)
- (setq
-  lsp-pylsp-plugins-autopep8-enabled t
-  lsp-pylsp-plugins-pydocstyle-enabled nil
-  lsp-pylsp-plugins-pylint-enabled t
-  lsp-pylsp-plugins-yapf-enabled t)
- (setq lsp-enable-snippet nil)
- (setq lsp-headerline-arrow "=>")
- (setq lsp-keymap-prefix "C-x l")
- (setq treemacs-is-never-other-window -1)
- ;; (setq lsp-signature-doc-lines 3)
- (setq
-  company-minimum-prefix-length 1
-  company-idle-delay 0.0) ; default is 0.2
- :bind
- (:map
-  lsp-mode-map
-  ("C-p" . lsp-ui-doc-glance)
-  ("C-M-l" . lsp-format-buffer)
-  ("M-RET" . lsp-execute-code-action)
-  ("<f2>" . flycheck-next-error)
-  ("<S-f2>" . flycheck-previous-error)
-  ("<f6>" . lsp-rename)
-  ("<f8>" . lsp-treemacs-symbols)
-  ("C-<f12>" . consult-lsp-file-symbols))
- :config
- (defun tau3/gd-other-window ()
-   (interactive)
-   (let ((tau3--buf-name (buffer-name)))
-     (clone-indirect-buffer-other-window tau3--buf-name t)
-     (evil-goto-definition)))
- (define-key lsp-mode-map (kbd "C-x l") lsp-command-map)
- (define-key evil-normal-state-map (kbd "g-D") 'tau3/gd-other-window)
- (global-unset-key (kbd "C-x C-l"))
- (add-hook 'lsp-on-change-hook 'save-buffer))
-
-(use-package
- lsp-treemacs
- :defer t
- :bind (:map treemacs-mode-map ("\M-n" . treemacs))
- :config
- (define-key treemacs-mode-map "\M-n" 'treemacs)
- (global-set-key "\M-n" 'treemacs)
- (require 'ace-window)
- (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))
 
 (use-package
  reverse-im
