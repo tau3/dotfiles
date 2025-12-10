@@ -19,6 +19,7 @@
 (pixel-scroll-precision-mode 1)
 (setq recentf-max-saved-items 100)
 (setq mouse-drag-and-drop-region t)
+(setq major-mode-remap-alist '((c++-mode . c++-ts-mode)))
 
 (require 'package)
 (add-to-list
@@ -119,9 +120,10 @@
 (use-package
  consult
  :init
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+ ;; Use Consult to select xref locations with preview
+ (setq
+  xref-show-xrefs-function #'consult-xref
+  xref-show-definitions-function #'consult-xref)
  :config
  (defun tau3/consult-recent-file-other-window ()
    (interactive)
@@ -318,5 +320,24 @@
  :config
  (setq tab-bar-new-button-show nil)
  (setq tab-bar-close-button-show nil))
+
+(add-hook
+ 'c++-ts-mode-hook
+ (lambda ()
+   (eglot-ensure)
+   (company-mode)
+   (require 'ace-window)
+   (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers))
+   (local-set-key (kbd "M-n") 'treemacs)
+   (local-set-key (kbd "C-M-l") 'eglot-format-buffer)
+   (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
+   (local-set-key (kbd "<f2>") 'flymake-goto-next-error)
+   (local-set-key (kbd "M-<f2>") 'flymake-goto-prev-error)
+   (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
+   (local-set-key (kbd "<f6>") 'eglot-rename)
+   (local-set-key (kbd "C-<f12>") 'consult-imenu)
+   (local-set-key (kbd "M-<f7>") 'xref-find-usages)))
+
+
 
 (custom-set-faces)
