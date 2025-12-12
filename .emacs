@@ -284,7 +284,7 @@
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
  (load-theme 'doom-old-hope t)
- (setq doom-themes-treemacs-theme "doom-old-hope") ; use "doom-colors" for less minimal icon theme
+ (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package
