@@ -7,13 +7,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="gentoo"
+ZSH_THEME="gentoo"
 
 # matrix prompt
 # PS1='%F{green}$%f '
 
 # half-life prompt
-PS1='%{$(tput setaf 214)%}λ%f '
+# PS1='%{$(tput setaf 214)%}λ%f '
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -114,6 +114,7 @@ alias hb="systemctl hibernate"
 
 alias gb="git branch --show-current"
 alias gs="git status"
+alias gb="git branch --show-current"
 alias gdh="git diff HEAD"
 
 setopt HIST_IGNORE_SPACE
@@ -150,4 +151,5 @@ setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
 
-[ -f "/home/sergey/.ghcup/env" ] && source "/home/sergey/.ghcup/env" # ghcup-env
+
+[ -f "/home/sergey/.ghcup/env" ] && . "/home/sergey/.ghcup/env" # ghcup-env

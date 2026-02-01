@@ -18,7 +18,7 @@ sudo apt-get install -y gnome-icon-theme hicolor-icon-theme
 sudo apt-get install lnav bandwhich
 
 # notebook
-# sudo apt-get install -y autorandr arandr tlp tlp-rdw wpasupplicant i3lock powertop xserver-xorg-input-synaptics lightdm mate-power-manager network-manager-gnome caffeine xss-lock lightdm-settings slick-greeter
+# sudo apt-get install -y autorandr arandr tlp tlp-rdw wpasupplicant i3lock powertop xserver-xorg-input-synaptics lightdm mate-power-manager network-manager-gnome caffeine xss-lock lightdm-settings slick-greeter xdotool
 
 git clone https://github.com/tau3/dotfiles.git ~/git/dotfiles
 
