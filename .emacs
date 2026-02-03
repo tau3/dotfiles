@@ -30,7 +30,7 @@
 (custom-set-variables
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy company consult consult-dir consult-eglot dashboard dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode magit marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
+   '(ace-window async avy company consult consult-dir consult-eglot dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -323,24 +323,26 @@
  (setq tab-bar-close-button-show nil))
 
 (defun tau3/init-lsp ()
-   (eglot-ensure)
-   (company-mode)
-   (require 'ace-window)
-   (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers))
-   (local-set-key (kbd "M-n") 'treemacs)
-   (local-set-key (kbd "C-M-l") 'eglot-format-buffer)
-   (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
-   (local-set-key (kbd "<f2>") 'flymake-goto-next-error)
-   (local-set-key (kbd "M-<f2>") 'flymake-goto-prev-error)
-   (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
-   (local-set-key (kbd "<f6>") 'eglot-rename)
-   (local-set-key (kbd "C-<f12>") 'consult-imenu)
-   (local-set-key (kbd "M-<f7>") 'xref-find-references))
+  (eglot-ensure)
+  (company-mode)
+  (require 'ace-window)
+  (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers))
+  (local-set-key (kbd "M-n") 'treemacs)
+  (local-set-key (kbd "C-M-l") 'eglot-format-buffer)
+  (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
+  (local-set-key (kbd "<f2>") 'flymake-goto-next-error)
+  (local-set-key (kbd "M-<f2>") 'flymake-goto-prev-error)
+  (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
+  (local-set-key (kbd "<f6>") 'eglot-rename)
+  (local-set-key (kbd "C-<f12>") 'consult-imenu)
+  (local-set-key (kbd "M-<f7>") 'xref-find-references))
 (add-hook 'c++-ts-mode-hook 'tau3/init-lsp)
 (add-hook 'haskell-ts-mode-hook 'tau3/init-lsp)
 
 (let ((my-ghcup-path (expand-file-name "~/.ghcup/bin")))
   (setenv "PATH" (concat my-ghcup-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-ghcup-path))
+
+(use-package magit-delta :hook (magit-mode . magit-delta-mode))
 
 (custom-set-faces)
