@@ -117,6 +117,10 @@ alias gs="git status"
 alias gb="git branch --show-current"
 alias gdh="git diff HEAD"
 
+alias lth="ls -t | head"
+
+source ~/git/notes/alias.sh
+
 setopt HIST_IGNORE_SPACE
 
 # for Ctrl+r
