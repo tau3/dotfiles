@@ -118,6 +118,7 @@ alias gb="git branch --show-current"
 alias gdh="git diff HEAD"
 
 alias lth="ls -t | head"
+alias fzn="fzf --print0 | xargs -0 -o nano"
 
 source ~/git/notes/alias.sh
 

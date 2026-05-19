@@ -343,6 +343,7 @@
   (setenv "PATH" (concat my-ghcup-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-ghcup-path))
 
+; sudo apt-get install git-delta
 (use-package magit-delta :hook (magit-mode . magit-delta-mode))
 
 (custom-set-faces)
