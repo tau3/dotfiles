@@ -32,10 +32,13 @@
  '(package-selected-packages
    '(ace-window async avy company consult consult-dir consult-eglot dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
 
-(defun tau3/open-new-tab ()
-  (interactive)
-  (tab-bar-new-tab)
-  (ibuffer))
+(use-package
+ tab-line
+ :demand t
+ :config (global-tab-line-mode 1)
+ (setq
+  tab-line-new-button-show nil
+  tab-line-close-button-show nil))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
@@ -63,7 +66,6 @@
     (lambda ()
       (interactive)
       (beginning-of-buffer)))
-   (local-set-key (kbd "C-t") 'tau3/open-new-tab)
    (local-set-key
     [end]
     (lambda ()
@@ -202,11 +204,6 @@
  :commands global-evil-visualstar-mode
  :hook (after-init . global-evil-visualstar-mode))
 
-;; TODO ensure one tab
-(defun tau3/magit-new-tab ()
-  (interactive)
-  (tab-bar-duplicate-tab)
-  (magit-status))
 (use-package
  magit
  :defer t
@@ -268,13 +265,14 @@
  (setq display-line-numbers-type 'relative)
  (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode t))))
 
-(global-set-key (kbd "C-t") 'tau3/open-new-tab)
-(global-set-key (kbd "C-w") 'tab-bar-close-tab)
-(global-set-key (kbd "C-<f4>") 'tab-bar-close-tab)
+(global-set-key (kbd "<C-tab>") 'tab-line-switch-to-next-tab)
+(global-set-key
+ (kbd "C-S-<iso-lefttab>") 'tab-line-switch-to-prev-tab)
+(global-set-key (kbd "C-w") 'tab-line-close-tab)
+(global-set-key (kbd "C-<f4>") 'tab-line-close-tab)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-/") 'comment-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x g") 'tau3/magit-new-tab)
 (global-set-key (kbd "C-;") 'avy-goto-char)
 (global-set-key (kbd "<f12>") 'which-key-show-top-level)
 (global-unset-key (kbd "<f11>"))
@@ -286,8 +284,8 @@
  (setq
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-old-hope t)
- (setq doom-themes-treemacs-theme "doom-old-hope") ; use "doom-colors" for less minimal icon theme
+ (load-theme 'doom-one t)
+ (setq doom-themes-treemacs-theme "doom-one") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package
@@ -320,8 +318,8 @@
  :defer t
  :config
  (setq tab-bar-new-button-show nil)
- (setq tab-bar-close-button-show nil))
-
+ (setq tab-bar-close-button-show nil)
+)
 (defun tau3/init-lsp ()
   (eglot-ensure)
   (company-mode)
@@ -345,5 +343,19 @@
 
 ; sudo apt-get install git-delta
 (use-package magit-delta :hook (magit-mode . magit-delta-mode))
+
+;; TODO move to use-package definition
+(global-tab-line-mode 1)
+(defun my/tab-line-close-other-tabs ()
+  "Close all tab-line tabs except the current buffer."
+  (interactive)
+  (let ((current (current-buffer)))
+    (dolist (buf (buffer-list))
+      (unless (eq buf current)
+        (when
+            (and (buffer-live-p buf)
+                 (not (string-prefix-p " " (buffer-name buf)))) ; skip internal buffers
+          (kill-buffer buf))))))
+(global-set-key (kbd "C-c t o") #'my/tab-line-close-other-tabs)
 
 (custom-set-faces)
