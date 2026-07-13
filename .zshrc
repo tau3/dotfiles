@@ -114,19 +114,16 @@ alias hb="systemctl hibernate"
 
 alias gb="git branch --show-current"
 alias gs="git status"
-alias gb="git branch --show-current"
 alias gdh="git diff HEAD"
 
 alias lth="ls -t | head"
-alias fzn="fzf --print0 | xargs -0 -o nano"
 
 source ~/git/notes/alias.sh
 
 setopt HIST_IGNORE_SPACE
 
 # for Ctrl+r
-export FZF_CTRL_T_COMMAND=
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+source <(fzf --zsh)
 
 . ~/git/z/z.sh
 
@@ -157,4 +154,4 @@ PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
 
 
-[ -f "/home/sergey/.ghcup/env" ] && . "/home/sergey/.ghcup/env" # ghcup-env
+# [ -f "/home/sergey/.ghcup/env" ] && . "/home/sergey/.ghcup/env" # ghcup-env

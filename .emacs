@@ -28,9 +28,10 @@
  t)
 (package-initialize)
 (custom-set-variables
+ '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx"))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy company consult consult-dir consult-eglot dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
+   '(ace-window async avy company consult consult-dir consult-eglot dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -133,6 +134,7 @@
      (consult-recent-file)))
  (setq consult-preview-excluded-files
        '(".*\\.pdf"
+         ".*\\.doc"
          ".*\\.docx"
          ".*\\.xls"
          ".*\\.mkv"
@@ -286,8 +288,8 @@
  (setq
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
- (load-theme 'doom-old-hope t)
- (setq doom-themes-treemacs-theme "doom-old-hope") ; use "doom-colors" for less minimal icon theme
+ (load-theme 'doom-one t)
+ (setq doom-themes-treemacs-theme "doom-one") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package

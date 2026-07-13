@@ -5,3 +5,4 @@ export EDITOR=/usr/bin/emacsclient
 export PATH=$PATH:$HOME/.cargo/bin
 # . "$HOME/.cargo/env"
 
+export FZF_CTRL_T_COMMAND="find . -type f -print"
