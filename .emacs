@@ -252,12 +252,20 @@
  (add-hook 'kill-buffer-hook #'tau3/delete-vterm-window)
  (add-hook
   'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil))))
-(defun tau3/vterm-other-window ()
-  (interactive)
-  (let ((tau3--buf-name (buffer-name)))
-    (clone-indirect-buffer-other-window tau3--buf-name t)
-    (multi-vterm)))
-(global-set-key (kbd "C-x %") 'tau3/vterm-other-window)
+(global-set-key
+ (kbd "C-x %")
+ (lambda ()
+   (interactive)
+   (split-window-right)
+   (other-window 1)
+   (multi-vterm)))
+(global-set-key
+ (kbd "C-x \"")
+ (lambda ()
+   (interactive)
+   (split-window-below)
+   (other-window 1)
+   (multi-vterm)))
 (global-set-key (kbd "C-x `") 'multi-vterm)
 (with-eval-after-load 'vterm
   (define-key vterm-mode-map (kbd "C-t") nil))
@@ -287,7 +295,7 @@
   doom-themes-enable-bold t ; if nil, bold is universally disabled
   doom-themes-enable-italic t) ; if nil, italics is universally disabled
  (load-theme 'doom-old-hope t)
- (setq doom-themes-treemacs-theme "doom-old-hope") ; use "doom-colors" for less minimal icon theme
+ (setq doom-themes-treemacs-theme "doom-one") ; use "doom-colors" for less minimal icon theme
  (doom-themes-treemacs-config) (doom-themes-org-config))
 
 (use-package
