@@ -29,9 +29,11 @@
 (package-initialize)
 (custom-set-variables
  '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx"))
+ '(eglot-ignored-server-capabilities '(:inlayHintProvider))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy company consult consult-dir consult-eglot dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
+   '(ace-window async avy company consult consult-dir consult-eglot dape dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip))
+ '(safe-local-variable-directories '("/home/sergey/git/aoc2023/")))
 
 (defun tau3/open-new-tab ()
   (interactive)

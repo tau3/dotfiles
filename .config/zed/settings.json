@@ -7,6 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+  "cli_default_open_behavior": "existing_window",
   "colorize_brackets": true,
   "relative_line_numbers": "enabled",
   "proxy": "",
@@ -21,7 +32,11 @@
   "disable_ai": true,
   "vim_mode": true,
   "base_keymap": "JetBrains",
-  "icon_theme": "Zed (Default)",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
@@ -29,4 +44,5 @@
     "light": "One Light",
     "dark": "One Dark",
   },
+  "buffer_font_features": { "calt": false },
 }
