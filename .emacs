@@ -28,13 +28,11 @@
  t)
 (package-initialize)
 (custom-set-variables
- '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx"))
+ '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx" "xls"))
  '(eglot-ignored-server-capabilities '(:inlayHintProvider))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy company consult consult-dir consult-eglot dape dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip))
- '(safe-local-variable-directories '("/home/sergey/git/aoc2023/")))
-
+   '(ace-window async avy company consult consult-dir consult-eglot dape dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
 (defun tau3/open-new-tab ()
   (interactive)
   (tab-bar-new-tab)
@@ -343,6 +341,7 @@
   (local-set-key (kbd "C-M-l") 'eglot-format-buffer)
   (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
   (local-set-key (kbd "<f2>") 'flymake-goto-next-error)
+  (local-set-key (kbd "<S-f2>") 'flymake-goto-prev-error)
   (local-set-key (kbd "M-<f2>") 'flymake-goto-prev-error)
   (local-set-key (kbd "M-RET") 'eglot-code-action-quickfix)
   (local-set-key (kbd "<f6>") 'eglot-rename)
