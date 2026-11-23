@@ -1,9 +1,6 @@
-;;; .emacs --- Personal config, shared by macOS and Linux  -*- lexical-binding: t; -*-
-
 ;; Startup profiling: M-x use-package-report
 (setq use-package-compute-statistics t)
 
-;; No GC during startup; `gcmh-mode' (see below) takes over after init.
 (setq gc-cons-threshold most-positive-fixnum)
 
 (require 'seq)
@@ -11,50 +8,20 @@
 (unless (server-running-p)
   (server-start))
 
-;;; Packages
-
 (require 'package)
 (add-to-list
  'package-archives '("melpa" . "https://melpa.org/packages/")
  t)
-;; `package-initialize' is called automatically before init since Emacs 27.
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx" "xls"))
  '(eglot-ignored-server-capabilities '(:inlayHintProvider))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   ;; `which-key' is built in since Emacs 30; the MELPA copy is only needed on 29.
-   '(ace-window async avy consult consult-dir consult-eglot corfu dape dashboard diff-hl difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar exec-path-from-shell expand-region gcmh ghostel haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit vertico which-key xclip)))
-
-;;; macOS-specific
-
-(when (eq system-type 'darwin)
-  (require 'comp)
-  (setq native-comp-driver-options
-        (cons "-mmacosx-version-min=11" native-comp-driver-options))
-
-  ;; Applies to every frame, including ones made by emacsclient.
-  (add-to-list 'default-frame-alist '(font . "Fira Code Retina-13"))
-
-  ;; GUI Emacs doesn't inherit PATH from the login shell.
-  (use-package
-   exec-path-from-shell
-   :ensure t
-   :if (memq window-system '(mac ns))
-   :config (exec-path-from-shell-initialize))
-
-  ;; Open documents and media with the default macOS apps
-  ;; (overrides the Linux associations set in the `openwith' block).
-  (with-eval-after-load 'openwith
-    (setq openwith-associations
-          `((,(concat
-               "\\."
-               (regexp-opt
-                '("pdf" "djvu" "docx" "xls" "webm" "mp4" "avi" "mkv"))
-               "\\'")
-             "open" (file))))))
-
-;;; Core Emacs
+   '(ace-window async avy consult consult-dir consult-eglot corfu dape dash dashboard diff-hl difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar exec-path-from-shell expand-region gcmh ghostel haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit vertico which-key xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -70,7 +37,8 @@
                   (directory-file-name
                    (or (vc-root-dir) default-directory))))))
     (if (seq-find
-         (lambda (tab) (equal (alist-get 'name tab) name)) (tab-bar-tabs))
+         (lambda (tab) (equal (alist-get 'name tab) name))
+         (tab-bar-tabs))
         (tab-bar-select-tab-by-name name)
       (tab-bar-new-tab)
       (tab-bar-rename-tab name)
@@ -91,6 +59,7 @@
  (prog-mode . display-line-numbers-mode)
  (prog-mode . subword-mode)
  :config
+ (set-frame-font "Fira Code Retina 11" nil t)
  (menu-bar-mode -1)
  (scroll-bar-mode -1)
  (tool-bar-mode -1)
@@ -120,7 +89,6 @@
  (tab-bar-new-button-show nil)
  (tab-bar-close-button-show nil))
 
-;; Raise the GC threshold while busy, collect when idle.
 (use-package gcmh :ensure t :hook (after-init . gcmh-mode))
 
 (use-package
@@ -129,14 +97,14 @@
  :custom
  (doom-themes-enable-bold t) ; if nil, bold is universally disabled
  (doom-themes-enable-italic t) ; if nil, italics is universally disabled
- :config
- (load-theme 'doom-one t)
- (doom-themes-org-config))
+ :config (load-theme 'doom-one t) (doom-themes-org-config))
 
 (use-package solaire-mode :hook (after-init . solaire-global-mode))
 (use-package which-key :hook (after-init . which-key-mode))
 (use-package xclip :hook (after-init . xclip-mode)) ; copy/yank to OS clipboard
-(use-package rainbow-delimiters :hook (prog-mode . rainbow-delimiters-mode))
+(use-package
+ rainbow-delimiters
+ :hook (prog-mode . rainbow-delimiters-mode))
 (use-package expand-region :bind ("M-w" . er/expand-region))
 
 (use-package
@@ -144,10 +112,11 @@
  :custom (reverse-im-input-methods '("russian-computer"))
  :config (reverse-im-mode t))
 
-;;; Completion
-
 (use-package vertico :hook (after-init . vertico-mode))
-(use-package vertico-mouse :after vertico :config (vertico-mouse-mode 1))
+(use-package
+ vertico-mouse
+ :after vertico
+ :config (vertico-mouse-mode 1))
 (use-package marginalia :hook (after-init . marginalia-mode))
 
 (use-package
@@ -174,7 +143,8 @@
  (defun tau3/consult-recent-file-other-window ()
    (interactive)
    (let ((display-buffer-overriding-action
-          '((display-buffer-use-some-window display-buffer-pop-up-window)
+          '((display-buffer-use-some-window
+             display-buffer-pop-up-window)
             (inhibit-same-window . t))))
      (consult-recent-file)))
  :bind
@@ -195,8 +165,6 @@
 
 (use-package corfu :ensure t :defer t :custom (corfu-auto t))
 
-;;; Files
-
 (use-package dired-async :after dired :config (dired-async-mode 1))
 
 (use-package
@@ -207,7 +175,8 @@
  (dired-listing-switches
   "-l --almost-all --human-readable --group-directories-first --no-group")
  (dirvish-time-format-string "%d.%m.%y %R")
- (dirvish-mode-line-format '(:left (sort symlink) :right (omit yank index)))
+ (dirvish-mode-line-format
+  '(:left (sort symlink) :right (omit yank index)))
  (dirvish-attributes '(file-time file-size vc-state))
  :hook
  (dired-mode . dired-hide-dotfiles-mode)
@@ -261,8 +230,6 @@
  (add-to-list 'recentf-exclude "\\.gpg\\'")
  (dashboard-setup-startup-hook))
 
-;;; Evil
-
 (use-package
  evil
  :custom
@@ -296,13 +263,12 @@
  :after evil
  :hook (after-init . global-evil-visualstar-mode))
 
-;;; Git
-
 (use-package
  magit
  :defer t
  :custom
- (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+ (magit-display-buffer-function
+  #'magit-display-buffer-fullframe-status-v1)
  :bind (:map magit-mode-map ("C-w" . tab-bar-close-tab))
  :hook (git-commit-post-finish . delete-window))
 
@@ -316,21 +282,16 @@
  (after-init . global-diff-hl-mode)
  (magit-pre-refresh . diff-hl-magit-pre-refresh)
  (magit-post-refresh . diff-hl-magit-post-refresh)
- :config
- (diff-hl-flydiff-mode 1)
+ :config (diff-hl-flydiff-mode 1)
  ;; No fringe in a terminal frame: draw the markers in the margin.
  (unless (display-graphic-p)
    (diff-hl-margin-mode 1)))
-
-;;; Terminal
 
 (use-package
  ghostel
  :ensure t
  :defer t
  :custom
- ;; Kill terminal buffers without the "process is running" query
- ;; (was: advice on `multi-vterm').
  (ghostel-query-before-killing nil)
  (ghostel-timer-delay 0.01)
  :init
@@ -352,7 +313,6 @@
  ;; drop it so the global `er/expand-region' works there too
  ;; (copy with evil `y' in visual state instead).
  (keymap-unset ghostel-readonly-mode-map "M-w")
- ;; `global-hl-line-mode' is switched off in ghostel buffers by ghostel itself.
  (defun tau3/evil-normal-in-ghostel-copy-mode ()
    (when (derived-mode-p 'ghostel-mode)
      (if buffer-read-only ; copy mode (C-c C-t) or emacs mode (C-c C-e)
@@ -361,25 +321,22 @@
  (defun tau3/delete-ghostel-window ()
    (when (derived-mode-p 'ghostel-mode)
      (let ((win (get-buffer-window (current-buffer))))
-       (when (and win (window-parent win)) ; not the only window in frame
+       (when
+           (and win (window-parent win)) ; not the only window in frame
          (delete-window win)))))
  (add-hook 'kill-buffer-hook #'tau3/delete-ghostel-window))
 
 (defun tau3/ghostel-split-right ()
-  "Open a new terminal in a window split to the right."
   (interactive)
   (select-window (split-window-right))
   (ghostel-new))
 (defun tau3/ghostel-split-below ()
-  "Open a new terminal in a window split below."
   (interactive)
   (select-window (split-window-below))
   (ghostel-new))
 (keymap-global-set "C-x %" #'tau3/ghostel-split-right)
 (keymap-global-set "C-x \"" #'tau3/ghostel-split-below)
 (keymap-global-set "C-x `" #'ghostel-new)
-
-;;; Org
 
 (use-package
  org
@@ -392,8 +349,6 @@
     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
     ("+" (:strike-through t))))
  :hook (org-mode . visual-line-mode))
-
-;;; Programming / LSP
 
 (use-package
  eglot
@@ -421,4 +376,36 @@
   (setenv "PATH" (concat my-ghcup-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-ghcup-path))
 
-(custom-set-faces)
+;;; macOS-specific
+(when (eq system-type 'darwin)
+  (require 'comp)
+  (setq native-comp-driver-options
+        (cons "-mmacosx-version-min=11" native-comp-driver-options))
+
+  ;; Applies to every frame, including ones made by emacsclient.
+  (add-to-list 'default-frame-alist '(font . "Fira Code Retina-13"))
+
+  ;; GUI Emacs doesn't inherit PATH from the login shell.
+  (use-package
+   exec-path-from-shell
+   :ensure t
+   :if (memq window-system '(mac ns))
+   :config (exec-path-from-shell-initialize))
+
+  ;; Open documents and media with the default macOS apps
+  ;; (overrides the Linux associations set in the `openwith' block).
+  (with-eval-after-load 'openwith
+    (setq openwith-associations
+          `((,(concat
+               "\\."
+               (regexp-opt
+                '("pdf" "djvu" "docx" "xls" "webm" "mp4" "avi" "mkv"))
+               "\\'")
+             "open" (file))))))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
