@@ -28,11 +28,25 @@
  t)
 (package-initialize)
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx" "xls"))
  '(eglot-ignored-server-capabilities '(:inlayHintProvider))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy company consult consult-dir consult-eglot dape dashboard difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar expand-region git-gutter haskell-mode haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode multi-vterm nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit treemacs undo-tree vertico which-key which-key-mode xclip)))
+   '(ace-window async avy company consult consult-dir consult-eglot dape
+		dashboard difftastic dired-hide-dotfiles dirvish
+		doom-themes elisp-autofmt evil evil-collection
+		evil-visualstar expand-region ghostel git-gutter
+		haskell-mode haskell-ts-mode jinx latex-preview-pane
+		magit magit-delta marginalia markdown-mode multi-vterm
+		nerd-icons openwith orderless rainbow-delimiters
+		reverse-im solaire-mode sudo-edit treemacs undo-tree
+		vertico which-key which-key-mode xclip))
+ '(package-vc-selected-packages
+   '((ghostel :url "https://github.com/dakra/ghostel" :lisp-dir "lisp"))))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -270,8 +284,7 @@
    (other-window 1)
    (multi-vterm)))
 (global-set-key (kbd "C-x `") 'multi-vterm)
-(with-eval-after-load 'vterm
-  (define-key vterm-mode-map (kbd "C-t") nil))
+(with-eval-after-load 'vterm (define-key vterm-mode-map (kbd "c-t") nil))
 
 (use-package
  display-line-numbers
@@ -308,6 +321,8 @@
  (setq org-emphasis-alist
        '(("*" (bold :foreground "Orange"))
          ("_" underline)
+	 ("/" italic)
+	 ;; ("=" org-verbatim verbatim)
          ("=" (:background "maroon" :foreground "white"))
          ("~" (:background
            "deep sky blue"
@@ -358,4 +373,62 @@
 ; sudo apt-get install git-delta
 (use-package magit-delta :hook (magit-mode . magit-delta-mode))
 
-(custom-set-faces)
+(use-package ghostel
+  :vc (:url "https://github.com/dakra/ghostel"
+       :lisp-dir "lisp"
+       :rev :newest))
+
+(use-package ghostel
+  :ensure t
+  :defer t
+  :hook
+  (ghostel-mode . evil-emacs-state)
+  (ghostel-copy-mode . tau3/evil-normal-in-ghostel-copy-mode)
+  :config
+  (defun tau3/evil-normal-in-ghostel-copy-mode ()
+    (if (bound-and-true-p ghostel-copy-mode)
+        (evil-normal-state)
+      (evil-emacs-state)))
+
+  (defun tau3/delete-ghostel-window ()
+    (when (derived-mode-p 'ghostel-mode)
+      (unless (one-window-p)
+        (delete-window))))
+
+  (add-hook 'kill-buffer-hook #'tau3/delete-ghostel-window)
+  (add-hook
+   'ghostel-mode-hook
+   (lambda ()
+     (setq-local global-hl-line-mode nil))))
+
+(global-set-key
+ (kbd "C-x %")
+ (lambda ()
+   (interactive)
+   (split-window-right)
+   (other-window 1)
+   (ghostel)))
+
+(global-set-key
+ (kbd "C-x \"")
+ (lambda ()
+   (interactive)
+   (split-window-below)
+   (other-window 1)
+   (ghostel)))
+
+(defun tau3/ghostel-new-terminal ()
+  (interactive)
+  (let ((prefix-arg '(4))
+        (current-prefix-arg '(4)))
+    (call-interactively #'ghostel)))
+
+(global-set-key (kbd "C-x `") #'tau3/ghostel-new-terminal)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
