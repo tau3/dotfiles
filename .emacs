@@ -32,22 +32,58 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(dirvish-preview-disabled-exts '("bin" "exe" "gpg" "elc" "eln" "doc" "docx" "xls"))
+ '(dirvish-preview-disabled-exts
+   '("bin" "exe" "gpg" "elc" "eln" "doc" "docx" "xls"))
  '(eglot-ignored-server-capabilities '(:inlayHintProvider))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy company consult consult-dir consult-eglot dape
-		dashboard difftastic dired-hide-dotfiles dirvish
-		doom-themes elisp-autofmt evil evil-collection
-		evil-ghostel evil-visualstar expand-region ghostel
-		git-gutter haskell-mode haskell-ts-mode jinx
-		latex-preview-pane magit magit-delta marginalia
-		markdown-mode multi-vterm nerd-icons openwith
-		orderless rainbow-delimiters reverse-im solaire-mode
-		sudo-edit treemacs undo-tree vertico which-key
-		which-key-mode xclip))
+   '(ace-window
+     async
+     avy
+     company
+     consult
+     consult-dir
+     consult-eglot
+     dape
+     dashboard
+     difftastic
+     dired-hide-dotfiles
+     dirvish
+     doom-themes
+     elisp-autofmt
+     evil
+     evil-collection
+     evil-ghostel
+     evil-visualstar
+     expand-region
+     ghostel
+     git-gutter
+     haskell-mode
+     haskell-ts-mode
+     jinx
+     latex-preview-pane
+     magit
+     magit-delta
+     marginalia
+     markdown-mode
+     multi-vterm
+     nerd-icons
+     openwith
+     orderless
+     rainbow-delimiters
+     reverse-im
+     solaire-mode
+     sudo-edit
+     treemacs
+     undo-tree
+     vertico
+     which-key
+     which-key-mode
+     xclip))
  '(package-vc-selected-packages
-   '((ghostel :url "https://github.com/dakra/ghostel" :lisp-dir "lisp"))))
+   '((ghostel
+      :url "https://github.com/dakra/ghostel"
+      :lisp-dir "lisp"))))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -380,26 +416,16 @@
   "https://github.com/dakra/ghostel"
   :lisp-dir "lisp"
   :rev
-  :newest))
-
-(use-package
- ghostel
- :ensure t
+  :newest)
  :defer t
  :hook
  (ghostel-mode . evil-emacs-state)
- (ghostel-copy-mode . tau3/evil-normal-in-ghostel-copy-mode)
+ (ghostel-copy-mode . evil-normal-state)
  :config
- (defun tau3/evil-normal-in-ghostel-copy-mode ()
-   (if (bound-and-true-p ghostel-copy-mode)
-       (evil-normal-state)
-     (evil-emacs-state)))
-
  (defun tau3/delete-ghostel-window ()
    (when (derived-mode-p 'ghostel-mode)
      (unless (one-window-p)
        (delete-window))))
-
  (add-hook 'kill-buffer-hook #'tau3/delete-ghostel-window)
  (add-hook
   'ghostel-mode-hook
@@ -427,21 +453,16 @@
 
 (global-set-key (kbd "C-x `") #'tau3/ghostel-new-terminal)
 
-(defun tau3/ghostel-copy-mode-evil ()
-  (interactive)
-  (ghostel-copy-mode)
-  (if (bound-and-true-p ghostel-copy-mode)
-      (evil-normal-state)
-    (evil-emacs-state)))
+(use-package
+ evil-ghostel
+ :after (ghostel evil)
+ :hook (ghostel-mode . evil-ghostel-mode))
 
 (with-eval-after-load 'ghostel
-  (define-key ghostel-semi-char-mode-map
+  (define-key ghostel-mode-map
               (kbd "C-c C-t")
-              #'tau3/ghostel-copy-mode-evil))
-
-;; (use-package evil-ghostel
-;;   :after (ghostel evil)
-;;   :hook (ghostel-mode . evil-ghostel-mode))
+              #'evil-force-normal-state))
+              ;; #'ghostel-copy-mode))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
