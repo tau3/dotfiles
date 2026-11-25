@@ -55,7 +55,6 @@
  (prog-mode . display-line-numbers-mode)
  (prog-mode . subword-mode)
  :config
- (set-frame-font "Fira Code Retina 11" nil t)
  (menu-bar-mode -1)
  (scroll-bar-mode -1)
  (tool-bar-mode -1)
@@ -137,12 +136,9 @@
    "sudo:root"))
  :config
  (defun tau3/consult-recent-file-other-window ()
-   (interactive)
-   (let ((display-buffer-overriding-action
-          '((display-buffer-use-some-window
-             display-buffer-pop-up-window)
-            (inhibit-same-window . t))))
-     (consult-recent-file)))
+  (interactive)
+  (let ((consult--buffer-display #'switch-to-buffer-other-window))
+    (consult-recent-file)))
  :bind
  ("C-x b" . consult-buffer)
  ("C-x j" . consult-recent-file)
@@ -163,6 +159,19 @@
 
 (use-package dired-async :after dired :config (dired-async-mode 1))
 
+;; In the `dirvish-side' window: mouse and TAB expand/collapse directories,
+;; files open in the most recently used window. Regular dirvish is unaffected.
+(define-minor-mode tau3/dirvish-side-tree-mode
+  "Tree-style mouse and TAB bindings for the `dirvish-side' window."
+  :keymap
+  (define-keymap
+   "<mouse-1>" #'dirvish-subtree-toggle-or-open
+   "<mouse-2>" #'dirvish-subtree-toggle-or-open
+   "TAB" #'dirvish-subtree-toggle))
+(defun tau3/dirvish-side-setup ()
+  (when (and (dirvish-curr) (eq (dv-type (dirvish-curr)) 'side))
+    (tau3/dirvish-side-tree-mode 1)))
+
 (use-package
  dirvish
  :init (dirvish-override-dired-mode)
@@ -174,9 +183,12 @@
  (dirvish-mode-line-format
   '(:left (sort symlink) :right (omit yank index)))
  (dirvish-attributes '(file-time file-size vc-state))
+ ;; Treemacs-like tree only in the `dirvish-side' window.
+ (dirvish-side-attributes '(vc-state subtree-state nerd-icons collapse))
  :hook
  (dired-mode . dired-hide-dotfiles-mode)
  (dired-mode . auto-revert-mode)
+ :config (add-hook 'dirvish-setup-hook #'tau3/dirvish-side-setup)
  :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
  (:map
   dired-mode-map
@@ -371,6 +383,11 @@
 (let ((my-ghcup-path (expand-file-name "~/.ghcup/bin")))
   (setenv "PATH" (concat my-ghcup-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-ghcup-path))
+
+;;; Linux-specific
+(when (eq system-type 'gnu/linux)
+  ;; Applies to every frame, including ones made by emacsclient.
+  (add-to-list 'default-frame-alist '(font . "Fira Code Retina-11")))
 
 ;;; macOS-specific
 (when (eq system-type 'darwin)
