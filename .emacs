@@ -332,7 +332,24 @@
        (when
            (and win (window-parent win)) ; not the only window in frame
          (delete-window win)))))
- (add-hook 'kill-buffer-hook #'tau3/delete-ghostel-window))
+ (add-hook 'kill-buffer-hook #'tau3/delete-ghostel-window)
+ ;; Mouse wheel in full-screen apps without mouse support (less, man,
+ ;; git log): like the "alternate scroll" mode of real terminals, send
+ ;; Up/Down keys instead of scrolling the Emacs buffer. Reuses ghostel's
+ ;; own wheel handling, so trackpad pixel deltas are converted to rows.
+ (defun tau3/ghostel-alt-screen-wheel (orig event button)
+   (if (and ghostel--term
+            (ghostel-alt-screen-p)
+            (not (ghostel--mouse-tracking-p ghostel--term)))
+       (cl-letf (((symbol-function 'ghostel--mouse-tracking-p) #'always)
+                 ((symbol-function 'ghostel--mouse-event)
+                  (lambda (_term _action btn &rest _)
+                    (ghostel-send-key (if (eq btn 4) "up" "down")))))
+         (funcall orig event button))
+     (funcall orig event button)))
+ (advice-add
+  'ghostel--forward-scroll-event
+  :around #'tau3/ghostel-alt-screen-wheel))
 
 (defun tau3/ghostel-split-right ()
   (interactive)
