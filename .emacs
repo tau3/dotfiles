@@ -17,7 +17,7 @@
  '(eglot-ignored-server-capabilities '(:inlayHintProvider))
  '(elisp-autofmt-python-bin "/usr/bin/python3")
  '(package-selected-packages
-   '(ace-window async avy consult consult-dir consult-eglot corfu dape dash dashboard diff-hl difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar exec-path-from-shell expand-region gcmh ghostel haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit vertico which-key xclip)))
+   '(ace-window async avy consult consult-dir consult-eglot corfu dape dash dashboard diff-hl difftastic dired-hide-dotfiles dirvish doom-themes elisp-autofmt evil evil-collection evil-visualstar exec-path-from-shell expand-region gcmh ghostel haskell-ts-mode jinx latex-preview-pane magit magit-delta marginalia markdown-mode nerd-icons openwith orderless rainbow-delimiters reverse-im solaire-mode sudo-edit vertico vundo which-key xclip)))
 
 (defun tau3/open-new-tab ()
   (interactive)
@@ -270,6 +270,17 @@
  evil-visualstar
  :after evil
  :hook (after-init . global-evil-visualstar-mode))
+
+(use-package
+ vundo
+ :ensure t
+ :bind ("C-x u" . vundo)
+ :init
+ (with-eval-after-load 'evil
+   (evil-set-initial-state 'vundo-mode 'emacs))
+ :config
+ ;; Set in :config: `vundo-unicode-symbols' is defined by vundo itself.
+ (setq vundo-glyph-alist vundo-unicode-symbols))
 
 (use-package
  magit
