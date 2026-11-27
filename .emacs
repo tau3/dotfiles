@@ -25,7 +25,6 @@
   (ibuffer))
 
 (defun tau3/magit-new-tab ()
-  "Open magit status in its own tab, one tab per repository."
   (interactive)
   (let ((name
          (format "magit: %s"
@@ -159,8 +158,6 @@
 
 (use-package dired-async :after dired :config (dired-async-mode 1))
 
-;; In the `dirvish-side' window: mouse and TAB expand/collapse directories,
-;; files open in the most recently used window. Regular dirvish is unaffected.
 (define-minor-mode tau3/dirvish-side-tree-mode
   "Tree-style mouse and TAB bindings for the `dirvish-side' window."
   :keymap
@@ -255,6 +252,18 @@
    (keymap-unset map "C-w"))
  (keymap-set evil-normal-state-map "C-/" #'comment-line)
  (keymap-set evil-insert-state-map "C-/" #'comment-line)
+ (evil-define-operator tau3/evil-comment-lines (beg end)
+   "Comment or uncomment whole lines between BEG and END."
+   :move-point nil
+   (let ((beg (save-excursion (goto-char beg) (line-beginning-position)))
+         (end (save-excursion
+                (goto-char end)
+                ;; A line-wise range ends at the start of the next line.
+                (when (and (bolp) (> (point) beg))
+                  (backward-char))
+                (line-end-position))))
+     (comment-or-uncomment-region beg end)))
+ (keymap-set evil-visual-state-map "C-/" #'tau3/evil-comment-lines)
  (keymap-unset evil-normal-state-map "C-p")
  (keymap-unset evil-insert-state-map "C-p")
  (keymap-unset evil-normal-state-map "C-t")
@@ -271,6 +280,7 @@
  :after evil
  :hook (after-init . global-evil-visualstar-mode))
 
+; C-x u
 (use-package
  vundo
  :ensure t
@@ -302,7 +312,6 @@
  (magit-pre-refresh . diff-hl-magit-pre-refresh)
  (magit-post-refresh . diff-hl-magit-post-refresh)
  :config (diff-hl-flydiff-mode 1)
- ;; No fringe in a terminal frame: draw the markers in the margin.
  (unless (display-graphic-p)
    (diff-hl-margin-mode 1)))
 
@@ -320,17 +329,9 @@
  (ghostel-mode . evil-emacs-state)
  (ghostel-readonly-change . tau3/evil-normal-in-ghostel-copy-mode)
  :config
- ;; Keys passed to Emacs instead of the shell, on top of ghostel's
- ;; defaults: C-t (`tau3/open-new-tab'), M-o (ace-window),
- ;; M-w (expand-region). `customize-set-variable' rebuilds the keymap.
- ;; C-q -> `ghostel-send-next-key' and C-c C-t (copy mode) are ghostel
- ;; defaults.
  (customize-set-variable
   'ghostel-keymap-exceptions
   (seq-union ghostel-keymap-exceptions '("C-t" "M-o" "M-w")))
- ;; In copy/emacs mode ghostel binds M-w to its own copy command;
- ;; drop it so the global `er/expand-region' works there too
- ;; (copy with evil `y' in visual state instead).
  (keymap-unset ghostel-readonly-mode-map "M-w")
  (defun tau3/evil-normal-in-ghostel-copy-mode ()
    (when (derived-mode-p 'ghostel-mode)
@@ -344,10 +345,6 @@
            (and win (window-parent win)) ; not the only window in frame
          (delete-window win)))))
  (add-hook 'kill-buffer-hook #'tau3/delete-ghostel-window)
- ;; Mouse wheel in full-screen apps without mouse support (less, man,
- ;; git log): like the "alternate scroll" mode of real terminals, send
- ;; Up/Down keys instead of scrolling the Emacs buffer. Reuses ghostel's
- ;; own wheel handling, so trackpad pixel deltas are converted to rows.
  (defun tau3/ghostel-alt-screen-wheel (orig event button)
    (if (and ghostel--term
             (ghostel-alt-screen-p)
@@ -360,7 +357,17 @@
      (funcall orig event button)))
  (advice-add
   'ghostel--forward-scroll-event
-  :around #'tau3/ghostel-alt-screen-wheel))
+  :around #'tau3/ghostel-alt-screen-wheel)
+ (defun tau3/ghostel-copy-and-exit ()
+   "Copy the visual selection and leave copy mode, like Enter in tmux."
+   (interactive)
+   (evil-yank evil-visual-beginning evil-visual-end (evil-visual-type))
+   (evil-exit-visual-state)
+   (ghostel-readonly-exit))
+ (dolist (map
+          (list ghostel-readonly-mode-map ghostel-readonly-fast-exit-mode-map))
+   (dolist (key '("RET" "<return>"))
+     (evil-define-key 'visual map (kbd key) #'tau3/ghostel-copy-and-exit))))
 
 (defun tau3/ghostel-split-right ()
   (interactive)
@@ -412,18 +419,14 @@
   (setenv "PATH" (concat my-ghcup-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-ghcup-path))
 
-;;; Linux-specific
 (when (eq system-type 'gnu/linux)
-  ;; Applies to every frame, including ones made by emacsclient.
   (add-to-list 'default-frame-alist '(font . "Fira Code Retina-11")))
 
-;;; macOS-specific
 (when (eq system-type 'darwin)
   (require 'comp)
   (setq native-comp-driver-options
         (cons "-mmacosx-version-min=11" native-comp-driver-options))
 
-  ;; Applies to every frame, including ones made by emacsclient.
   (add-to-list 'default-frame-alist '(font . "Fira Code Retina-13"))
 
   ;; GUI Emacs doesn't inherit PATH from the login shell.
@@ -433,8 +436,6 @@
    :if (memq window-system '(mac ns))
    :config (exec-path-from-shell-initialize))
 
-  ;; Open documents and media with the default macOS apps
-  ;; (overrides the Linux associations set in the `openwith' block).
   (with-eval-after-load 'openwith
     (setq openwith-associations
           `((,(concat
